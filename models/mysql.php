@@ -1,19 +1,20 @@
 <?php
 
-require 'db.php';
+require 'dbs.php';
 
-	private $conn, $db;
-
-	public $regUserid;
 	
 class mysql {
 
-	function __construct() {
-		$db = New db();
 
-		$conn = $db ->connect();
-		//echo $conn;
-		$db -> selectdb('coursemgs');
+	private $conn, $dbs;
+
+	public $regUserid;
+
+	function __construct() {
+		$dbs = New dbs();
+
+		$conn = $dbs ->connect();
+
 	}
 	
 	function verify_Username_and_Pass($un, $pwd) 
@@ -24,8 +25,9 @@ class mysql {
 		$flag = 0;
 		while($row = mysql_fetch_array($result)){
 			$flag = 1;
+			
 			$_SESSION['username']= $row['username'];
-			$_SESSION['id']= $row['id'];
+			$_SESSION['id']= $row['usertype'];
 		}
 		if($flag==1){
 
@@ -88,15 +90,18 @@ class mysql {
 
 		$pass_hash = md5($pass);
 
-		$query = "INSERT INTO ".DBNAME.".".USERS_TBL." (userid, username, password, email_id, usertype) values('NULL','".$un."','".$pass_hash."','".$email."','".$usertype."');";
+		$query = "INSERT INTO ".DBNAME.".".USERS_TBL." (userid, username, password, email_id, usertype) values (DEFAULT,'".$un."','".$pass_hash."','".$email."','".$usertype."');";
 		
 		$result= mysql_query($query);
+		echo "\nprint ".$result;
 		if($result)
 		{
 			// set regUserid
 			$regUserid= mysql_insert_id();
+
 			return 1;
 		}
+		  die('\nCould not insert: ' . mysql_error());
 
 		return 0;
 		
@@ -149,7 +154,7 @@ class mysql {
 		}
 
 		return 0;
-	}	
-	
+	}
+
 
 }
