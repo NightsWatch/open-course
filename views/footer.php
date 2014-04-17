@@ -5,7 +5,8 @@
 	            <p>2014 &copy; IITG ACADEMIC PORTAL</a> | <a href="#">Developed by NightsWatch</a></p>
 			</div>
 			<div class="span4">	
-				<a href="index.html"><img id="logo-footer" src="assets/img/logo2-default.png" class="pull-right" alt="" /></a>
+				<a href="index.html"><img id="logo-footer" src="assets/img/logo2-default.png"
+				class="pull-right" alt="" /></a>
 			</div>
 		</div><!--/row-fluid-->
 	</div><!--/container-->	
