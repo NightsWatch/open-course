@@ -5,7 +5,7 @@ include 'dbs.php';
 class assgn
 {
 
-	private $id, $assnno, $deadline, $maxmarks, $extension, $path;
+	private $id, $assnno, $assn_name, $deadline, $maxmarks, $extension, $path;
 
 
 	function __construct()
@@ -19,7 +19,7 @@ class assgn
 		}
 
 
-	public function uploadAssgn($assnno, $deadline, $maxmarks)
+	public function uploadAssgn($assnno, $assn_name ,$deadline, $maxmarks)
 	{
 
 		if(!isset($_FILES["file"]))
@@ -45,6 +45,7 @@ class assgn
 			{
 
 			$this->assnno= $assnno;
+			$this->$assn_name= $assn_name;
 			$this->deadline= $deadline;
 			$this->maxmarks= $maxmarks;
 
@@ -119,11 +120,11 @@ class assgn
 
 
 
-    public	function add() 
+    public function add() 
 	{
 
 
-		$query = "INSERT INTO ".DBNAME.".".ASSNS_TBL." (assignid, courseid, assignno, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->deadline."', '".$this->maxmarks."');";
+		$query = "INSERT INTO ".DBNAME.".".ASSNS_TBL." (assignid, courseid, assignno, assign_name, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->assn_name."','".$this->deadline."', '".$this->maxmarks."');";
 
 		$result= mysql_query($query);
 		if($result)
