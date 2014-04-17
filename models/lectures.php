@@ -46,7 +46,7 @@ class lectures
 				$this->lectureno= $lectureno;
 				$this->lecturename= $lecturename;
 
-				$this->extension=$extension;
+				$this->extension= $extension;
 				$this->add();
 
 				// move from servers temporary copy to the lectures folder
@@ -73,7 +73,7 @@ class lectures
 	{
 
 
-		$query = "INSERT INTO ".DBNAME.".".LECTURES_TBL." (assignid, courseid, assignno, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->deadline."', '".$this->maxmarks."');";
+		$query = "INSERT INTO ".DBNAME.".".LECTURES_TBL." (lecid, courseid, lectureno, lecturename ) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->lectureno."','".$this->lecturename."');";
 
 		$result= mysql_query($query);
 		if($result)
