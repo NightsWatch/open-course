@@ -43,12 +43,13 @@ class lectures
 			}
 			else
 			{
-				
+				$this->lectureno= $lectureno;
+				$this->lecturename= $lecturename;
 
 				$this->extension=$extension;
 				$this->add();
 
-				// move from servers temporary copy to the assignmets folder
+				// move from servers temporary copy to the lectures folder
 				if(!move_uploaded_file ($upFile["tmp_name"], $this->path) )
 						return -1;
 				else
@@ -68,7 +69,7 @@ class lectures
 
 
 
-    public	function add() 
+    public function add() 
 	{
 
 
@@ -78,7 +79,7 @@ class lectures
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
-			$this->path= "../assignments/".$this->id.'.'.$this->extension; 
+			$this->path= "../lectures/".$this->id.'.'.$this->extension; 
 
 			$query= "INSERT INTO".DBNAME.".".LECTURES_TBL." (filepath) values ('".$this->path."');";
 			$result= mysql_query($query);
