@@ -14,7 +14,6 @@ class dbs{
 
 	public function connect()
 	{
-		echo  "hjhj";
 		$con = mysql_connect($this->host, $this->username, $this->pass ); 
 		//echo "print con".$con;
 		if(!$con){
