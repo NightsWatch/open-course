@@ -12,6 +12,7 @@ define('FAC_TBL', 'faculty');
 define('ASSNS_TBL', 'assignments');
 define('SUBMS_TBL', 'assign-submissions');
 define('LECTURES_TBL', 'lectures');
-
+define('SUBMS_TBL', 'assignsubmissions');
+define('LECTURES_TBL', 'lectures');
 define ('MSGS_TBL','messages');
  ?>

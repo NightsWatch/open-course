@@ -17,6 +17,13 @@ if(isset($_SESSION['status']))
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <style>
+        .login-form {
+            background-color: #edeff1;
+            position: relative;
+            border-radius: 6px;
+            }
+        </style>
         <!-- font Awesome -->
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
@@ -29,18 +36,24 @@ if(isset($_SESSION['status']))
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="bg-black">
+    <body style="background-color: #1abc9c;">
       <h1 style="text-align:center">Open Class</h1>
     <h2 style="text-align:center">Course Management System</h2>
-        <div class="form-box" id="login-box">
-            <div class="header">Sign In</div>
+        <div class="form-box login-form" style="margin-top:50px;" >
+            <div class="header" >Sign In</div>
+
+
             <form action="../controller/login.php" method="POST" role="form">
                 <div class="body bg-gray">
                     <div class="form-group">
+                         <span class="add-on"><i class="icon-user"></i></span>
+
                         <input type="text" id="username" name="username" class="form-control input-text" placeholder="User ID"/>
                     <span id="usererror"></span>
                     </div>
                     <div class="form-group">
+                                                        <span class="add-on"><i class="icon-lock"></i></span>
+
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
                     <span id="passerror"></span>
                     </div>          
@@ -58,6 +71,7 @@ if(isset($_SESSION['status']))
                 </div>
             </form>
 
+
             <div class="margin text-center">
                 <?php
                       if(isset($_GET['error']))
@@ -70,6 +84,7 @@ if(isset($_SESSION['status']))
               ?>
                 
             </div>
+
         </div>
 
 
@@ -77,6 +92,7 @@ if(isset($_SESSION['status']))
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>        
+                        <div style="height:50px;"><div>
 
     </body>
 </html>

@@ -29,10 +29,10 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="bg-black">
+    <body style="background-color: #1abc9c;">
     <h1 style="text-align:center">Open Class</h1>
     <h2 style="text-align:center">Course Management System</h2>
-        <div class="form-box" id="login-box">
+        <div class="form-box" id="login-box" style="margin-top:50px;">
             <div class="header">Register New Membership</div>
             <form action="../controller/signup.php" method="post">
                 <div class="body bg-gray">
@@ -79,6 +79,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <div style="height:30px"></div>
 
     </body>
 </html>

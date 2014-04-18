@@ -12,6 +12,7 @@ class assgn
 		{
 			$db= New dbs();
 			$db->connect();
+
 			
 			$this->id= NULL;
 			$this->extension=NULL;
@@ -96,6 +97,7 @@ class assgn
 			}
 			else
 			{
+				echo "uploading\n";
 				$this->extension=$extension;
 				$this->submit();
 
@@ -150,20 +152,24 @@ class assgn
 
 	public	function submit( ) 
 	{
-		$TIME =localtime();
+		$TIME = time();
 
+
+		$_SESSION['assnid']=1;
+
+		echo " studid ".$_SESSION['id']."\n";
 		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assgnid, stime, studid) values ( DEFAULT,'".$_SESSION['assnid']."', '".$TIME."','".$_SESSION['id']."');";
-
+		echo "Inserting";
 		$result= mysql_query($query);
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
-			$this->path= "submissions/".$this->id.'.'.$this->extension; 
+			$this->path= "../submissions/".$this->id.'.'.$this->extension; 
 
-			$query= "INSERT INTO".DBNAME.".".SUBMS_TBL." (path) values ('".$this->path."');";
-			$result= mysql_query($query);
+			//$query= "INSERT INTO ".DBNAME.".".SUBMS_TBL." (path) values ('".$this->path."');";
+			//$result= mysql_query($query);
 
-			if($result)
+			//if($result)
 			return 1;
 			echo "Error: ".mysql_error();
 

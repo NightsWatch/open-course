@@ -29,7 +29,6 @@ if(isset($_SESSION['status']))
               <li>Instructor</li>
               <li>Course no.</li>
               <li>Year</li>
-              <li>Number of students registered</li>
               </ul>
             </div>
         </div>
@@ -47,7 +46,7 @@ if(isset($_SESSION['status']))
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="forum.php">Course Forum</a></h3>
+                <h3 class="box-title" style="text-align:center"><a href="thread.php">Course Forum</a></h3>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
             <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
