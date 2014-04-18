@@ -11,7 +11,7 @@ class courses {
 
 	}
 
-	public function getStudentCourses($useridid) {
+	public function getStudentCourses($userid) {
 		//$mysql = New mysql();
 		$query = "select * from 'coursemgs'.'courses' where 'courseid' in (select 'courseid' from 'coursemsgs'.'course-stud-registration' where 'studentid'='".$userid."');";
 		$result=mysql_query($query);
