@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2014 at 04:50 PM
+-- Generation Time: Apr 18, 2014 at 08:45 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `assign-submissions` (
   `marks` int(11) NOT NULL,
   `stime` datetime NOT NULL,
   `studid` int(11) NOT NULL,
+  `path` varchar(100) NOT NULL,
   PRIMARY KEY (`subid`),
   KEY `index-studid` (`studid`),
   KEY `assgnid` (`assgnid`)
@@ -45,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `assign-submissions` (
 
 CREATE TABLE IF NOT EXISTS `assignments` (
   `assignid` int(11) NOT NULL AUTO_INCREMENT,
+  `assn_name` text NOT NULL,
   `courseid` int(11) NOT NULL,
   `assignno` int(11) NOT NULL,
   `filepath` varchar(100) NOT NULL,
@@ -144,6 +146,21 @@ CREATE TABLE IF NOT EXISTS `forums` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lectures`
+--
+
+CREATE TABLE IF NOT EXISTS `lectures` (
+  `lecid` int(11) NOT NULL,
+  `courseid` int(11) DEFAULT NULL,
+  `lectureno` int(11) NOT NULL,
+  `lecturename` varchar(60) NOT NULL,
+  `filepath` text NOT NULL,
+  PRIMARY KEY (`lecid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `messages`
 --
 
@@ -233,10 +250,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `email_id` varchar(60) NOT NULL,
   `usertype` varchar(10) NOT NULL,
   PRIMARY KEY (`userid`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email_id` (`email_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Constraints for dumped tables
@@ -246,8 +265,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Constraints for table `assign-submissions`
 --
 ALTER TABLE `assign-submissions`
-  ADD CONSTRAINT `fkey-studid` FOREIGN KEY (`studid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fkey-assgnid` FOREIGN KEY (`assgnid`) REFERENCES `assignments` (`assignid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fkey-assgnid` FOREIGN KEY (`assgnid`) REFERENCES `assignments` (`assignid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fkey-studid` FOREIGN KEY (`studid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `assignments`
@@ -259,15 +278,15 @@ ALTER TABLE `assignments`
 -- Constraints for table `course-fac-allotment`
 --
 ALTER TABLE `course-fac-allotment`
-  ADD CONSTRAINT `course-fac-allotment_ibfk_2` FOREIGN KEY (`facultyid`) REFERENCES `faculty` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `course-fac-allotment_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `course-fac-allotment_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course-fac-allotment_ibfk_2` FOREIGN KEY (`facultyid`) REFERENCES `faculty` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `course-stud-registration`
 --
 ALTER TABLE `course-stud-registration`
-  ADD CONSTRAINT `course-stud-registration_ibfk_2` FOREIGN KEY (`studentid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `course-stud-registration_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `course-stud-registration_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course-stud-registration_ibfk_2` FOREIGN KEY (`studentid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `course-ta-allotment`
@@ -299,9 +318,9 @@ ALTER TABLE `messages`
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `fkey3` FOREIGN KEY (`threadid`) REFERENCES `forums` (`threadid`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fkey1` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fkey2` FOREIGN KEY (`postuserid`) REFERENCES `users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fkey2` FOREIGN KEY (`postuserid`) REFERENCES `users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fkey3` FOREIGN KEY (`threadid`) REFERENCES `forums` (`threadid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `posts`
@@ -314,8 +333,8 @@ ALTER TABLE `posts`
 -- Constraints for table `stud-ta-allotment`
 --
 ALTER TABLE `stud-ta-allotment`
-  ADD CONSTRAINT `stud-ta-allotment_ibfk_2` FOREIGN KEY (`ctallotid`) REFERENCES `course-ta-allotment` (`ctallotid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `stud-ta-allotment_ibfk_1` FOREIGN KEY (`studid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `stud-ta-allotment_ibfk_1` FOREIGN KEY (`studid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `stud-ta-allotment_ibfk_2` FOREIGN KEY (`ctallotid`) REFERENCES `course-ta-allotment` (`ctallotid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students`
