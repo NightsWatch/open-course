@@ -38,18 +38,37 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-left">
-                     <div class="input-group margin " style="width:350px;">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="search_results.php">Action</a></li>
-                                                <li class="divider"></li>
-                                                </ul>
-                                        </div>
-                                        <input type="text" class="form-control">
+
+                <form action="../controller/search.php" method="post">
+                     <div class="input-group margin " style="margin-left:70px;width:350px;">
+                            <div class="input-group-btn">
+
+                                <select class="form-control" name="category" style="width:100px">
+                                  <option name="fac">Faculty</option>
+                                  <option  name="stud">Students</option>
+                                  <option name="hod">HOD</option>
+                                  <option> Assignments</option>
+                                  <option >Lectures</option>
+                                  <option>Users</option>>
+                               </select>
+
+                                            <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Courses<span class="fa fa-caret-down"></span></button>
+                                        <ul class="dropdown-menu">
+
+                                            <li><a >Courses</a></li>
+                                            <li><a >Students</a></li>
+                                            <li><a >Faculty</a></li>
+                                            <li><a >Assignments</a></li>
+                                            <li><a >Lectures</a></li>
+                                        </ul> -->
+                                    </div>
+                         <input type="text" class="form-control" name="query" style="border-radius:5px" placeholder="Search...">
+                       <span class="input-group-btn">
+                                <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
                         </div> 
 
-             
+                </form>
                 </div>
       
                 <div class="navbar-right">

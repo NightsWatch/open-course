@@ -17,60 +17,65 @@ if(isset($_SESSION['status']))
 
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-folder-o"></i> Lectures</h1>
+<h1 style="text-align:center"><i class="fa fa-edit"></i> Lectures</h1>
 </section>
 <br/>
  <section class="content">
                     <div class="row">
-                    <div class="col-xs-3">
+                        <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">For _ course</h3>                                    
-
-                                </div><!-- /.box-header -->
-                                <div class="box-body table-responsive">
-                                    <ul>
-                                        <li>Course no.</li>
-                                        <li>Course name</li>
-                                    </ul>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Lectures</h3>                                    
-
+                                    <h3 class="box-title">Lectures for _ course</h3>                                    
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Lecture No.</th>
-                                                <th>Lecture Title</th>
-                                                <th>Download link</th>
-                                                <th>Date Time</th>
+                                                <th>Coursename</th>
+                                                <th>Courseno.</th>
+                                                <th>Year</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>1</td>
-                                                <td>Basic</td>
-                                                <td><a href="">Download</a></td>
-                                                <td>14 Mar 2014</td>
+                                                <td>Trident</td>
+                                                <td>Internet
+                                                    Explorer 4.0</td>
+                                                <td>Win 95+</td>
                                             </tr>
-                                              <tr>
-                                                <td>1</td>
-                                                <td>Basic</td>
-                                                <td><a href="">Download</a></td>
-                                                <td>14 Mar 2014</td>
-                                            </tr>  <tr>
-                                                <td>1</td>
-                                                <td>Basic</td>
-                                                <td><a href="">Download</a></td>
-                                                <td>14 Mar 2014</td>
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>Internet
+                                                    Explorer 5.0</td>
+                                                <td>Win 95+</td>
                                             </tr>
-                                           
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>Internet
+                                                    Explorer 5.5</td>
+                                                <td>Win 95+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>Internet
+                                                    Explorer 6</td>
+                                                <td>Win 98+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>Internet Explorer 7</td>
+                                                <td>Win XP SP2+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trident</td>
+                                                <td>AOL browser (AOL desktop)</td>
+                                                <td>Win XP</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gecko</td>
+                                                <td>Firefox 1.0</td>
+                                                <td>Win 98+ / OSX.2+</td>
+                                            </tr>
                                             
                                         </tbody>
                                        
@@ -98,9 +103,9 @@ if(isset($_SESSION['status']))
         <!-- page script -->
         <script type="text/javascript">
             $(function() {
-                //$("#example1").dataTable();
-                $('#example1').dataTable({
-                    "bPaginate": false,
+                $("#example1").dataTable();
+                $('#example2').dataTable({
+                    "bPaginate": true,
                     "bLengthChange": false,
                     "bFilter": false,
                     "bSort": true,

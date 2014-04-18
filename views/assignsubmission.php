@@ -12,7 +12,7 @@ if(isset($_SESSION['status']))
 ?>
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-cloud-upload"></i> Assignment Submission Page</h1>
+<h1 style="text-align:center"><i class="fa fa-edit"></i> Assignment Submission Page</h1>
 </section>
 <br/>
  <section class="content">
@@ -28,13 +28,11 @@ if(isset($_SESSION['status']))
  				<li>Title: </li>
  				<li>Assignment No.: </li>
  				<li>Deadline</li>
- 				<li>File for download:</li>
  				<hr>
  				<li>Courseno.: </li>
  				<li>Course Name: </li>
  				<li>Year: </li>
  			</ul>
-
             </div>
         </div>
         </div>
@@ -50,18 +48,18 @@ if(isset($_SESSION['status']))
             <div class="box-body" style="overflow: hidden; width: auto;">
               <h4>Deadline: </h4>
               <h4>No submissions will be entertained after the deadline.</h4>
-              <form role="form">
+              <form role="form" action="../controller/assn_submit.php" method='post' enctype="multipart/form-data">>
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="exampleInputFile">File input</label>
-                                            <input type="file" id="exampleInputFile">
+                                            <label for="file">File input</label>
+                                            <input type="file" name="file" id="file">
                                             <p class="help-block">Upload one archive of all the files required for assignmnet solution.</p>
                                         </div>
                                         
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                     </div>
                                 </form>
             </div>

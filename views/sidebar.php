@@ -25,6 +25,12 @@
                 </a>
             </li>
              <li>
+                <a href="forums.php">
+                    <i class="fa fa-bullhorn"></i> <span>Forums</span>
+                     <small class="badge pull-right bg-blue">12</small>
+                </a>
+            </li>
+             <li>
                 <a href="inbox.php">
                     <i class="fa fa-envelope"></i> <span>Inbox</span>
                      <small class="badge pull-right bg-yellow">12</small>
@@ -38,8 +44,8 @@
                             <ul class="treeview-menu" style="display: block;">
                                 <li><a href="coursepage.php" style="margin-left: 10px;"><i class="fa fa-book"></i> Course Page</a></li>
                                 <li><a href="assignments.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Assignments Page</a></li>
-                                <li><a href="assignsubmission.php" style="margin-left: 10px;"><i class="fa  fa-cloud-upload"></i> Assignments Submission</a></li>
-                                <li><a href="lectures.php" style="margin-left: 10px;"><i class="fa fa-folder-o"></i> Lectures Page</a></li>
+                                <li><a href="assignsubmission.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Assignments Submission</a></li>
+                                <li><a href="lectures.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Lectures Page</a></li>
                                 <li><a href="forum.php" style="margin-left: 10px;"><i class="fa fa-bullhorn"></i> Course Forum</a></li>                            </ul>
                         </li>
              <li>
@@ -47,12 +53,7 @@
                     <i class="fa fa-bell"></i> <span>Notifications</span>
                 </a>
             </li>
- 			<li>
-                <a href="allotments.php">
-                    <i class="fa fa-check-square"></i> <span>Allotments</span>
-                </a>
-            </li>
-            <!--
+
             <li class="treeview active">
                 <a href="allotments.php">
                     <i class="fa fa-check-square"></i> <span>Allotments</span>
@@ -64,21 +65,13 @@
                     <li><a href="courseta.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course TA</a></li>
                     <li><a href="studta.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Student TA</a></li>     
                     <li><a href="thesis.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> BTP/MTP Allotment</a></li>                            </ul>
-            </li> -->
-
-             <!--  <li class="treeview active">
+            </li>
+             <li>
+            <li>
                 <a href="allotments.php">
                     <i class="fa fa-check-square"></i> <span>Allotments</span>
-                    <i class="fa pull-right fa-angle-down"></i>
                 </a>
-                <ul class="treeview-menu" style="display: block;">
-                    <li><a href="allotment.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course Faculty</a></li>
-                    <li><a href="allotment.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course Student</a></li>
-                    <li><a href="allotment.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course TA</a></li>
-                    <li><a href="allotment.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Student TA</a></li>     
-                    <li><a href="allotment.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> BTP/MTP Allotment</a></li>                            </ul>
             </li>
- -->
             <li>
                 <a href="calendar.php">
                     <i class="fa fa-calendar"></i> <span>Calendar</span>
@@ -88,33 +81,6 @@
            <li>
                 <a href="profile.php">
                     <i class="fa fa-user"></i> <span>Profile</span>
-                   
-                </a>
-            </li>
-            Temporary
-           <li>
-                <a href="lecturesfac.php">
-                    <i class="fa fa-user"></i> <span>Lecture Fac</span>
-                   
-                </a>
-            </li>
-           
-           <li>
-                <a href="assignmentsfac.php">
-                    <i class="fa fa-user"></i> <span>Assgn Fac</span>
-                   
-                </a>
-            </li>
-            
-            <li>
-                <a href="assignsubmissionfac.php">
-                    <i class="fa fa-user"></i> <span>Assignment submission page for TA or Fac</span>
-                   
-                </a>
-            </li>
-            <li>
-                <a href="grading.php">
-                    <i class="fa fa-user"></i> <span>Assignment grading page for TA or Fac</span>
                    
                 </a>
             </li>

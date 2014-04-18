@@ -27,7 +27,9 @@ class mysql {
 			$flag = 1;
 
 			$_SESSION['username']= $row['username'];
-			$_SESSION['id']= $row['usertype'];
+			$_SESSION['id']= $row['userid'];
+			$_SESSION['usertype']= $row['usertype'];
+
 		}
 		if($flag==1){
 
@@ -99,6 +101,10 @@ class mysql {
 			// set regUserid
 			$regUserid= mysql_insert_id();
 
+			$_SESSION['id']= $regUserid;
+			$_SESSION['username']= $un;
+			$_SESSION['status']= "authorised";
+
 			return 1;
 		}
 		  die('\nCould not insert: ' . mysql_error());
@@ -154,6 +160,28 @@ class mysql {
 		}
 
 		return 0;
+	}
+
+
+	public function search($table, $searchquery, $field)
+	{
+		echo "";
+		$query= "SELECT * FROM ".DBNAME.".".$table." where ".$field." LIKE '%".$searchquery."%';";
+
+		$result= mysql_query($query);
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+			return $result;
+
+			else
+				return -1;
+		}
+
+		echo "Invalid search query ".$result;
+
+		return -1;
+
 	}
 
 
