@@ -8,96 +8,77 @@ if(isset($_SESSION['status']))
 }
 ?>
 
-<?php
-include 'header.php';
-?>
 
-<div class="content" style="background:#5bc3be; text-align:center">
-<div class="clear"></div>
+<!DOCTYPE html>
+<html class="bg-black">
+    <head>
+        <meta charset="UTF-8">
+        <title>Open Class | Registration Page</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-<?php
-        if(isset($_GET['error']))
-        {
-               
-          echo '<div class="alert alert-warning">Entered details did not match with exisiting users</div>';
-              
-        }
-            
-?>
-<div class="blank">
-<div class="clear"></div>
-                            <h4 style="font-size:20px">                            
-                            <b>Login</b>
-                            </h4>
-</div>
-<div class="clear"></div>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="bg-black">
+      <h1 style="text-align:center">Open Class</h1>
+    <h2 style="text-align:center">Course Management System</h2>
+        <div class="form-box" id="login-box">
+            <div class="header">Sign In</div>
+            <form action="../controller/login.php" method="POST" role="form">
+                <div class="body bg-gray">
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" class="form-control input-text" placeholder="User ID"/>
+                    <span id="usererror"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                    <span id="passerror"></span>
+                    </div>          
+                    <div class="form-group">
+                        <input type="checkbox" name="remember_me"/> Remember me
+                    </div>
+                </div>
+                <div class="footer">                                                               
+                    <button type="submit" class="btn bg-olive btn-block submit" name="login" value="Sign In">Sign me in</button>  
+                    <div class="errormsg"></div>
 
-<form role="form" name="login-form" action="../controller/login.php" method="POST" >
-                                    <div class="form-group">
-                                            <label for="username" style="color:white">Username:</label>
-                                         
-                                     <div class="controls">
-                                             <span class="add-on"><i class="icon-user"></i></span>
+                    <p><a href="#">I forgot my password</a></p>
+                    
+                    <a href="signup.php" class="text-center">Register a new membership</a>
+                </div>
+            </form>
 
-                                            <input type="text" class="input-text" name="username" id="username" tabindex="1">
-                                            <span id="usererror"></span>
-                                        </div>
-                                    </div>
-                        <div class="form-group">
-                                    <label for="password" style="color:white">Password:</label>
-                               <div class="controls">
-                              
-                                    <span class="add-on"><i class="icon-lock"></i></span>
-
-                                    <input class="input-text" type="password" name="password" id="password" tabindex="2">
-                                            <span id="passerror"></span>
-                               </div>
-                        </div>
-                                            <div class="clear"></div>
-
-                         
-                          <div class="clear"></div>
-                              <div class="form-group" >
-                                    <div class="errormsg"></div>
-
-                                   <input type="submit" class="btnu btn-primary submit" name="login" value="Sign In">
-                                                               <div class="clear"></div>
-
-                                   <div style="font-size:15px;">Forgot password click <a href="#" style="color:red">here</a></div>
-                                   <div class="clear"></div>
-                                   <div class="clear"></div>
-
-                                    <div style="font-size:15px;">New User, then <a class="btnu btnu-danger" href="index.html#signup-modal">Sign Up</a></div>
-                             </div>
-                    </form>
-
-                    <div class="clear"></div>
-                                        <div class="clear"></div>
-
-  </div>
-        
-
-<script type="text/javascript" src="assets/js/jquery-1.8.2.min.js"></script>
-   
-<script type="text/javascript" >
-
-  $('.submit').click(function() {
-    var inputVal = $("#username").val();
-        var passVal = $("#password").val();
-
-    // $(document).trigger("clear-alert-id.example");
-    if (inputVal.length < 2 || passVal.length < 2) {
-      $('.errormsg').html("Please Enter your username & password");
+            <div class="margin text-center">
+                <?php
+                      if(isset($_GET['error']))
+                      {
                              
-    }
+                        echo '<div class="alert alert-warning">Entered details did not match with exisiting users</div>';
+                            
+                      }
+                          
+              ?>
+                
+            </div>
+        </div>
 
-    
-  });
 
-</script>
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>        
 
-<?php
+    </body>
+</html>
 
-include 'footer.php';
 
-?>
