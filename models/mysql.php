@@ -2,7 +2,7 @@
 
 require 'dbs.php';
 
-	
+
 class mysql {
 
 
@@ -16,16 +16,16 @@ class mysql {
 		$conn = $dbs ->connect();
 
 	}
-	
+
 	function verify_Username_and_Pass($un, $pwd) 
 	{
-				
+
 		$query = "SELECT * FROM ".DBNAME.".".USERS_TBL." where username='".$un."' AND password='".$pwd."';";
 		$result = mysql_query($query);
 		$flag = 0;
 		while($row = mysql_fetch_array($result)){
 			$flag = 1;
-			
+
 			$_SESSION['username']= $row['username'];
 			$_SESSION['id']= $row['usertype'];
 		}
@@ -36,28 +36,28 @@ class mysql {
 
 		return false;		
 	}
-	
+
 
 	function checkEmail($eml) 
 	{
-				
+
 		$query = "SELECT * FROM ".DBNAME.".".USERS_TBL." where email='".$eml."';";
 		$result = mysql_query($query);
 		$flag = 0;
 		while($row = mysql_fetch_array($result)){
 			$flag = 1;
-			
+
 		}
 		if($flag==1){
 
 			return true;
 		}
 		else return false;
-		
+
 	}
 
-	
-	
+
+
 	public function checkUsername($un)
 	{
 		$un = mysql_real_escape_string($un);
@@ -91,7 +91,7 @@ class mysql {
 		$pass_hash = md5($pass);
 
 		$query = "INSERT INTO ".DBNAME.".".USERS_TBL." (userid, username, password, email_id, usertype) values (DEFAULT,'".$un."','".$pass_hash."','".$email."','".$usertype."');";
-		
+
 		$result= mysql_query($query);
 		echo "\nprint ".$result;
 		if($result)
@@ -104,7 +104,7 @@ class mysql {
 		  die('\nCould not insert: ' . mysql_error());
 
 		return 0;
-		
+
 
 	}
 
