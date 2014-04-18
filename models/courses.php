@@ -1,6 +1,15 @@
 <?php
 
+require 'dbs.php';
+
 class courses {
+
+	function __construct() {
+		$dbs = New dbs();
+
+		$conn = $dbs ->connect();
+
+	}
 
 	public function getStudentCourses($useridid) {
 		//$mysql = New mysql();
