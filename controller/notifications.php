@@ -1,6 +1,6 @@
 <?php
 
-include '../models/messages.php';
+include '../models/notifications.php';
 
 session_start();
 
@@ -22,8 +22,6 @@ if( isset($_POST['receiverusername']) && isset($_POST['message']))
 				
 				header('Location: ../views/inbox.php');
 			}
-
-	//	$msgs->getInbox($senderid);
 }
 
 ?>

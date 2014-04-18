@@ -1,18 +1,16 @@
 <?php 
 
-define('HOSTNAME', '127.0.0.1');
-define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'coursemgs');
+if (!defined('HOSTNAME')) define('HOSTNAME', '127.0.0.1');
+if (!defined('DBUSER')) define('DBUSER', 'root');
+if (!defined('DBPASS')) define('DBPASS', '');
+if (!defined('DBNAME')) define('DBNAME', 'coursemgs');
 
-define('USERS_TBL', 'users');
-define('STUD_TBL', 'students');
-define('FAC_TBL', 'faculty');
+if (!defined('USERS_TBL')) define('USERS_TBL', 'users');
+if (!defined('STUD_TBL')) define('STUD_TBL', 'students');
+if (!defined('FAC_TBL')) define('FAC_TBL', 'faculty');
 
-define('ASSNS_TBL', 'assignments');
-define('SUBMS_TBL', 'assign-submissions');
-define('LECTURES_TBL', 'lectures');
-define('SUBMS_TBL', 'assignsubmissions');
-define('LECTURES_TBL', 'lectures');
-define ('MSGS_TBL','messages');
+if (!defined('ASSNS_TBL')) define('ASSNS_TBL', 'assignments');
+if (!defined('SUBMS_TBL')) define('SUBMS_TBL', 'assign-submissions');
+if (!defined('LECTURES_TBL')) define('LECTURES_TBL', 'lectures');
+if (!defined('MSGS_TBL')) define ('MSGS_TBL','messages');
  ?>

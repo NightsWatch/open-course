@@ -3,20 +3,23 @@
 session_start();
 
 
-include 'header.php';
+include_once 'header.php';
 
-include '../models/messages.php';
+include_once '../models/messages.php';
 
 $msg = New messages();
 
 
 $senderid=$msg->getUserid($_SESSION["username"]);
-$rows=$msg->getInbox($senderid);
+$loggedinuserid = $senderid;
+//$rows=$msg->getInbox($senderid);
 
-for 
+
+           
+
 if(isset($_SESSION['status']))
 {
-    include 'sidebar.php';
+    include_once 'sidebar.php';
 }
 ?>
 
@@ -30,6 +33,7 @@ if(isset($_SESSION['status']))
     <div class="mailbox row">
 
         <div class="col-xs-12">
+
             <!-- <div class="box box-solid">
                 <div class="box-body"> -->
                     <div class="row">
@@ -42,11 +46,40 @@ if(isset($_SESSION['status']))
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                 <table class="table table-mailbox">
-                                    <tr class="unread">
+                                    
+                                    <?php 
+
+                                        $rows=$msg->getInboxUsers($senderid);
+                                        while($row = mysql_fetch_array($rows))
+                                        {
+                                            //$message = $row['message'];
+                                            $fromusername = $row['username'];
+                                            $loggedinuserid = $senderid;
+                                            $unread = $msg->doesExistUnread($msg->getUserid($fromusername),$loggedinuserid);
+                                            //echo $message, $username, $seen;
+
+                                            if($unread==1)
+                                            {
+                                                echo '<tr class="unread">
                                         <td style="width:150px"><img src="img/avatar.png" alt="user image" class="online" style="width: 80px;height: 80px;border: 2px solid transparent;-webkit-border-radius: 50% !important;
                                         -moz-border-radius: 50% !important;border-radius: 50% !important;"></td>
-                                        <td class="name"><a href="#">John Doe</a></td>
-                                    </tr>
+                                        <td><a href="inbox.php?username='.$fromusername.'">Unread Message From </a></td>
+                                        <td class="name"><a href="inbox.php?username='.$fromusername.'">'.$fromusername.'</a></td>
+                                    </tr>';
+                                            }
+
+                                            else
+                                            {
+                                            //mistake here
+                                                echo '<tr>
+                                        <td style="width:150px"><img src="img/avatar.png" alt="user image" class="online" style="width: 80px;height: 80px;border: 2px solid transparent;-webkit-border-radius: 50% !important;
+                                        -moz-border-radius: 50% !important;border-radius: 50% !important;"></td>
+                                        <td class="name"><a href="">'.$fromusername.'</a></td>
+                                    </tr>';
+                                        
+                                            }
+                                        }
+                                    ?>
                                 </table>
                                 </div><!-- /.box-body -->
                             </div>
@@ -57,15 +90,51 @@ if(isset($_SESSION['status']))
                             <div class="box box-solid">
 
                                 <div class="box-header">
-                                    <i class="fa fa-inbox"></i>
-                                    <h3 class="box-title">Messages</h3>
+                                   
+                                    <?php 
+
+                                        if(isset($_GET['username']))
+                                           { echo ' <i class="fa fa-inbox"></i><h3 class="box-title">Conversation with '.$_GET['username'].'</h3>';}
+
+                                        else
+                                           { echo '<br/><div class="alert alert-info alert-dismissable">
+                                        <i class="fa fa-info"></i>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <b>Alert!</b> Choose an user on left to see conversation with that user 
+                                    </div>';}
+                                        ?>
+
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    <table class="table table-mailbox">
-                                    <tr>
-                                        <td class="subject"><a href="#">Urgent! Please read</a></td>
-                                        <td class="time">12:30 PM</td>
-                                    </tr>
+                                    <div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; height: auto;">
+                                    
+                                    <?php
+                                    //echo '<h4>'.$fromusername.'</th>';
+                                     if(isset($_GET['username']))
+                                    {
+                                    $fromuserid = $msg->getUserid($_GET['username']);
+
+                                    $rows=$msg->getInboxMessages($loggedinuserid,$fromuserid);
+                                    
+                                        while($row = mysql_fetch_array($rows))
+                                        {
+                                            $hrdate = date("H:i, d M Y", strtotime($row['timestamp']));
+                                        
+            // <img src="img/avatar2.png" alt="user image" class="offline">
+                                            echo '<div class="item">
+                                             <img src="img/avatar3.png" alt="user image" class="offline">
+                                            <p class="message">
+                                                <a href="#" class="name">
+                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> '.$hrdate.'</small>
+                                                    '.$msg->getUsername($row['senderid']).'</a>
+                                               '.$row['message'].'
+                                            </p>
+                                            </div>';
+                                        }
+                                        echo ' </div>';
+                                        $msg->setAllSeen($fromuserid,$loggedinuserid);
+                                    }
+                                    ?>
                                 </table>
                                 </div><!-- /.box-body -->
                             </div>

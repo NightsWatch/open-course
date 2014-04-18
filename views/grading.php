@@ -18,7 +18,7 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
                     <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-md-4 col-md-offset-2">
                             <div class="box box-warning">
                                 <div class="box-header">
                                     <h3 class="box-title">For _ assignment of</h3>                                    
@@ -34,7 +34,7 @@ if(isset($_SESSION['status']))
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                         </div>
-                        <div class="col-xs-8">
+                        <div class="col-md-4">
 	                    
 	                         <form role="form">
 	                                <!-- text input -->
@@ -43,11 +43,9 @@ if(isset($_SESSION['status']))
 	                            		<h3 class="box-title">Assignment grading</h3>                                   
 	                              	</div><!-- /.box-header -->
 	                        		<div class="box-body table-responsive">
-		                        		<div>
-		                        			<ul>
-		                        			<li><a href=""><button class="btn bg-olive">Download student's assignment submission</button></a>	</li>
-		                        			<li>Assignment submitted at: </li>
-		                        			</ul>
+		                        		<div><a href=""><button class="btn bg-olive">Download student's assignment submission</button></a>
+		                        			Assignment submitted at: 
+		                        			
 		                        		</div>
 		                        		<hr>
 	                           		     <div class="form-group">
@@ -55,7 +53,7 @@ if(isset($_SESSION['status']))
 	                                    	<input type="text" class="form-control" placeholder="Marks received">
 	                                	</div>
 	                                	<div class="box-footer">
-	                                    	<button type="submit" class="btn bg-olive btn-block">Submit</button>
+	                                    	<button type="submit" class="btn bg-olive btn-large">Submit</button>
 	                                    </div>                             
 									</div><!-- /.box-body -->
 	                    		</div><!-- /.box -->
