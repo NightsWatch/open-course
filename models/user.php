@@ -24,8 +24,14 @@ class user {
 		
 		if($ensure_credentials) {
 			$_SESSION['status'] = 'authorized';
-			// header("location: ../views/index.php");
-		} else return "Please enter a correct username and password";
+			echo $_SESSION['status']." username ".$_SESSION['username'];
+			header("Location: ../views/index.php?session=1");
+		} 
+		else 
+			header('Location: ../views/login.php?error=1');  //"Please enter a correct username and password";
+
+
+		
 		
 	} 
 	
