@@ -42,12 +42,9 @@
                                         <div class="input-group-btn">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
+                                                <li><a href="search_results.php">Action</a></li>
                                                 <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
+                                                </ul>
                                         </div>
                                         <input type="text" class="form-control">
                         </div> 

@@ -22,11 +22,13 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
                     <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-md-8">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Title</h3>                                    
+                                    <h3 class="box-title">You have registered for the following courses</h3>                                    
+                                    
                                 </div><!-- /.box-header -->
+
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
@@ -66,12 +68,24 @@ if(isset($_SESSION['status']))
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
+                          </div>
+                        <div class="col-md-3">
+                           <div class="box">
+
+                                <div class="box-body">
+                                    <a href="tastudents.php"><button class="btn bg-blue btn-large">Register for another course</button></a>
+                                    <div></div>
+                                    <p>You have already take x credits. You can take y more credits this semester.</p>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box --> 
+                            
                         </div>
+                  
+
                     </div>
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
-        </div><!-- ./wrapper -->
 
 
         <!-- jQuery 2.0.2 -->
@@ -83,14 +97,14 @@ if(isset($_SESSION['status']))
         <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
         <!-- AdminLTE App -->
         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
-
+        <script src="js/jquery_clickrow.js"></script>
         <!-- page script -->
         <script type="text/javascript">
             $(function() {
                 $("#example1").dataTable();
                 $('#example2').dataTable({
                     "bPaginate": true,
-                    "bLengthChange": false,
+                    "bLengthChange": true,
                     "bFilter": false,
                     "bSort": true,
                     "bInfo": true,

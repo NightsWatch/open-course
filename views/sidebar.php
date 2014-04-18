@@ -42,16 +42,36 @@
                                 <i class="fa pull-right fa-angle-down"></i>
                             </a>
                             <ul class="treeview-menu" style="display: block;">
-                                <li><a href="courses.php" style="margin-left: 10px;"><i class="fa fa-book"></i> Courses</a></li>
-                                <li><a href="assignments.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Assignments</a></li>
-                                <li><a href="forum.php" style="margin-left: 10px;"><i class="fa fa-bullhorn"></i> Forum</a></li>                            </ul>
+                                <li><a href="coursepage.php" style="margin-left: 10px;"><i class="fa fa-book"></i> Course Page</a></li>
+                                <li><a href="assignments.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Assignments Page</a></li>
+                                <li><a href="assignsubmission.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Assignments Submission</a></li>
+                                <li><a href="lectures.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Lectures Page</a></li>
+                                <li><a href="forum.php" style="margin-left: 10px;"><i class="fa fa-bullhorn"></i> Course Forum</a></li>                            </ul>
                         </li>
              <li>
                 <a href="notifications.php">
                     <i class="fa fa-bell"></i> <span>Notifications</span>
                 </a>
             </li>
-              
+
+            <li class="treeview active">
+                <a href="allotments.php">
+                    <i class="fa fa-check-square"></i> <span>Allotments</span>
+                    <i class="fa pull-right fa-angle-down"></i>
+                </a>
+                <ul class="treeview-menu" style="display: block;">
+                    <li><a href="coursefac.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course Faculty</a></li>
+                    <li><a href="coursestud.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course Student</a></li>
+                    <li><a href="courseta.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Course TA</a></li>
+                    <li><a href="studta.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> Student TA</a></li>     
+                    <li><a href="thesis.php" style="margin-left: 10px;"><i class="fa fa-check-square"></i> BTP/MTP Allotment</a></li>                            </ul>
+            </li>
+             <li>
+            <li>
+                <a href="allotments.php">
+                    <i class="fa fa-check-square"></i> <span>Allotments</span>
+                </a>
+            </li>
             <li>
                 <a href="calendar.php">
                     <i class="fa fa-calendar"></i> <span>Calendar</span>
