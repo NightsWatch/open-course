@@ -43,7 +43,8 @@ class lectures
 			}
 			else
 			{
-				
+				$this->lectureno= $lectureno;
+				$this->lecturename= $lecturename;							
 
 				$this->extension=$extension;
 				$this->add();
@@ -72,13 +73,13 @@ class lectures
 	{
 
 
-		$query = "INSERT INTO ".DBNAME.".".LECTURES_TBL." (assignid, courseid, assignno, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->deadline."', '".$this->maxmarks."');";
+		$query = "INSERT INTO ".DBNAME.".".LECTURES_TBL." (lecid, courseid, lectureno, lecturename) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->lectureno."','".$this->lecturename."');";
 
 		$result= mysql_query($query);
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
-			$this->path= "../assignments/".$this->id.'.'.$this->extension; 
+			$this->path= "lectures/".$this->id.'.'.$this->extension; 
 
 			$query= "INSERT INTO".DBNAME.".".LECTURES_TBL." (filepath) values ('".$this->path."');";
 			$result= mysql_query($query);
