@@ -281,6 +281,9 @@ ALTER TABLE `course-fac-allotment`
   ADD CONSTRAINT `course-fac-allotment_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `course-fac-allotment_ibfk_2` FOREIGN KEY (`facultyid`) REFERENCES `faculty` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE `lectures`
+  ADD CONSTRAINT `lectures_fkey1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 --
 -- Constraints for table `course-stud-registration`
 --
