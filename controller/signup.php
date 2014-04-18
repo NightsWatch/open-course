@@ -2,32 +2,30 @@
 
 require '../models/mysql.php';
 
+session_start();
+
 if ( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) )
 
 	{
 
-				echo "entering";
+		echo "entering";
 
 		$username = mysql_real_escape_string($_POST['username']);
 		$pass = mysql_real_escape_string($_POST['password']);
 		$email = mysql_real_escape_string($_POST['email']);
 
-		$usertype=0;
-		if(isset($_POST['stud'])) $usertype="student";
-
-		if(isset($_POST['fac'])) $usertype="faculty";
-
-		if(isset($_POST['hod'])) $usertype="hod";
-
+		if(isset($_POST['usertype']))
+		 $usertype= $_POST['usertype'];
+		echo "printing usertype".$_POST['usertype'] ;
+		
 
 		$mysql = New mysql();
 
 		echo "created mysql";
 		if( ($mysql->adduser($username,$pass, $email, $usertype )) == 1 )
-			echo "Inserted successfully";
+			header('Location: ../views/login.php');
 		else
-			echo "Failed";
-
+			header('Location: ../views/signup.php?error=1');
 		//$mysql->insertStudDetails($regUserid, $name, $prog, $batch, $dept, $rollno, $ista );
 
 	}
