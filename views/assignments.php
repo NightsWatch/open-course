@@ -23,42 +23,63 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
+                    <div class="col-xs-3">
+                            <div class="box box-warning">
                                 <div class="box-header">
-                                    <h3 class="box-title">Assignments for _ course</h3>                                   
+                                    <h3 class="box-title">For _ course</h3>                                    
+
+                                </div><!-- /.box-header -->
+                                <div class="box-body table-responsive">
+                                    <ul>
+                                        <li>Course no.</li>
+                                        <li>Course name</li>
+                                    </ul>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <h3 class="box-title">Assignments</h3>                                   
                                 	
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
-                                <h4>Click on an assignment to go to its submission page</h4>
                                 <br/>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Coursename</th>
-                                                <th>Courseno.</th>
-                                                <th>Year</th>
+                                               <th>Assignment no.</th>
+                                               <th>Download link</th>
                                                 <th>Deadline</th>
+                                                <th>Submit</th>
+                                                <th>Max Marks</th>
+                                                <th>Your Marks</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr class='clickableRow' href='assignsubmission.php' style="cursor:pointer">
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 4.0</td>
-                                                <td>Win 95+</td>
+                                           <tr>
+                                           		<td>1</td>
+                                            	<td><a href="fileath">Download link.</a></th>
+                                                <td>31 Jan 1993</td>
+                                                <td><a href="assignsubmission.php">Submit</a></td>
+                                                <td>10</td>
+                                                <td>3</td>
                                             </tr>
-                                           <tr class='clickableRow' href='assignsubmission.php' style="cursor:pointer">
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 5.0</td>
-                                                <td>Win 95+</td>
+                                           <tr>
+                                           		<td>1</td>
+                                            	<td><a href="fileath">Download link.</a></th>
+                                                <td>31 Jan 1993</td>
+                                                <td><a href="assignsubmission.php">Submit</a></td>
+                                                <td>20</td>
+                                                <td>5</td>
                                             </tr>
-                                            <tr class='clickableRow' href='assignsubmission.php' style="cursor:pointer">
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 5.5</td>
-                                                <td>Win 95+</td>
+                                            <tr>
+                                           		<td>1</td>
+                                            	<td><a href="fileath">Download link.</a></th>
+                                                <td>31 Jan 1993</td>
+                                                <td><a href="assignsubmission.php">Submit</a></td>
+                                                <td>10</td>
+                                                <td>3</td>
                                             </tr>
                                            
                                             
@@ -89,9 +110,8 @@ if(isset($_SESSION['status']))
         <!-- page script -->
         <script type="text/javascript">
             $(function() {
-                $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
+                $('#example1').dataTable({
+                    "bPaginate": false,
                     "bLengthChange": false,
                     "bFilter": false,
                     "bSort": true,

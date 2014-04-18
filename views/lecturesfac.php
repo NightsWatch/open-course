@@ -22,8 +22,8 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
                     <div class="row">
-                    <div class="col-xs-3">
-                            <div class="box">
+                    <div class="col-xs-4">
+                            <div class="box box-warning">
                                 <div class="box-header">
                                     <h3 class="box-title">For _ course</h3>                                    
 
@@ -33,11 +33,42 @@ if(isset($_SESSION['status']))
                                         <li>Course no.</li>
                                         <li>Course name</li>
                                     </ul>
+
                                 </div><!-- /.box-body -->
+
+                                   
                             </div><!-- /.box -->
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <h3 class="box-title">Add Lecture</h3>                                    
+
+                                </div><!-- /.box-header -->
+                                <div class="box-body table-responsive">
+                                    <form role="form">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Lecture Title</label>
+                                            <input type="text" class="form-control" placeholder="Name">
+                                        </div>
+
+                                         <div class="form-group">
+                                           <label for="exampleInputFile">Upload Lecture</label>
+                                            <input type="file" id="exampleInputFile">
+                                        </div>
+                                       
+                                     </form>
+                           
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>
+
+                                </div>
+                                   
+                            </div><!-- /.box -->
+
                         </div>
-                        <div class="col-xs-9">
-                            <div class="box">
+                        <div class="col-xs-8">
+                            <div class="box box-danger" >
                                 <div class="box-header">
                                     <h3 class="box-title">Lectures</h3>                                    
 

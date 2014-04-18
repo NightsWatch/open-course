@@ -91,6 +91,33 @@
                    
                 </a>
             </li>
+            Temporary
+           <li>
+                <a href="lecturesfac.php">
+                    <i class="fa fa-user"></i> <span>Lecture Fac</span>
+                   
+                </a>
+            </li>
+           
+           <li>
+                <a href="assignmentsfac.php">
+                    <i class="fa fa-user"></i> <span>Assgn Fac</span>
+                   
+                </a>
+            </li>
+            
+            <li>
+                <a href="assignsubmissionfac.php">
+                    <i class="fa fa-user"></i> <span>Assignment submission page for TA or Fac</span>
+                   
+                </a>
+            </li>
+            <li>
+                <a href="grading.php">
+                    <i class="fa fa-user"></i> <span>Assignment grading page for TA or Fac</span>
+                   
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -29,6 +29,7 @@ if(isset($_SESSION['status']))
               <li>Instructor</li>
               <li>Course no.</li>
               <li>Year</li>
+              <li>Number of students registered</li>
               </ul>
             </div>
         </div>
