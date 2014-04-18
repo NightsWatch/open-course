@@ -73,7 +73,7 @@ if(isset($_SESSION['status']))
                            <div class="box">
 
                                 <div class="box-body">
-                                    <a href="tastudents.php"><button class="btn bg-blue btn-large">Register for another course</button></a>
+                                    <a href="tastudents.php"><button class="btn bg-blue btn-block">Register for another course</button></a>
                                     <div></div>
                                     <p>You have already take x credits. You can take y more credits this semester.</p>
                                 </div><!-- /.box-body -->

@@ -12,7 +12,7 @@ if(isset($_SESSION['status']))
 ?>
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-edit"></i> Assignment Submission Page</h1>
+<h1 style="text-align:center"><i class="fa fa-cloud-upload"></i> Assignment Submission Page</h1>
 </section>
 <br/>
  <section class="content">
@@ -28,11 +28,13 @@ if(isset($_SESSION['status']))
  				<li>Title: </li>
  				<li>Assignment No.: </li>
  				<li>Deadline</li>
+ 				<li>File for download:</li>
  				<hr>
  				<li>Courseno.: </li>
  				<li>Course Name: </li>
  				<li>Year: </li>
  			</ul>
+
             </div>
         </div>
         </div>

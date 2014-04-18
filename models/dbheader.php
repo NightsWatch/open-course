@@ -2,7 +2,7 @@
 
 define('HOSTNAME', '127.0.0.1');
 define('DBUSER', 'root');
-define('DBPASS', 'mysql');
+define('DBPASS', '');
 define('DBNAME', 'coursemgs');
 
 define('USERS_TBL', 'users');

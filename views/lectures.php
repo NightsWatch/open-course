@@ -17,7 +17,7 @@ if(isset($_SESSION['status']))
 
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-edit"></i> Lectures</h1>
+<h1 style="text-align:center"><i class="fa fa-folder-o"></i> Lectures</h1>
 </section>
 <br/>
  <section class="content">
