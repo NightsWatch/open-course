@@ -66,3 +66,6 @@ class courses {
 		return $result;
 	}
 }
+
+
+?>
