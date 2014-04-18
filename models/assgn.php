@@ -5,7 +5,7 @@ include 'dbs.php';
 class assgn
 {
 
-	private $id, $assnno, $deadline, $maxmarks, $extension, $path;
+	private $id, $assnno, $deadline, $maxmarks, $extension, $path, $assn_name;
 
 
 	function __construct()
@@ -19,7 +19,7 @@ class assgn
 		}
 
 
-	public function uploadAssgn($assnno, $deadline, $maxmarks)
+	public function uploadAssgn($assnno, $deadline, $maxmarks, $assn_name)
 	{
 
 		if(!isset($_FILES["file"]))
@@ -47,6 +47,7 @@ class assgn
 			$this->assnno= $assnno;
 			$this->deadline= $deadline;
 			$this->maxmarks= $maxmarks;
+			$this->assn_name=$assn_name;
 
 				$this->extension=$extension;
 				$this->add();
@@ -123,13 +124,13 @@ class assgn
 	{
 
 
-		$query = "INSERT INTO ".DBNAME.".".ASSNS_TBL." (assignid, courseid, assignno, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->deadline."', '".$this->maxmarks."');";
+		$query = "INSERT INTO ".DBNAME.".".ASSNS_TBL." (assignid, courseid, assignno, assn_name, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->assn_name."','".$this->deadline."', '".$this->maxmarks."');";
 
 		$result= mysql_query($query);
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
-			$this->path= "../assignments/".$this->id.'.'.$this->extension; 
+			$this->path= "assignments/".$this->id.'.'.$this->extension; 
 
 			$query= "INSERT INTO".DBNAME.".".ASSNS_TBL." (filepath) values ('".$this->path."');";
 			$result= mysql_query($query);
@@ -157,7 +158,7 @@ class assgn
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
-			$this->path= "../submissions/".$this->id.'.'.$this->extension; 
+			$this->path= "submissions/".$this->id.'.'.$this->extension; 
 
 			$query= "INSERT INTO".DBNAME.".".SUBMS_TBL." (path) values ('".$this->path."');";
 			$result= mysql_query($query);
