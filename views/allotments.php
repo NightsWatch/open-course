@@ -14,13 +14,13 @@ if(isset($_SESSION['status']))
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <section class="content-header">
-	<h1 style="text-align:center"><i class="fa fa-edit"></i> Allotments Page</h1>
+    <h1 style="text-align:center"><i class="fa fa-edit"></i> Allotments Page</h1>
 </section>
 <br/>
  <section class="content">
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-		<div class="nav-tabs-custom">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class=""><a href="#tab_1" data-toggle="tab">Course Faculty</a></li>
                                     <li class="active"><a href="#tab_2" data-toggle="tab">Course Student </a></li>
@@ -113,18 +113,54 @@ if(isset($_SESSION['status']))
                                 
                                 </div><!-- /.tab-content -->
                             </div>
-	</div>
+    </div>
 </div>
 
  <div>
  <ul>
- 	<a href="coursefac.php"> <li> Course Faculty Allotment</li></a>
- 	<a href="coursestud.php"> <li> Course Student Registration</li></a>
- 	<a href="courseta.php"> <li> Course TA Allotment</li></a>
- 	<a href="studta.php"> <li> Student TA Allotment</li></a>
- 	<a href="thesis.php"> <li> BTP/MTP Allotment</li></a>
+    <a href="coursefac.php"> <li> Course Faculty Allotment</li></a>
+    <a href="coursestud.php"> <li> Course Student Registration</li></a>
+    <a href="courseta.php"> <li> Course TA Allotment</li></a>
+    <a href="studta.php"> <li> Student TA Allotment</li></a>
+    <a href="thesis.php"> <li> BTP/MTP Allotment</li></a>
  </ul>
  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- DATA TABES SCRIPT -->
+        <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+        <script src="js/jquery_clickrow.js" type="text/javascript"></script>
+
+
+
+                <!-- page script -->
+        <script type="text/javascript">
+            $(function() {
+                $('#example1').dataTable({
+                    "bPaginate": false,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+
+                $('#reservation').datepicker();
+                
+                //Timepicker
+                $(".timepicker").timepicker({
+                    showInputs: false
+                });
+                
+            });
+        </script>
+
+        
 <?php
 
 include 'footer.php';

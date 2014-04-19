@@ -74,7 +74,7 @@ if(isset($_SESSION['status']))
                                                 echo '<tr>
                                         <td style="width:150px"><img src="img/avatar.png" alt="user image" class="online" style="width: 80px;height: 80px;border: 2px solid transparent;-webkit-border-radius: 50% !important;
                                         -moz-border-radius: 50% !important;border-radius: 50% !important;"></td>
-                                        <td class="name"><a href="">'.$fromusername.'</a></td>
+                                        <td class="name"><a href="inbox.php?username='.$fromusername.'">'.$fromusername.'</a></td>
                                     </tr>';
                                         
                                             }
@@ -129,7 +129,7 @@ if(isset($_SESSION['status']))
                                                     '.$msg->getUsername($row['senderid']).'</a>
                                                '.$row['message'].'
                                             </p>
-                                            </div>';
+                                            </div><hr>';
                                         }
                                         echo ' </div>';
                                         $msg->setAllSeen($fromuserid,$loggedinuserid);

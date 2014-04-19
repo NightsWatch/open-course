@@ -4,15 +4,20 @@
         <meta charset="UTF-8">
         <title>Open Class</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- bootstrap 3.0.2 -->
+        
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- font Awesome -->
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Ionicons -->
         <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+                
+        <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <link href="css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -52,15 +57,6 @@
                                   <option>Users</option>>
                                </select>
 
-                                            <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Courses<span class="fa fa-caret-down"></span></button>
-                                        <ul class="dropdown-menu">
-
-                                            <li><a >Courses</a></li>
-                                            <li><a >Students</a></li>
-                                            <li><a >Faculty</a></li>
-                                            <li><a >Assignments</a></li>
-                                            <li><a >Lectures</a></li>
-                                        </ul> -->
                                     </div>
                          <input type="text" class="form-control" name="query" style="border-radius:5px" placeholder="Search...">
                        <span class="input-group-btn">
@@ -75,15 +71,12 @@
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
                         <?php
+                            if(isset($_SESSION['status']))
+                                {
 
-                                       // echo "username ".$_SESSION['status'];
-                                 
-                                        if(isset($_SESSION['status']))
-                                            {
-
-                                                include_once '../models/messages.php';
-                                                $msg = New messages();
-                                                echo '
+                                    include_once '../models/messages.php';
+                                    $msg = New messages();
+                                    echo '
                         <li class="dropdown messages-menu">
                             <a href="inbox.php" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope"></i>
@@ -156,27 +149,18 @@
                                         <a href="../controller/logout.php" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>';
-
                                             }
-
-                                        
-
                                     else
                                     {
-                                   
-                                   
                                          echo '<ul style="margin-top:7px" class="list-inline">
                                            <li><a href="login.php"><button class="btn btn-info"> Sign In</button></a></li>
                                            <li><a href="signup.php"><button class="btn btn-warning">Sign Up</button></a></li>
-                                          
                                          </ul>';
-                                   
                                     }
-                           
                             ?>
                             </ul>
                         </li>
                     </ul>
                 </div>
-            </nav>
-        </header>
+    </nav>
+</header>

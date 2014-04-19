@@ -27,7 +27,12 @@
              <li>
                 <a href="inbox.php">
                     <i class="fa fa-envelope"></i> <span>Inbox</span>
-                     <small class="badge pull-right bg-yellow">12</small>
+                     <small class="badge pull-right bg-yellow">
+                     <?php
+                     include_once '../models/messages.php';
+                     $msg = New messages();
+                    echo $msg->getUnreadCount($msg->getUserid($_SESSION['username'])); 
+                     ?></small>
                 </a>
             </li>
             <li class="treeview active">

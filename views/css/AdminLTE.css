@@ -1590,10 +1590,12 @@ body > .header .logo .icon {
 .box .chat .item > .message {
   margin-left: 55px;
   margin-top: -40px;
+  font-size:20px;
 }
 .box .chat .item > .message > .name {
   display: block;
   font-weight: 600;
+  font-size: 20px;
 }
 .box .chat .item > .attachment {
   -webkit-border-radius: 3px;
@@ -2153,6 +2155,7 @@ Component: timeline
 }
 .mailbox .table-mailbox tr > td > a {
   color: #444;
+  font-size:24px;
 }
 @media screen and (max-width: 767px) {
   .mailbox .nav-stacked > li:not(.header) {

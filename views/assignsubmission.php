@@ -48,7 +48,7 @@ if(isset($_SESSION['status']))
             <div class="box-body" style="overflow: hidden; width: auto;">
               <h4>Deadline: </h4>
               <h4>No submissions will be entertained after the deadline.</h4>
-              <form role="form" action="../controller/assn_submit.php" method='post' enctype="multipart/form-data">>
+              <form role="form" action="../controller/assn_submit.php" method='post' enctype="multipart/form-data">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="file">File input</label>

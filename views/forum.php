@@ -1,82 +1,64 @@
 <?php
 
 session_start();
-
-
-include 'header.php';
-
+include_once 'header.php';
 if(isset($_SESSION['status']))
-{
-    include 'sidebar.php';
-}
+    {
+        include 'sidebar.php';
+    }
+
+$courseid = $_GET['cid'];
+
 ?>
+
+<link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-bullhorn"></i> Forum for Course _</h1>
-<br/>
-<div class="row">
-     <div class="col-md-8">
+    
+    <h1 style="text-align:center"><i class="fa fa-bullhorn"></i> 
+    <?php 
+    include_once '../controller/forum_header.php'; 
+    ?>
+    </h1>
+</section><br/>
 
-        <div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Thread title</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
-            <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
-               Post by:
-               Post content
-               Time
-            </div>
-        </div>
-        </div>
+<section class="content">
+    <div class="row">
+         <div class="col-md-8">
 
-        <div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Thread title</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
-            <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
-               Post by:
-               Post content
-               Time
-            </div>
-        </div>
-        </div>
+         <?php
+            include_once '../controller/add_threads.php';
+        ?>
 
-        <div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Thread title</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
-            <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
-               Post by:
-               Post content
-               Time
-            </div>
         </div>
-        </div>
+         <div class="col-md-4">
+
+            <?php 
+            include_once '../controller/add_course_description.php';
+            ?>
+
+         </div>
     </div>
-     <div class="col-md-4">
-     <div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="assignments.php">Description</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
-            <div class="box-body" style="overflow: hidden; width: auto;">
-             <ul>
-              <li>Course name</li>
-              <li>Instructor</li>
-              <li>Course no.</li>
-              <li>Year</li>
-              </ul>
-            </div>
-        </div>
-        </div>
-     </div>
-</div>
-</section>
+</section><!-- /.content -->
 
-</div>    
+</aside><!-- /.right-side -->
+</div><!-- ./wrapper -->
+
+<script type="text/javascript">
+    $(function() {
+        $('#example1').dataTable({
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
+    });
+</script>
+
 <?php
-
-include 'footer.php';
+include_once 'footer.php';
 ?>

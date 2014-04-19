@@ -16,31 +16,31 @@ if(isset($_SESSION['status']))
 </section>
 <br/>
  <section class="content">
- 	<div class="row">
- 		<div class="col-md-3">
- 			<div class="box box-success" style="position: relative;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center"><a href="thread.php">Details of the assignment</a></h3>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
             <div class="box-body" style="overflow: hidden; width: auto;">
               <ul>
- 				<li>Title: </li>
- 				<li>Assignment No.: </li>
- 				<li>Deadline</li>
- 				<li>File for download:</li>
- 				<hr>
- 				<li>Courseno.: </li>
- 				<li>Course Name: </li>
- 				<li>Year: </li>
- 			</ul>
+                <li>Title: </li>
+                <li>Assignment No.: </li>
+                <li>Deadline</li>
+                <li>File for download:</li>
+                <hr>
+                <li>Courseno.: </li>
+                <li>Course Name: </li>
+                <li>Year: </li>
+            </ul>
 
             </div>
         </div>
         </div>
- 			
- 			
- 		</div>
+            
+            
+        </div>
 
 
 
@@ -87,6 +87,30 @@ if(isset($_SESSION['status']))
         </div>
 
         </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- DATA TABES SCRIPT -->
+        <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+        <script src="js/jquery_clickrow.js" type="text/javascript"></script>
+
+         <script type="text/javascript">
+            $(function() {
+                $('#example1').dataTable({
+                    "bPaginate": false,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+
+            });
+        </script>
 
 
 

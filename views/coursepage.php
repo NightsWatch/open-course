@@ -1,14 +1,16 @@
 <?php
 
 session_start();
-
-
 include 'header.php';
 
+
 if(isset($_SESSION['status']))
-{
-    include 'sidebar.php';
-}
+  {
+      include 'sidebar.php';
+  }
+
+$courseid=$_GET['cid'];
+
 ?>
 
 <section class="content-header">
@@ -18,21 +20,10 @@ if(isset($_SESSION['status']))
  <section class="content">
  <div class="row">
  	<div class="col-md-6">
- 		 <div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Details</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
-            <div class="box-body" style="overflow: hidden; width: auto;">
-              <ul>
-              <li>Course name</li>
-              <li>Instructor</li>
-              <li>Course no.</li>
-              <li>Year</li>
-              </ul>
-            </div>
-        </div>
-        </div>
+ 		   <?php 
+            include_once '../controller/add_course_description.php';
+            ?>
+
  		
  	</div>
 
@@ -46,7 +37,10 @@ if(isset($_SESSION['status']))
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Course Forum</a></h3>
+                <h3 class="box-title" style="text-align:center">
+                    <?php
+                    echo '<a href="forum.php?cid='.$courseid.'">Course Forum</a></h3>';
+                    ?>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
             <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
@@ -58,7 +52,11 @@ if(isset($_SESSION['status']))
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="lectures.php">Lectures</a></h3>
+                <h3 class="box-title" style="text-align:center">
+                <?php
+                    echo '<a href="lectures.php?cid='.$courseid.'">Course Lectures</a></h3>';
+                ?>
+                
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
             <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
@@ -70,7 +68,10 @@ if(isset($_SESSION['status']))
  	<div class="col-md-4">
  		<div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="assignments.php">Assignments</a></h3>
+                <h3 class="box-title" style="text-align:center">
+                <?php
+                    echo '<a href="assignments.php?cid='.$courseid.'">Course Assignments</a></h3>';
+                ?>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
             <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">

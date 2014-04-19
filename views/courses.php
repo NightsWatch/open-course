@@ -11,6 +11,7 @@ if(isset($_SESSION['status']))
 }
 ?>
 
+
 <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
 <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
@@ -33,38 +34,20 @@ if(isset($_SESSION['status']))
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Coursename</th>
-                                                <th>Courseno.</th>
+                                                
+                                                <th>Course number</th>
+                                                <th>Course name</th>
                                                 <th>Year</th>
-                                                <th>Instructors</th>
-                                                <th>Number of students enrolled</th>
+                                                <th>Department</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class='clickableRow' href='coursepage.php' style="cursor:pointer">
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 4.0</td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                            <tr class='clickableRow' href='coursepage.php' style="cursor:pointer">
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 5.0</td>
-                                                <td>Win 95+</td>
-                                                <td>5</td>
-                                                <td>C</td>
-                                            </tr>
-                                            <tr class='clickableRow' href='coursepage.php' style="cursor:pointer">
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 5.5</td>
-                                                <td>Win 95+</td>
-                                                <td>5.5</td>
-                                                <td>A</td>
-                                            </tr>
+
+                                        <?php
+                                            include_once '../controller/registered_courses.php';
+
+                                        ?>
+                                        
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
@@ -101,9 +84,9 @@ if(isset($_SESSION['status']))
         <!-- page script -->
         <script type="text/javascript">
             $(function() {
-                $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
+                
+                $('#example1').dataTable({
+                    "bPaginate": false,
                     "bLengthChange": true,
                     "bFilter": false,
                     "bSort": true,
