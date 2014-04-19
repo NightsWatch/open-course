@@ -75,7 +75,20 @@
                                 {
 
                                     include_once '../models/messages.php';
+                                    include_once '../models/notifications.php';
+
                                     $msg = New messages();
+                                    $ntfc = New notifications();
+
+                                    $cnts = $ntfc->getUnreadCounts($msg->getUserid($_SESSION['username']));
+                                    $cnts['assignmentcount'];
+                                    $cnts['lecturecount'];
+                                    $cnts['threadcount'];
+
+                                    $totalcount = $cnts['lecturecount'] + $cnts['threadcount'];
+                                    $totalcount = $totalcount + $cnts['assignmentcount'];
+
+
                                     echo '
                         <li class="dropdown messages-menu">
                             <a href="inbox.php" class="dropdown-toggle" data-toggle="dropdown">
@@ -83,50 +96,44 @@
                                 <span class="label label-success">'.$msg->getUnreadCount($msg->getUserid($_SESSION['username'])).'</span>
                             </a>
                         </li>
-                        <!-- Notifications: style can be found in dropdown.less -->
+
+                        <!--Notifs-->
+                        
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-warning"></i>
-                                <span class="label label-warning"></span>
-                            </a>
+                                <span class="label label-warning">'.$totalcount.'</span>
+                            </a>';
 
                             
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
+
+                            echo '<ul class="dropdown-menu">
+                                <li class="header">You have '.$totalcount.' notifications</li>
                                 <li>
                                     
                                     <ul class="menu">
                                         <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-people info"></i> 5 new members joined today
+                                            <a href="notifications.php">
+                                                <i class="fa fa-users warning"></i> '.$cnts['threadcount'].' new threads have started in your forums                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="notifications.php">
+                                                <i class="fa fa-edit success"></i>'.$cnts['assignmentcount'].' new assignments
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
-                                                <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users warning"></i> 5 new members joined
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-cart success"></i> 25 sales made
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-person danger"></i> You changed your username
+                                            <a href="notifications.php">
+                                                <i class="fa fa-folder-o aqua"></i> '.$cnts['lecturecount'].' new lectures have been uploaded
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="footer"><a href="notifications.php">View all</a></li>
-                            </ul> 
-                        </li>
+                            </ul> ';
+
+
+
+                       echo '</li>
                         
                         <!--  User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">

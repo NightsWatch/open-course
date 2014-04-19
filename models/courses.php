@@ -65,4 +65,12 @@ class courses {
 	 	return $result;	
 	}
 
+	public function getCourseidfromlec($lectureid)
+	{
+		$query = "select courseid from lectures where lecid='".$lectureid."';";
+		$result = mysql_query($query);
+		$row = mysql_fetch_array($result);
+		return $row['courseid'];
+	}
+
 }

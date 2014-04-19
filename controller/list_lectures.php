@@ -13,8 +13,6 @@ while($row = mysql_fetch_array($rows))
         		<td><a href="'.$row['filepath'].'">Download</a></td>
         		</tr>
         		';
-
-
     }
 
 

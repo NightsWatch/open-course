@@ -47,26 +47,22 @@ if(isset($_SESSION['status']))
                 <div class="body bg-gray">
                     <div class="form-group">
                          <span class="add-on"><i class="icon-user"></i></span>
-
                         <input type="text" id="username" name="username" class="form-control input-text" placeholder="User ID"/>
-                    <span id="usererror"></span>
+                        <span id="usererror"></span>
                     </div>
                     <div class="form-group">
-                                                        <span class="add-on"><i class="icon-lock"></i></span>
-
+                        <span class="add-on"><i class="icon-lock"></i></span>
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
-                    <span id="passerror"></span>
+                        <span id="passerror"></span>
                     </div>          
                     <div class="form-group">
-                        <input type="checkbox" name="remember_me"/> Remember me
+                        <input type="checkbox" name="remember_me"> Remember me</input>
                     </div>
                 </div>
                 <div class="footer">                                                               
                     <button type="submit" class="btn bg-olive btn-block submit" name="login" value="Sign In">Sign me in</button>  
                     <div class="errormsg"></div>
-
                     <p><a href="#">I forgot my password</a></p>
-                    
                     <a href="signup.php" class="text-center">Register a new membership</a>
                 </div>
             </form>
@@ -75,16 +71,11 @@ if(isset($_SESSION['status']))
             <div class="margin text-center">
                 <?php
                       if(isset($_GET['error']))
-                      {
-                             
-                        echo '<div class="alert alert-warning">Entered details did not match with exisiting users</div>';
-                            
+                      {   
+                        echo '<div class="alert alert-warning">Entered details did not match with exisiting users</div>';     
                       }
-                          
               ?>
-                
             </div>
-
         </div>
 
 

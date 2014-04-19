@@ -1,5 +1,6 @@
 <?php
 require_once 'dbs.php';
+
 class assignments {
 
 	public function getAssignmentDetails($assignid)
@@ -30,6 +31,32 @@ class assignments {
 		$result = mysql_query($query);
 		$row = mysql_fetch_array($result);
 		return $row['filepath'];
+	}
+
+	public function setMarks($subid,$marks)
+	{
+		$query = "update ".DBNAME.".".SUBMS_TBL." SET marks='".$marks."' WHERE subid='".$subid."';";
+		$result = mysql_query($query);
+		if(!$result) {
+    		die("Database query failed: " . mysql_error());
+	 	}
+		return $result;
+	}
+
+	public function getCourseidfromassgn($assignid)
+	{
+		$query = "select courseid from assignments where assignid='".$assignid."';";
+		$result = mysql_query($query);
+		$row = mysql_fetch_array($result);
+		return $row['courseid'];
+	}
+
+	public function getAssignmentNo($assignid)
+	{
+		$query = "select assignno from assignments where assignid='".$assignid."';";
+		$result = mysql_query($query);
+		$row = mysql_fetch_array($result);
+		return $row['assignno'];
 	}
 }
 

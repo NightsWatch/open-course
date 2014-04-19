@@ -1,3 +1,5 @@
 faculty userid is foreign key for users, but this should only be to those entries with usertype faculty
 
 coursenumber -> coursename, credits, department, 
+
+seen bug notifications

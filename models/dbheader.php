@@ -15,4 +15,7 @@ if (!defined('LECTURES_TBL')) define('LECTURES_TBL', 'lectures');
 if (!defined('MSGS_TBL')) define ('MSGS_TBL','messages');
 if (!defined('POSTS_TBL')) define ('POSTS_TBL','posts');
 if (!defined('FORUMS_TBL')) define ('FORUMS_TBL','forums');
+if (!defined('NOTIFSTHREAD_TBL')) define ('NOTIFSTHREADS_TBL','notifsthreads');
+if (!defined('NOTIFSASSIGNMENTS_TBL')) define ('NOTIFSASSIGNMENTS_TBL','notifsassignments');
+if (!defined('NOTIFSLECTURES_TBL')) define ('NOTIFSLECTURES_TBL','notifslectures');
  ?>
