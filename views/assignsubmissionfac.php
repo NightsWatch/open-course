@@ -9,6 +9,8 @@ if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+
+$assignid = $_GET['aid'];
 ?>
 
 <section class="content-header">
@@ -17,34 +19,15 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
     <div class="row">
-        <div class="col-md-3">
-            <div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Details of the assignment</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
-            <div class="box-body" style="overflow: hidden; width: auto;">
-              <ul>
-                <li>Title: </li>
-                <li>Assignment No.: </li>
-                <li>Deadline</li>
-                <li>File for download:</li>
-                <hr>
-                <li>Courseno.: </li>
-                <li>Course Name: </li>
-                <li>Year: </li>
-            </ul>
-
-            </div>
-        </div>
-        </div>
-            
-            
+        <div class="col-md-4">
+             <?php 
+        include_once '../controller/add_assign_description.php';
+        ?>            
         </div>
 
 
 
-        <div class="col-xs-9">
+        <div class="col-xs-8">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">List of students who have submitted this assignment</h3>                                    
@@ -54,31 +37,16 @@ if(isset($_SESSION['status']))
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                            <tr>
-                                <th>Coursename</th>
-                                <th>Courseno.</th>
-                                <th>Year</th>
-                                <th>Instructors</th>
-                                <th>Number of students enrolled</th>
+                                <th>Student name</th>
+                                <th>Submitted file</th>
+                                <th>Timestamp</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                             <tr class='clickableRow' href='forum.php' style="cursor:pointer">
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 4.0</td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                            </tr>
-                             <tr class='clickableRow' href='forum.php' style="cursor:pointer">
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 5.0</td>
-                                <td>Win 95+</td>
-                                <td>5</td>
-                                <td>C</td>
-                            </tr>
-
+                        <?php 
+                            include_once '../controller/list_submissions.php';
+                        ?>
                         </tbody>
                         
                     </table>

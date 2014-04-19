@@ -35,19 +35,13 @@
                      ?></small>
                 </a>
             </li>
-            <li class="treeview active">
-                            <a href="courses.php">
-                                <i class="fa fa-book"></i> <span>Courses</span>
-                                <i class="fa pull-right fa-angle-down"></i>
-                            </a>
-                            <ul class="treeview-menu" style="display: block;">
-                                <li><a href="coursepage.php" style="margin-left: 10px;"><i class="fa fa-book"></i> Course Page</a></li>
-                                <li><a href="assignments.php" style="margin-left: 10px;"><i class="fa fa-folder-o"></i> Assignments Page</a></li>
-                                <li><a href="assignsubmission.php" style="margin-left: 10px;"><i class="fa fa-cloud-upload"></i> Assignments Submission</a></li>
-                                <li><a href="lectures.php" style="margin-left: 10px;"><i class="fa fa-edit"></i> Lectures Page</a></li>
-                                <li><a href="forum.php" style="margin-left: 10px;"><i class="fa fa-bullhorn"></i> Course Forum</a></li>                            </ul>
-                        </li>
-             <li>
+            <li>
+                <a href="courses.php">
+                    <i class="fa fa-book"></i> <span>Courses</span>
+                </a>
+            </li>
+           
+           <li>
                 <a href="notifications.php">
                     <i class="fa fa-bell"></i> <span>Notifications</span>
                 </a>

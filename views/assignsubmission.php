@@ -9,34 +9,21 @@ if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+
+$assignid = $_GET['aid'];
+
 ?>
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-edit"></i> Assignment Submission Page</h1>
+<h1 style="text-align:center"><i class="fa fa-cloud-upload"></i> Assignment Submission Page</h1>
 </section>
 <br/>
  <section class="content">
  	<div class="row">
  		<div class="col-md-6">
- 			<div class="box box-success" style="position: relative;">
-            <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><a href="thread.php">Details of the assignment</a></h3>
-            </div>
-            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
-            <div class="box-body" style="overflow: hidden; width: auto;">
-              <ul>
- 				<li>Title: </li>
- 				<li>Assignment No.: </li>
- 				<li>Deadline</li>
- 				<hr>
- 				<li>Courseno.: </li>
- 				<li>Course Name: </li>
- 				<li>Year: </li>
- 			</ul>
-            </div>
-        </div>
-        </div>
- 			
+        <?php 
+        include_once '../controller/add_assign_description.php';
+        ?>
  			
  		</div>
  		<div class="col-md-6">

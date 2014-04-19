@@ -10,6 +10,19 @@ class courses {
 		return $row;
 	}
 
+	public function getCourseLectures($courseid)
+	{
+		$query="select lectureno, lecturename, filepath from lectures where courseid='".$courseid."';";
+	 	$result = mysql_query($query);
+	 	return $result;
+	}
+
+	public function getCourseAssignments($courseid)
+	{
+		$query="select assignid, assignno, filepath, deadline, maxmarks, studmarks from assignments where courseid='".$courseid."';";
+	 	$result = mysql_query($query);
+	 	return $result;
+	}
 
 	// public function getStudentCourses($useridid) {
 	// 	//$mysql = New mysql();

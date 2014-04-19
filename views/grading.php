@@ -4,11 +4,18 @@ session_start();
 
 
 include 'header.php';
-
+include_once '../models/assignments.php';
 if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+
+$subid = $_GET['sid'];
+
+$assgn = New assignments();
+$assignid = $assgn->getAssignmentId($subid);
+$filepath = $assgn->getAssignmentLink($subid);
+
 ?>
 
 
@@ -19,20 +26,9 @@ if(isset($_SESSION['status']))
  <section class="content">
                     <div class="row">
                     <div class="col-md-4 col-md-offset-2">
-                            <div class="box box-warning">
-                                <div class="box-header">
-                                    <h3 class="box-title">For _ assignment of</h3>                                    
-
-                                </div><!-- /.box-header -->
-                                <div class="box-body table-responsive">
-                                    <ul>
-                                    	<li>Student Name</li>
-                                    	<li>Assignment no.</li>
-										<li>Course no.</li>
-                                        <li>Course name</li>
-                                    </ul>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
+                            <?php
+                            include_once '../controller/add_assign_description.php';
+                            ?>
                         </div>
                         <div class="col-md-4">
 	                    
@@ -43,7 +39,9 @@ if(isset($_SESSION['status']))
 	                            		<h3 class="box-title">Assignment grading</h3>                                   
 	                              	</div><!-- /.box-header -->
 	                        		<div class="box-body table-responsive">
-		                        		<div><a href=""><button class="btn bg-olive">Download student's assignment submission</button></a>
+		                        		<div><?php
+		                        		echo '<a href="'.$filepath.'">';
+		                        		?><button class="btn bg-olive">Download student's assignment submission</button></a>
 		                        			Assignment submitted at: 
 		                        			
 		                        		</div>

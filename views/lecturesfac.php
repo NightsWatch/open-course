@@ -4,11 +4,18 @@ session_start();
 
 
 include 'header.php';
+include_once '../models/courses.php';
 
 if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+$courseid = $_GET['cid'];
+
+$courses = New courses();
+$row = $courses->getCourseDetails($courseid);
+
+
 ?>
 
 <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
@@ -17,27 +24,17 @@ if(isset($_SESSION['status']))
 
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-folder-o"></i> Lectures</h1>
+<h1 style="text-align:center"><i class="fa fa-folder-o"></i><?php
+                                     echo ' Lectures for '.$row['coursename'].', '.$row['year'];
+                                    ?></h1>
 </section>
 <br/>
  <section class="content">
                     <div class="row">
                     <div class="col-xs-4">
-                            <div class="box box-warning">
-                                <div class="box-header">
-                                    <h3 class="box-title">For _ course</h3>                                    
-
-                                </div><!-- /.box-header -->
-                                <div class="box-body table-responsive">
-                                    <ul>
-                                        <li>Course no.</li>
-                                        <li>Course name</li>
-                                    </ul>
-
-                                </div><!-- /.box-body -->
-
-                                   
-                            </div><!-- /.box -->
+                           <?php
+                                                include_once '../controller/add_course_description.php';
+                                            ?>
                             <div class="box box-info">
                                 <div class="box-header">
                                     <h3 class="box-title">Add Lecture</h3>                                    
@@ -80,29 +77,14 @@ if(isset($_SESSION['status']))
                                                 <th>Lecture No.</th>
                                                 <th>Lecture Title</th>
                                                 <th>Download link</th>
-                                                <th>Date Time</th>
+                            
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Basic</td>
-                                                <td><a href="">Download</a></td>
-                                                <td>14 Mar 2014</td>
-                                            </tr>
-                                              <tr>
-                                                <td>1</td>
-                                                <td>Basic</td>
-                                                <td><a href="">Download</a></td>
-                                                <td>14 Mar 2014</td>
-                                            </tr>  <tr>
-                                                <td>1</td>
-                                                <td>Basic</td>
-                                                <td><a href="">Download</a></td>
-                                                <td>14 Mar 2014</td>
-                                            </tr>
-                                           
                                             
+                                            <?php
+                                                include_once '../controller/list_lectures.php';
+                                            ?>
                                         </tbody>
                                        
                                     </table>

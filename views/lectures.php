@@ -4,79 +4,55 @@ session_start();
 
 
 include 'header.php';
+include_once '../models/courses.php';
 
 if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+$courseid = $_GET['cid'];
+
+$courses = New courses();
+$row = $courses->getCourseDetails($courseid);
+
+
 ?>
 
 <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
 <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-edit"></i> Lectures</h1>
+<h1 style="text-align:center"><i class="fa fa-edit"></i> <?php
+                                     echo 'Lectures for '.$row['coursename'].', '.$row['year'];
+                                    ?></h1>
 </section>
 <br/>
  <section class="content">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Lectures for _ course</h3>                                    
-                                </div><!-- /.box-header -->
+                        <div class="col-xs-4">
+                            
+                                   <?php
+                                                include_once '../controller/add_course_description.php';
+                                            ?>
+                            
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="box box-info">
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Coursename</th>
-                                                <th>Courseno.</th>
-                                                <th>Year</th>
+                                                <th>Lecture no.</th>
+                                                <th>Lecture name</th>
+                                                <th>Download link</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 4.0</td>
-                                                <td>Win 95+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 5.0</td>
-                                                <td>Win 95+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 5.5</td>
-                                                <td>Win 95+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet
-                                                    Explorer 6</td>
-                                                <td>Win 98+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 7</td>
-                                                <td>Win XP SP2+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>AOL browser (AOL desktop)</td>
-                                                <td>Win XP</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gecko</td>
-                                                <td>Firefox 1.0</td>
-                                                <td>Win 98+ / OSX.2+</td>
-                                            </tr>
                                             
+                                            <?php
+                                                include_once '../controller/list_lectures.php';
+                                            ?>
                                         </tbody>
                                        
                                     </table>
@@ -103,9 +79,9 @@ if(isset($_SESSION['status']))
         <!-- page script -->
         <script type="text/javascript">
             $(function() {
-                $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
+                
+                $('#example1').dataTable({
+                    "bPaginate": false,
                     "bLengthChange": false,
                     "bFilter": false,
                     "bSort": true,

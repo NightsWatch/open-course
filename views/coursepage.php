@@ -19,7 +19,7 @@ $courseid=$_GET['cid'];
 <br/>
  <section class="content">
  <div class="row">
- 	<div class="col-md-6">
+ 	<div class="col-md-6 col-md-offset-1">
  		   <?php 
             include_once '../controller/add_course_description.php';
             ?>
@@ -27,7 +27,7 @@ $courseid=$_GET['cid'];
  		
  	</div>
 
- 	<div class="col-md-6">
+ 	<div class="col-md-4">
  		 <a href="coursestud.php"><button class="btn bg-olive btn-block">List of students taking the course</button>	</a><br/>
  		 <a href="courseta.php"><button class="btn bg-olive btn-block">List of TAs for the course</button>	</a><br/>
  		 <a href="tastudents.php"><button class="btn bg-olive btn-block">TA-Student Allotment for the course</button>	</a><br/>
@@ -37,10 +37,10 @@ $courseid=$_GET['cid'];
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center">
+                <h3 class="box-title" style="text-align:center"><i class="fa fa-bullhorn">
                     <?php
                     echo '<a href="forum.php?cid='.$courseid.'">Course Forum</a></h3>';
-                    ?>
+                    ?></i>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
             <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
@@ -52,10 +52,10 @@ $courseid=$_GET['cid'];
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center">
+                <h3 class="box-title" style="text-align:center"><i class="fa fa-folder-o">
                 <?php
                     echo '<a href="lectures.php?cid='.$courseid.'">Course Lectures</a></h3>';
-                ?>
+                ?></i>
                 
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
@@ -68,10 +68,10 @@ $courseid=$_GET['cid'];
  	<div class="col-md-4">
  		<div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center">
+                <h3 class="box-title" style="text-align:center"><i class="fa fa-edit">
                 <?php
                     echo '<a href="assignments.php?cid='.$courseid.'">Course Assignments</a></h3>';
-                ?>
+                ?></i>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
             <div class="box-body" style="overflow: hidden; width: auto; height: 250px;">
