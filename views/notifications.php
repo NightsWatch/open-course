@@ -14,14 +14,32 @@ if(isset($_SESSION['status']))
 <section class="content-header">
     <h1 style="text-align:center"><i class="fa fa-bell"></i> Notifications</h1>
 </section>
-<br/>
 <section class="content">
     <!-- row -->
     <div class="row">        
+	        
+	    <div class="col-md-4">
+	    	<?php echo '<a href="../controller/clearnotifs.php?id=1"><button class="btn btn-large">Set Seen</button></a>'; ?>
+	    </div>
+
+	    <div class="col-md-4">
+	    	<?php echo '<a href="../controller/clearnotifs.php?id=2"><button class="btn btn-large">Set Seen</button></a>'; ?>
+	    </div>
+
+	    <div class="col-md-4">
+	    	<?php echo '<a href="../controller/clearnotifs.php?id=3"><button class="btn btn-large">Set Seen</button></a>'; ?>
+	    </div>
+    </div>
+    <div style="height:5px"></div>
+    <div class="row">
         <?php
            include_once '../controller/notifications.php';
+
+           echo '</div>';
+
+
         ?>
-    </div><!-- /.row -->
+    
 
 <?php
 

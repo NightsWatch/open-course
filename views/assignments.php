@@ -5,6 +5,7 @@ session_start();
 
 include 'header.php';
 include_once '../models/courses.php';
+include_once '../models/assignments.php';
 if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
@@ -13,7 +14,7 @@ $courseid = $_GET['cid'];
 
 $courses = New courses();
 $row = $courses->getCourseDetails($courseid);
-
+$assign = New assignments();
 
 ?>
 
@@ -37,6 +38,15 @@ $row = $courses->getCourseDetails($courseid);
                                 ?>
                         </div>
                         <div class="col-xs-9">
+                         <?php
+                      if(isset($_GET['success']))
+                      {
+                        $success= $_GET['success']; 
+                        if($success==1)  
+                        echo '<div class="alert alert-success">Your assignment was uploaded successfully.</div>';     
+                      }
+              ?>
+      
                             <div class="box box-info">
         
                                 <div class="box-body table-responsive">
@@ -44,7 +54,8 @@ $row = $courses->getCourseDetails($courseid);
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                               <th>Assignment no.</th>
+                                               <th>Assign no.</th>
+                                               <th>Assign name</th>
                                                <th>Download link</th>
                                                 <th>Deadline</th>
                                                 <th>Submit</th>
@@ -55,7 +66,47 @@ $row = $courses->getCourseDetails($courseid);
                                         <tbody>
                                            
                                             <?php
-                                                include_once '../controller/list_assignments.php';
+                                          
+                                               
+                                                $assignments = $courses->getCourseAssignments($courseid);
+                                                $aids=$assign->getAssignmentidsSubmittedCourse($_SESSION['id'],$courseid);
+                                                //echo $aids;
+                                                $cart = array();
+                                                
+                                                while($aid = mysql_fetch_array($aids))
+                                                {
+                                                    $cart[] = $aid['assignid'];
+                                                    
+                                                }
+                                                while($assignment = mysql_fetch_array($assignments))
+                                                    {
+                                                        echo '<tr>
+                                                                <td>'.$assignment['assignno'].'</td>
+                                                                <td>'.$assignment['assign_name'].'</td>
+                                                                <td><a href='.$assignment['filepath'].'>Download Assignment</a></td>
+                                                                <td>'.date("H:i, d M Y", strtotime($assignment['deadline'])).'</td>';
+                                                        if (in_array($assignment['assignid'], $cart))
+                                                        {
+                                                            $details = $assign->getSubmissionDetails($assignment['assignid'],$_SESSION['id']);
+                                                            //echo $details['filepath'];
+                                                            $hrdate = date("H:i, d M Y", strtotime($details['stime']));
+                                                            echo '<td>Already submitted <a href="'.$details['filepath'].'">this</a> at '.$hrdate.'</td>';
+
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo '<td><a href="assignsubmission.php?aid='.$assignment['assignid'].'"">Submit Solution</a></td>';
+                                                        }
+                                                        echo '
+                                                                <td>'.$assignment['maxmarks'].'</td>
+                                                                <td>'.$assignment['studmarks'].'</td>
+                                                                </tr>
+                                                                ';
+
+
+                                                    }
+
                                             ?>
                                             
                                         </tbody>
@@ -70,7 +121,7 @@ $row = $courses->getCourseDetails($courseid);
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
   <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->
@@ -88,7 +139,7 @@ $row = $courses->getCourseDetails($courseid);
                 $('#example1').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
-                    "bFilter": false,
+                    "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false

@@ -159,7 +159,7 @@ if(isset($_SESSION['status']))
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">TO:</span>
-                            <input name="receiverusername" id="receiverusername" type="username" class="form-control" placeholder="Send TO userid">
+                            <input name="receiverusername" id="receiverusername" type="username" class="form-control" placeholder="Enter username of receiver">
                         </div>
                     </div>
                     <div class="form-group">
@@ -183,7 +183,7 @@ if(isset($_SESSION['status']))
 </div><!-- /.modal -->
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/AdminLTE/app.js" type="text/javascript"></script>
     <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>

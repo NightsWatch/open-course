@@ -2,6 +2,13 @@
 require_once 'dbs.php';
 class courses {
 
+	function __construct() {
+		$dbs = New dbs();
+
+		$conn = $dbs ->connect();
+
+	}
+
 	public function getCourseDetails($courseid)
 	{
 		$query = "select courseid, coursename, courseno, year, department from courses where courseid='".$courseid."';";
@@ -19,7 +26,7 @@ class courses {
 
 	public function getCourseAssignments($courseid)
 	{
-		$query="select assignid, assignno, filepath, deadline, maxmarks, studmarks from assignments where courseid='".$courseid."';";
+		$query="select assignid, assignno, assign_name,	filepath, deadline, maxmarks, studmarks from assignments where courseid='".$courseid."';";
 	 	$result = mysql_query($query);
 	 	return $result;
 	}
@@ -31,11 +38,12 @@ class courses {
 	// 	return $result;
 	// }
 
-	// public function getCourseStudents($courseid) {
-	// 	$query = "select * from 'coursemgs'.'students' where 'userid' in (select 'studentid' from 'coursemsgs'.'course-stud-registration' where 'courseid'='".$courseid."');";
-	// 	$result = mysql_query($query);
-	// 	return $result;
-	// }
+	public function getCourseStudents($courseid) {
+		$query = "select * from coursemgs.students where userid in ( select studentid from coursestudregistration where courseid='".$courseid."');";
+		$result = mysql_query($query);
+		if(!$result) echo " Error: ". mysql_error();
+		return $result;
+	}
 
 	// public function getCourseTAs($courseid) {
 	// 	$query = "select * from 'coursemgs'.'student' where 'userid' in (select 'taid' from 'course-ta-allotment' where 'courseid'='".$courseid."');";
@@ -54,7 +62,7 @@ class courses {
 	// }
 
 	public function getCourseForumThreads($courseid) {
-	 	$query="select threadid, threadtitle from forums where courseid='".$courseid."';";
+	 	$query="select threadid, threadtitle,starterid,timestamp from forums where courseid='".$courseid."';";
 	 	$result = mysql_query($query);
 	 	return $result;
 	}
@@ -72,5 +80,42 @@ class courses {
 		$row = mysql_fetch_array($result);
 		return $row['courseid'];
 	}
+
+
+	//harshith's function
+
+
+	public function getCourseInfo($courseid) {
+		//$mysql = New mysql();
+		$query = "select * from 'coursemgs'.'courses' where 'courseid'= '".$courseid."' ;";
+		$result=mysql_query($query);
+
+		if(!$result) {
+    		echo "Database query failed: " . mysql_error();
+		}
+		return $result;
+	}
+
+
+	public function getCourseName($courseid)
+	{
+		$query = "select coursename from coursemgs.courses where courseid='".$courseid."';";
+		$result = mysql_query($query);
+
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+			{
+				return $result['coursename'];
+			}
+			
+			return 0;
+		
+		}
+
+    	
+	}
+
+	
 
 }

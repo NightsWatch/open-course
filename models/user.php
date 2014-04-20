@@ -22,10 +22,15 @@ class user {
 		$mysql = New mysql();
 		$ensure_credentials = $mysql->verify_Username_and_Pass($un, md5($pwd));
 		
+		$fill = $mysql->getFill($un);
 		if($ensure_credentials) {
 			$_SESSION['status'] = 'authorized';
 			echo $_SESSION['status']." username ".$_SESSION['username'];
-			header("Location: ../views/index.php?session=1");
+
+				if($fill)
+					header("Location: ../views/index.php?session=1");
+				else
+					header("Location: ../views/profile.php?session=1");
 		} 
 		else 
 			header('Location: ../views/login.php?error=1');  //"Please enter a correct username and password";

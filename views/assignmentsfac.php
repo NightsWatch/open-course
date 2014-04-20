@@ -34,9 +34,10 @@ $row = $courses->getCourseDetails($courseid);
                     <div class="col-xs-3">
                            <?php
                                 include_once '../controller/add_course_description.php';
-                                ?>
-                           
-                            <form role="form">
+
+                                echo '
+                            <form role="form" action="../controller/assn_upload.php?courseid='.$courseid.'" method="post" 
+                            enctype="multipart/form-data">
                             <div class="box box-info">
                                 <div class="box-header">
                                     <h3 class="box-title">Add Assignment</h3>                                    
@@ -44,15 +45,26 @@ $row = $courses->getCourseDetails($courseid);
                                 <div class="box-body table-responsive">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Upload Assignment</label>
-                                        <input type="file" id="exampleInputFile">
+                                        <input type="file" name="file" id="exampleInputFile">
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Assignment Name</label>
+                                        <input type="text" name="assnname">
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label for="exampleInputFile">Assignment Number</label>
+                                        <input type="text" name="assignno">
+                                    </div>
+                                   
                                     <div class="form-group">
                                         <label>Date range:</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="reservation"/>
+                                            <input type="text" name="date" class="form-control pull-right" id="reservation"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                             
@@ -60,7 +72,7 @@ $row = $courses->getCourseDetails($courseid);
                                         <div class="form-group">
                                             <label>Time:</label>
                                             <div class="input-group">                                            
-                                                <input type="text" class="form-control timepicker"/>
+                                                <input type="text" name="time" class="form-control timepicker"/>
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
@@ -71,17 +83,27 @@ $row = $courses->getCourseDetails($courseid);
                                     
                                     <div class="form-group">
                                         <label> Max marks</label>
-                                        <input type="text" class="form-control" placeholder="Total">
+                                        <input type="text" name="maxmarks" class="form-control" placeholder="Total">
                                     </div>
                                 </div>
                                 <div class="box-footer">
                                    <button type="submit" class="btn bg-olive btn-block">Submit</button>
                                 </div>
                             </div>
-                            </form>
+                            </form>'; ?>
                            
                         </div>
                         <div class="col-xs-9">
+                         <?php
+                      if(isset($_GET['success']))
+                      {
+                        $success= $_GET['success']; 
+                        if ($success==1)
+                        echo '<div class="alert alert-success">The assignment was uploaded successfully </div>';    
+                        else
+                        echo '<div class="alert alert-warning">Assignment upload failed. Try again. </div>';  
+                      }
+              ?>
                             <div class="box box-warning">
                                 <div class="box-header">
                                     <h3 class="box-title">Assignments</h3>                                   
@@ -92,17 +114,37 @@ $row = $courses->getCourseDetails($courseid);
                                         <thead>
                                             <tr>
                                                <th>Assignment no.</th>
+                                               <th>Assignment name</th>
                                                <th>Download link</th>
                                                 <th>Deadline</th>
-                                                <th>Submit</th>
                                                 <th>Max Marks</th>
-                                                <th>Your Marks</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                           
                                             <?php
-                                                include_once '../controller/list_assignments.php';
+
+                                            include_once '../models/courses.php';
+
+                                            $crs = New courses();
+                                            $rows = $crs->getCourseAssignments($courseid);
+
+                                            while($row = mysql_fetch_array($rows))
+                                                {
+                                                    echo '<tr>
+                                                            <td>'.$row['assignno'].'</td>
+                                                            <td>'.$row['assign_name'].'</td>
+                                                            <td><a href='.$row['filepath'].'>Download Assignment</a></td>
+                                                            <td>'.$row['deadline'].'</td>
+                                                            <td>'.$row['maxmarks'].'</td>
+                                                            </tr>
+                                                            ';
+
+
+                                                }
+
+
+
                                             ?>
                                             
                                         </tbody>
@@ -119,7 +161,7 @@ $row = $courses->getCourseDetails($courseid);
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
          <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -137,7 +179,7 @@ $row = $courses->getCourseDetails($courseid);
                 $('#example1').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
-                    "bFilter": false,
+                    "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false

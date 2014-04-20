@@ -124,6 +124,27 @@ class user_details {
 		}
 		return $query_row['username'];
 	}
+
+	public function getStudDetails($id)
+	{
+		$query= "SELECT * FROM coursemgs.students WHERE userid= '".$id."';";
+				$result = mysql_query($query);
+
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+			{
+				return $result;
+			}
+			
+			return 0; // no results found
+		
+		}
+
+		return 0;
+
+	}
+
 	
 }
 

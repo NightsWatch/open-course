@@ -27,7 +27,16 @@ $assignid = $_GET['aid'];
  			
  		</div>
  		<div class="col-md-6">
+
  			<div class="box box-success" style="position: relative;">
+       <?php
+                      if(isset($_GET['success']))
+                      {
+                        $success= $_GET['success']; 
+                        if($success==0)  
+                        echo '<div class="alert alert-warning">Assignment Submission failed. Try again.</div>';     
+                      }
+              ?>
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center"><a href="thread.php">Submission</a></h3>
             </div>
@@ -35,7 +44,11 @@ $assignid = $_GET['aid'];
             <div class="box-body" style="overflow: hidden; width: auto;">
               <h4>Deadline: </h4>
               <h4>No submissions will be entertained after the deadline.</h4>
-              <form role="form" action="../controller/assn_submit.php" method='post' enctype="multipart/form-data">
+
+              <?php
+              echo '
+              <form role="form" action="../controller/assn_submit.php?assnid='.$assignid.'" method="post" 
+              enctype="multipart/form-data">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="file">File input</label>
@@ -48,7 +61,7 @@ $assignid = $_GET['aid'];
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                     </div>
-                                </form>
+                                </form>'; ?>
             </div>
         </div>
         </div>

@@ -1,8 +1,9 @@
 <?php
 
+session_start();
+
 include '../models/messages.php';
 
-session_start();
 
 if( isset($_POST['receiverusername']) && isset($_POST['message']))
 {
@@ -10,8 +11,7 @@ if( isset($_POST['receiverusername']) && isset($_POST['message']))
 
 	$receivername = mysql_real_escape_string($_POST['receiverusername']);
 	$message = mysql_real_escape_string($_POST['message']);
-	$sendername = mysql_real_escape_string($_SESSION["username"]);
-	$senderid=$msgs->getUserid($sendername);
+	$senderid=$_SESSION['id'];
 	$receiverid=$msgs->getUserid($receivername);
 
 	//$phpdate = strtotime( $mysqldate );
@@ -19,7 +19,7 @@ if( isset($_POST['receiverusername']) && isset($_POST['message']))
 	$date = date('Y-m-d H:i:s');
 	if ($msgs->insertMessage($senderid, $receiverid, $message, $date)== -1 )
 			{
-				
+				echo 'failed';
 				header('Location: ../views/inbox.php');
 			}
 

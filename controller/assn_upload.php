@@ -4,21 +4,37 @@ include '../models/assgn.php';
 
 session_start();
 
-if( isset($_POST['assignno']) && isset($_POST['deadline']) && isset($_POST['maxmarks']))
-{
-	$assn = mysql_real_escape_string($_POST['assignno']);
-	$deadline = mysql_real_escape_string($_POST['deadline']);
-	$maxmarks = mysql_real_escape_string($_POST['maxmarks']);
 
+
+if( isset($_POST['assignno']) && isset($_POST['assnname']) && isset($_POST['time']) && isset($_POST['date']) && isset($_POST['maxmarks']) && isset($_GET['courseid']))
+{
+
+	$assn = mysql_real_escape_string($_POST['assignno']);
+	$time = mysql_real_escape_string($_POST['time']);
+	$date = mysql_real_escape_string($_POST['date']);
+	$maxmarks = mysql_real_escape_string($_POST['maxmarks']);
+	$courseid = mysql_real_escape_string($_GET['courseid']);
+	$assnname = mysql_real_escape_string($_POST['assnname']);
+
+	$dateobj = DateTime::createFromFormat('d/m/Y', $date);
+ 
+
+	$timenew= date("H:i:s", strtotime($time));
+	$deadline =$dateobj->format('Y-m-d').' '.$timenew;
+	
 	$assgn = New assgn();
 
-	if( ($assgn->uploadAssgn($assn, $deadline, $maxmarks) )==1)
-			header("Location: ../views/assnupload.php?success=1");
+	if( ($assgn->uploadAssgn($assn, $courseid, $deadline, $maxmarks, $assnname) )==1)
+			header('Location: ../views/assignmentsfac.php?cid='.$courseid.'&success=1');
 	else
-		header("Location: ../views/assnupload.php?success=0");
+		header('Location: ../views/assignmentsfac.php?cid='.$courseid.'&success=0');
 
 
 
 }
 
+
+	
+
 ?>
+

@@ -38,6 +38,8 @@ $row = $courses->getCourseDetails($courseid);
                             
                         </div>
                         <div class="col-xs-8">
+                        
+      
                             <div class="box box-info">
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -67,7 +69,7 @@ $row = $courses->getCourseDetails($courseid);
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->
@@ -83,7 +85,7 @@ $row = $courses->getCourseDetails($courseid);
                 $('#example1').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
-                    "bFilter": false,
+                    "bFilter": true ,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false

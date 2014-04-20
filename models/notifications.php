@@ -58,15 +58,36 @@ class notifications {
 		return $row;
 	}
 
-	public function setSeen($notifid){
+	public function setSeenThreads(){
 		//
-		$query = "update notifications set seen=1 where notifid='".$notifid."';";
+		$query = "update notifsthreads set seen=1;";
 		$result = mysql_query($query);
 			if(!$result) {
     		die("Database query failed: " . mysql_error());
 		}
 		return $result;
 	}
+
+	public function setSeenLectures(){
+		//
+		$query = "update notifslectures set seen=1;";
+		$result = mysql_query($query);
+			if(!$result) {
+    		die("Database query failed: " . mysql_error());
+		}
+		return $result;
+	}
+
+	public function setSeenAssignments(){
+		//
+		$query = "update notifsassignments set seen=1;";
+		$result = mysql_query($query);
+			if(!$result) {
+    		die("Database query failed: " . mysql_error());
+		}
+		return $result;
+	}
+
 
 	public function getNotificationsThreads($userid)
 	{

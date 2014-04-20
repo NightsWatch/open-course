@@ -51,8 +51,20 @@ if( isset($_POST['category']) && isset($_POST['query']) )
 	{
 		$table= "assignments";
 		$field="assn_name";
-		if( $result=($mysql->search($table, $query, $field)) == -1)
+		$rows = $mysql->search($table, $query, $field);
+		echo 'rows are :';
+		echo $rows;
+		echo 'hirahul';
+		while ($row = mysql_fetch_array($rows))
+		{
+			echo $row['assign_name'];
+		}
+
+		if( $rows == -1)
 			header('Location: ../views/404.php');
+		else
+			{echo 'ad';
+			echo $result['assign_name'];}
 	}
 
 	if($category=="Users")

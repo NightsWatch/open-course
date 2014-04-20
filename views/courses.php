@@ -56,7 +56,7 @@ if(isset($_SESSION['status']))
                            <div class="box">
 
                                 <div class="box-body">
-                                    <a href="tastudents.php"><button class="btn bg-blue btn-large">Register for another course</button></a>
+                                    <a href=""><button class="btn bg-blue btn-large">Register for another course</button></a>
                                     <div></div>
                                     <p>You have already take x credits. You can take y more credits this semester.</p>
                                 </div><!-- /.box-body -->
@@ -72,7 +72,7 @@ if(isset($_SESSION['status']))
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->

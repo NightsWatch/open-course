@@ -17,7 +17,7 @@
         <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
         <link href="css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -44,14 +44,13 @@
                 </a>
                 <div class="navbar-left">
 
-                <form action="../controller/search.php" method="post">
+                <form action="search.php" method="post">
                      <div class="input-group margin " style="margin-left:70px;width:350px;">
                             <div class="input-group-btn">
 
                                 <select class="form-control" name="category" style="width:100px">
                                   <option name="fac">Faculty</option>
                                   <option  name="stud">Students</option>
-                                  <option name="hod">HOD</option>
                                   <option> Assignments</option>
                                   <option >Lectures</option>
                                   <option>Users</option>>

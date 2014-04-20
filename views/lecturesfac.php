@@ -10,6 +10,7 @@ if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+
 $courseid = $_GET['cid'];
 
 $courses = New courses();
@@ -41,23 +42,37 @@ $row = $courses->getCourseDetails($courseid);
 
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
-                                    <form role="form">
+                                <?php 
+                                echo '
+                                    <form role="form" action="../controller/uploadlectures.php?courseid='.$courseid.'" 
+                                    method="post" enctype="multipart/form-data">
                                         <!-- text input -->
+
+
+                                         <div class="form-group">
+                                            <label>Lecture Number</label>
+                                            <input type="text" name="num" class="form-control" placeholder="number">
+                                        </div>
+
                                         <div class="form-group">
                                             <label>Lecture Title</label>
-                                            <input type="text" class="form-control" placeholder="Name">
+                                            <input type="text" name="title" class="form-control" placeholder="Name">
                                         </div>
+
+
+
 
                                          <div class="form-group">
                                            <label for="exampleInputFile">Upload Lecture</label>
-                                            <input type="file" id="exampleInputFile">
+                                            <input type="file" name="file" id="exampleInputFile">
                                         </div>
+                                        <button type="submit" class="btn bg-olive btn-block">Submit</button>
+
                                        
-                                     </form>
+                                     </form>'; ?>
                            
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
-                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>
 
                                 </div>
                                    
@@ -65,6 +80,17 @@ $row = $courses->getCourseDetails($courseid);
 
                         </div>
                         <div class="col-xs-8">
+
+                         <?php
+                      if(isset($_GET['success']))
+                      {
+                        $success= $_GET['success']; 
+                        if ($success==1)
+                        echo '<div class="alert alert-success">The lecture was uploaded successfully </div>';    
+                        else
+                        echo '<div class="alert alert-success">Lecture uploading failed. Try again. </div>';  
+                      }
+              ?>
                             <div class="box box-danger" >
                                 <div class="box-header">
                                     <h3 class="box-title">Lectures</h3>                                    
@@ -99,7 +125,7 @@ $row = $courses->getCourseDetails($courseid);
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->

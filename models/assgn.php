@@ -1,11 +1,11 @@
 <?php
 
 include 'dbs.php';
-
+include_once '../models/assignments.php';
 class assgn
 {
 
-	private $id, $assnno, $deadline, $maxmarks, $extension, $path, $assn_name;
+	private $id, $assnno, $deadline, $maxmarks, $extension, $path, $assn_name, $courseid;
 
 
 	function __construct()
@@ -17,20 +17,21 @@ class assgn
 			$this->id= NULL;
 			$this->extension=NULL;
 			$this->path=NULL;
+			$this->courseid=NULL;
 		}
 
 
-	public function uploadAssgn($assnno, $deadline, $maxmarks, $assn_name)
+	public function uploadAssgn($assnno, $courseid, $deadline, $maxmarks, $assn_name)
 	{
+
 
 		if(!isset($_FILES["file"]))
 		{
 				echo 'File not chosen';
 				return -1;
 		}	
-
 		$upFile = $_FILES["file"];
-		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xls");
+		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xls","pptx",".mp4");
 
 		$extension = end(explode(".", $_FILES["file"]["name"]));		
 		$extension = strtolower($extension);
@@ -49,6 +50,8 @@ class assgn
 			$this->deadline= $deadline;
 			$this->maxmarks= $maxmarks;
 			$this->assn_name=$assn_name;
+			$this->courseid=$courseid;
+
 
 				$this->extension=$extension;
 				$this->add();
@@ -56,8 +59,12 @@ class assgn
 				// move from servers temporary copy to the assignmets folder
 				if(!move_uploaded_file ($upFile["tmp_name"], $this->path) )
 						return -1;
-				else
+				else{
+						$assignments= New assignments();
+						$assignments->addAssignNotifs($this->id);
+
 					return 1;
+				}
 						
 			}
 
@@ -73,7 +80,7 @@ class assgn
 
 
 
-	public function uploadSubmission()
+	public function uploadSubmission($id)
 	{
 
 		if(!isset($_FILES["file"]))
@@ -83,7 +90,7 @@ class assgn
 		}	
 
 		$upFile = $_FILES["file"];
-		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xls");
+		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xls","pptx");
 
 		$extension = end(explode(".", $_FILES["file"]["name"]));		
 		$extension = strtolower($extension);
@@ -99,6 +106,7 @@ class assgn
 			{
 				echo "uploading\n";
 				$this->extension=$extension;
+				$this->id=$id;
 				$this->submit();
 
 				// move from servers temporary copy to the assignmets folder
@@ -126,19 +134,19 @@ class assgn
 	{
 
 
-		$query = "INSERT INTO ".DBNAME.".".ASSNS_TBL." (assignid, courseid, assignno, assn_name, deadline, maxmarks) values ( DEFAULT,'".$_SESSION['courseid']."','".$this->assnno."','".$this->assn_name."','".$this->deadline."', '".$this->maxmarks."');";
-
+		$query = "INSERT INTO ".DBNAME.".".ASSNS_TBL." (assignid, courseid, assignno, assign_name, deadline, maxmarks) values ( DEFAULT,'".$this->courseid."','".$this->assnno."','".$this->assn_name."','".$this->deadline."', '".$this->maxmarks."');";
+		echo "adding";
 		$result= mysql_query($query);
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
-			$this->path= "assignments/".$this->id.'.'.$this->extension; 
+			$this->path= "../assignments/".$this->id.'.'.$this->extension; 
 
-			$query= "INSERT INTO".DBNAME.".".ASSNS_TBL." (filepath) values ('".$this->path."');";
+			$query= "UPDATE ".DBNAME.".".ASSNS_TBL." SET FILEPATH='".$this->path."' where assignid='".$this->id."';";
 			$result= mysql_query($query);
 
 			if($result)
-			return 1;
+				return 1;
 
 			echo "Error: ".mysql_error();
 
@@ -158,7 +166,7 @@ class assgn
 		$_SESSION['assnid']=1;
 
 		echo " studid ".$_SESSION['id']."\n";
-		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assgnid, stime, studid) values ( DEFAULT,'".$_SESSION['assnid']."', '".$TIME."','".$_SESSION['id']."');";
+		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assignid, stime, studid) values ( DEFAULT,'".$this->id."', '".$TIME."','".$_SESSION['id']."');";
 		echo "Inserting";
 		$result= mysql_query($query);
 		if($result)
@@ -166,10 +174,10 @@ class assgn
 			$this->id=intval(mysql_insert_id());
 			$this->path= "../submissions/".$this->id.'.'.$this->extension; 
 
-			//$query= "INSERT INTO ".DBNAME.".".SUBMS_TBL." (path) values ('".$this->path."');";
-			//$result= mysql_query($query);
+			$query= "UPDATE ".DBNAME.".".SUBMS_TBL." SET FILEPATH= '".$this->path."' where subid= '".$this->id."';";
 
-			//if($result)
+			$output= mysql_query($query);
+			if($output)
 			return 1;
 			echo "Error: ".mysql_error();
 
