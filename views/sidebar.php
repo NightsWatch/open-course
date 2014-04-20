@@ -69,12 +69,9 @@
                         <i class="fa fa-check-square"></i> <span>Allotments</span>
                     </a>
                 </li>
-               <li>
-                    <a href="profile.php">
-                        <i class="fa fa-user"></i> <span>Profile</span>
-                       
-                    </a>
-                </li>
+
+
+               
                 ';
               }
 
@@ -105,8 +102,19 @@
                    echo '</ul></li>';
               }
 
+              if($_SESSION['usertype']=="Student")
+              {
 
-             if($_SESSION['usertype']=="Faculty")
+                echo'  <li>
+                    <a href="courses.php">
+                      <i class="fa fa-book"></i><span>All Courses</span>
+                  </a>
+                 </li>';
+
+              }
+
+
+             if($_SESSION['usertype']=="Faculty" || $_SESSION['usertype']=="HOD")
               {
                  $crs = New courses();
                  $facobj = New faculty();
@@ -121,45 +129,65 @@
                               ';
 
 
-                 while($row=mysql_fetch_array($rows))
-                 {
-                  $cid=$row['courseid'];
-                  echo '<li><a href="coursepage.php?cid='.$cid.'"><i class="fa fa-check"></i> 
-                  '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
-                }
-                echo '</ul></li>';
+                       while($row=mysql_fetch_array($rows))
+                       {
+                        $cid=$row['courseid'];
+                        echo '<li><a href="coursepage.php?cid='.$cid.'"><i class="fa fa-check"></i> 
+                        '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
+                      }
+                      echo '</ul></li>';
 
 
-                echo '<li class="treeview active">
-                              <a href="#">
-                                  <i class="fa fa-table"></i> <span>Assignments Pages</span>
-                                  <i class="fa pull-right fa-angle-down"></i>
-                              </a>
-                              <ul class="treeview-menu" style="display: block;">
-                                <li><a><small> Assignments of Teaching Courses</small></a></li>
-                              ';
+                      echo '<li class="treeview active">
+                                    <a href="#">
+                                        <i class="fa fa-table"></i> <span>Assignments Pages</span>
+                                        <i class="fa pull-right fa-angle-down"></i>
+                                    </a>
+                                    <ul class="treeview-menu" style="display: block;">
+                                      <li><a><small> Assignments of Teaching Courses</small></a></li>
+                                    ';
 
-                  $rows=$facobj->getCourses($_SESSION['id']);
-                 while($row=mysql_fetch_array($rows))
-                 {
-                  $cid=$row['courseid'];
-                  echo '<li><a href="assignmentsfac.php?cid='.$cid.'"><i class="fa fa-check"></i> 
-                  '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
-                }
-                echo '</ul></li>';
+                        $rows=$facobj->getCourses($_SESSION['id']);
+                       while($row=mysql_fetch_array($rows))
+                       {
+                        $cid=$row['courseid'];
+                        echo '<li><a href="assignmentsfac.php?cid='.$cid.'"><i class="fa fa-check"></i> 
+                        '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
+                      }
+                      
+                      echo '</ul></li>';
 
-
-
-
-
-                echo'  <li>
-                    <a href="courses.php">
-                      <i class="fa fa-book"></i><span>All Courses</span>
+                      echo '<li>
+                       <a href="coursefacallot.php">
+                      <i class="fa fa-book"></i><span>View Course Allotments</span>
                   </a>
-                </li>';
+                      </li>';
 
-                
               }
+
+               if($_SESSION['usertype']=="HOD")
+              {
+
+                echo'
+                <li>
+                    <a href="newcourse.php">
+                      <i class="fa fa-book"></i><span>Create New Course</span>
+                  </a>
+                 </li>';
+
+              }
+
+
+              echo '
+              <li>
+                    <a href="profile.php">
+                        <i class="fa fa-user"></i> <span>Profile</span>
+                       
+                    </a>
+                </li>   
+                ';
+                
+                
 
 
             ?>

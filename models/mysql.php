@@ -104,6 +104,7 @@ class mysql {
 			$_SESSION['id']= $regUserid;
 			$_SESSION['username']= $un;
 			$_SESSION['status']= "authorised";
+			$_SESSION['usertype']= $usertype;
 
 			return 1;
 		}
@@ -132,6 +133,10 @@ class mysql {
 		if($result)
 		{
 			//echo "success";
+
+			$mysql=New mysql();
+
+			$mysql->setFill($userid);
 			return 1;
 		}
 
@@ -158,6 +163,7 @@ class mysql {
 		if($result)
 		{
 			//echo "success";
+
 			return 1;
 		}
 
@@ -248,12 +254,22 @@ class mysql {
 
 	public function getFill($username)
 	{
-		$query="select fill from users where username=".$username.";";
+		$query="select * from users where username='".$username."';";
+		echo $query;	
 		$result = mysql_query($query);
-		$row = mysql_fetch_array($result);
 
-		return $row['fill'];
-
+		if($result)
+		{
+			if($row = mysql_fetch_array($result)>0)
+			{
+				echo $row['fill']." di";
+				return $row['fill'];
+			}
+	
+		}
+		
+		echo mysql_error();
+		return 0;
 	}
 
 

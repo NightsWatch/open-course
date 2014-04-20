@@ -119,12 +119,19 @@ if(isset($_SESSION['status']))
 
                             </form>
 
+                            
+                            <br/>
+    <div class="callout callout-info">
+                                        <h4>Please fill up all the details before submitting</h4>
+                                        
+                                    </div>
+
 <?php } }
 
 else
 { 
 
-    $userinfo= New faculty_details();
+                 $userinfo= New faculty_details();
 
             $found= $userinfo->getFacDetails($_SESSION['id']);
 
@@ -132,7 +139,8 @@ else
                         {
                             $row= mysql_fetch_array($found) ;
 
-                           echo'<fieldset disabled><div class="form-group">
+                           echo'<fieldset disabled>
+                           <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" name="name" class="form-control" placeholder="'.$row["name"].'">
                                         </div>
@@ -152,7 +160,7 @@ else
                                                                      </fieldset disabled>
 
                                  <a href="profile.php?edit=1"><button class="btn btn-info btn-block"> Edit</button></a>
-                                 </div>'
+                                 '
                                  ;
 
 
@@ -189,18 +197,22 @@ else
                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>
 
 
+
                             </form>
-        <?php } 
-
-    } ?>
-
-    <br/>
+                            <br/>
+                            <a href="profile.php" <button  class="btn bg-aqua btn-block">Undo Edit</button></a>
+                            <br/>
     <div class="callout callout-info">
-                                        <h4>Please fill up all details!</h4>
+                                        <h4>Please fill up all the details before submitting</h4>
                                         
                                     </div>
     
 
+        <?php } 
+
+    } ?>
+
+    
 
 
     </div>

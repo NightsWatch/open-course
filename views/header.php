@@ -1,3 +1,13 @@
+<?php
+
+// if(!isset($_SESSION['status']))
+// {
+//     header ('Location: login.php');
+// }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>

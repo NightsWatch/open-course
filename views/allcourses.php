@@ -27,7 +27,7 @@ if(isset($_SESSION['status']))
  <section class="content">
                     <div class="row">
 
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                         <?php 
                         if(isset($_GET['done']))
                         {
@@ -39,14 +39,14 @@ if(isset($_SESSION['status']))
                                         <b>Success!</b> Successfully registered for the course:  '.$cname.'</div>';
                         }
 
-                        if(isset($_GET['already']))
+                        if(isset($_GET['removed']))
                         {
-                            $cid = $_GET['already'];
+                            $cid = $_GET['removed'];
                             $cname = $crs->getCourseName($cid);
                             echo '<div class="alert alert-danger alert-dismissable">
                                         <i class="fa fa-warning"></i>
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                        You are already registered for the course:  '.$cname.', '.date("Y").'</div>';
+                                        You are removed from the course:  '.$cname.', '.date("Y").'</div>';
                         }
                           
                           if(isset($_GET['cant']))
@@ -58,6 +58,14 @@ if(isset($_SESSION['status']))
                                         Cant register for this course as its year is less than todays!</div>';
                         }
                                     ?>
+
+                                    <?php
+
+                                    if(isset($_GET['limit']))
+
+                                        echo '<div class="alert alert-warning">Course credits exceeded max. limit. 
+                                    Registration failed.</div>';  
+                              ?>
 
                             <div class="box box-info">
                                 <div class="box-header">
@@ -73,6 +81,8 @@ if(isset($_SESSION['status']))
                                                 <th>Course name</th>
                                                 <th>Year</th>
                                                 <th>Department</th>
+                                                <th>Credits</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,6 +100,7 @@ if(isset($_SESSION['status']))
                            <div class="callout callout-info">
                                         <h4>How to register!</h4>
                                         <p>Click on a row to register for the corresponding course.</p>
+                                        <p>Note: You cannot register for more than 48 cedits</p>
                                     </div> 
                         </div>
                   

@@ -27,10 +27,12 @@ class user {
 			$_SESSION['status'] = 'authorized';
 			echo $_SESSION['status']." username ".$_SESSION['username'];
 
-				if($fill)
+			echo $fill;
+
+				 //if($fill==1)
 					header("Location: ../views/index.php?session=1");
-				else
-					header("Location: ../views/profile.php?session=1");
+				 //else
+				 	//header("Location: ../views/profile.php?session=1");
 		} 
 		else 
 			header('Location: ../views/login.php?error=1');  //"Please enter a correct username and password";

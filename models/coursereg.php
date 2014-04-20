@@ -1,7 +1,9 @@
 <?php
 
-include 'dbs.php';
-include_once 'courses.php';
+include_once 'dbs.php';
+include_once '../models/courses.php';
+include_once '../models/user_details.php';
+
 
 class coursereg
 {
@@ -24,10 +26,10 @@ class coursereg
 		public function registerStudent($studid, $courseid)
 		{
 			$crs=New courses();
-			$row=$crs->getCourseDetails($courseid);
+			//$row=$crs->getCourseDetails($courseid);
 
-			if($row['year']<date("Y"))
-				return 2;
+			//if($row['year']<date("Y"))
+				//return 2;
 			
 			$query = "INSERT INTO coursemgs.coursestudregistration (courseid, studentid) values ('".$courseid."',
 					'".$studid."');";
@@ -35,7 +37,23 @@ class coursereg
 			$result= mysql_query($query);
 			if($result)
 			{
-				echo "Registered";
+				return 1;
+			}
+
+				echo "Error: ".mysql_error();
+				return 0;
+
+
+		}
+
+		public function deRegisterStudent($studid, $courseid)
+		{
+			$query = "DELETE FROM coursemgs.coursestudregistration where courseid='".$courseid."' and studentid='".$studid."';";
+			//echo $query;
+			$result= mysql_query($query);
+			if($result)
+			{
+				//echo 'removed';
 				return 1;
 			}
 
@@ -54,17 +72,54 @@ class coursereg
 			$result= mysql_query($query);
 			if($result)
 			{
-				echo "Registered";
-				return 1;
+				if(mysql_num_rows($result) > 0)
+				{
+					//echo 'registered';
+					return 1;
+				}
+
+				else 
+					return 0;
 			}
 
 			echo "Error: ".mysql_error();
 
-			return 0;
+			return -1;
 
 		}
 
 
+		public function checkCreditsTotal($userid, $courseid)
+		{
+			$maxcredits=48;
+
+			$user= New user_details();
+
+			$course= New courses();
+
+			$courselist=$user->getCoursesReg($userid);
+
+			$credits=$course->getCourseCredits($courseid);
+
+
+			while($row=mysql_fetch_array($courselist))
+			{
+
+				$regcredits=$course->getCourseCredits($row['courseid']);
+				$credits= $credits+$regcredits;
+
+			}
+
+			echo mysql_error();
+			if($credits<$maxcredits)
+				return 1;
+			else
+				return 0;
+
+
+		}
 
 
 }
+
+?>

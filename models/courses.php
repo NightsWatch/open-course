@@ -18,7 +18,7 @@ class courses {
 
 	public function getCourseDetails($courseid)
 	{
-		$query = "select courseid, coursename, courseno, year, department from courses where courseid='".$courseid."';";
+		$query = "select courseid, coursename, courseno, year, department,credits from courses where courseid='".$courseid."';";
 		$result = mysql_query($query);
 		$row = mysql_fetch_array($result);
 		return $row;
@@ -142,6 +142,29 @@ class courses {
 		}
 
     	
+	}
+
+
+	public function getCourseCredits($courseid)
+	{
+		$query = "select credits from coursemgs.courses where courseid='".$courseid."';";
+		$result = mysql_query($query);
+
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+			{
+				$row = mysql_fetch_array($result);
+				return $row['credits'];
+			}
+			
+			echo mysql_error();
+			return 0;
+		
+		}
+
+		return 0;
+	
 	}
 	
 

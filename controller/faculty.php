@@ -17,7 +17,7 @@ if( isset($_POST['name']) && isset($_POST['desgn']) && isset($_POST['dept']) && 
 	$mysql = New mysql();
 
 	 
-	 if( ($mysql->insertFacDetails($_SESSION['id'], $username, $desgn, $dept, $joined) )==1 )
+	 if( ($mysql->insertFacDetails($_SESSION['id'], $username, $dept, $desgn, $joined) )==1 )
 		header ('Location: ../views/index.php');
 	else
 		header ('Location: ../views/profile.php');

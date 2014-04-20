@@ -23,7 +23,7 @@ if ( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['ema
 
 		echo "created mysql";
 		if( ($mysql->adduser($username,$pass, $email, $usertype )) == 1 )
-			header('Location: ../views/login.php');
+			header('Location: ../views/login.php?session=1');
 		else
 			header('Location: ../views/signup.php?error=1');
 		//$mysql->insertStudDetails($regUserid, $name, $prog, $batch, $dept, $rollno, $ista );

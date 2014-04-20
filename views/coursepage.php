@@ -30,8 +30,9 @@ $courseid=$_GET['cid'];
  	<div class="col-md-4">
  		 <a href="coursestud.php"><button class="btn bg-olive btn-block">List of students taking the course</button>	</a><br/>
  		 <a href="courseta.php"><button class="btn bg-olive btn-block">List of TAs for the course</button>	</a><br/>
- 		 <a href="tastudents.php"><button class="btn bg-olive btn-block">TA-Student Allotment for the course</button>	</a><br/>
- 	</div>
+ 		<?php
+        if($_SESSION['usertype']!='Student') echo '<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#allot"><i class="fa fa-group"></i> Allot TAs for the Course</a><br/>';
+ 	?> </div>
  	</div>
  	<div class="row">
  	<div class="col-md-4">
@@ -89,6 +90,62 @@ $courseid=$_GET['cid'];
         </div>
  	</div>
  </div>
+
+
+ <div class="modal fade" id="allot" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-envelope-o"></i> Allot TAs for the Course</h4>
+            </div>
+            <form action="../controller/allot_ta.php" method="POST" role="form">
+                <div class="modal-body">
+                <?php 
+
+                $course= New $courses;
+                $students=$course->getCourseStudents($courseid);
+
+                while($row = mysql_fetch_array($students))
+                    {
+                       
+                        echo '<tr>
+                                <td>'.$row['name'].'</td>
+                                <td>'.$coursedetails['program'].'</td>
+                                <td>'.$coursedetails['batch'].'</td>
+                                <td>'.$coursedetails['rollno'].'</td>
+                                <td>
+
+
+                                    ';
+
+                                    $facrows = $crs->getCourseInstructors($cid);
+                                    if(mysql_num_rows($facrows) != 0)
+                                    {
+                                        echo '<ul class="list-unstyled">';
+
+                                while($fac =mysql_fetch_array($facrows))
+                                    {
+                                        echo '<li>'.$fac['name'].'</li>';
+                                    }
+                                    echo'</ul>';
+                                }
+                                echo '</td>
+                                ';
+                    } 
+
+                    ?>
+                 
+                </div>
+                <div class="modal-footer clearfix">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                    <button type="submit" name="messages" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Send Message</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <?php
 include 'footer.php';

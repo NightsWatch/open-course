@@ -4,7 +4,11 @@ session_start();
 
 if(isset($_SESSION['status']))
 {
-  header("Location: index.php");
+
+if(isset($_GET['session']))
+  header("Location: profile.php?session=1");
+else
+    header("Location: index.php");
 }
 ?>
 
