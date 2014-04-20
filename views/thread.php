@@ -49,7 +49,7 @@ $rows = $thrds -> getPosts($threadid);
            
             $hrdate = date("H:i, d M Y", strtotime($row['timestamp']));
                 echo'<div class="item">
-                    <img src="img/avatar3.png" alt="user image" class="offline">
+                    <img src="" alt="user image" class="offline">
                     <p class="message">
                         <a href="#" class="name">
                             <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> '.$hrdate.'</small>

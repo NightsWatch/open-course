@@ -78,7 +78,8 @@ if(isset($_SESSION['status']))
                                             //mistake here
                                                 //
                                                 echo '<tr>
-                                        <td style="width:150px"></td>
+                                        <td style="width:150px"><img src="img/avatar.png" alt="user image" class="online" style="width: 80px;height: 80px;border: 2px solid transparent;-webkit-border-radius: 50% !important;
+                                        -moz-border-radius: 50% !important;border-radius: 50% !important;"></td>
                                         <td class="name"><a href="inbox.php?username='.$fromusername.'">'.$fromusername.'</a></td>
                                     </tr>';
                                         
@@ -127,7 +128,7 @@ if(isset($_SESSION['status']))
                                         
             // <img src="img/avatar2.png" alt="user image" class="offline">
                                             echo '<div class="item">
-                                             <img src="img/avatar3.png" alt="user image" class="offline">
+                                             <img src="" alt="user image" class="offline">
                                             <p class="message">
                                                 <a href="#" class="name">
                                                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> '.$hrdate.'</small>

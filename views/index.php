@@ -33,21 +33,69 @@ if(isset($_SESSION['status']))
                                         </ol>
                                         <div class="carousel-inner">
                                             <div class="item active">
-                                                <img src="http://placehold.it/900x500/39CCCC/ffffff&amp;text=I+Love+Bootstrap" alt="First slide">
+                                                <img src="img/1.png" alt="First slide">
                                                 <div class="carousel-caption">
-                                                    First Slide
+                                                    Open Course
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <img src="http://placehold.it/900x500/3c8dbc/ffffff&amp;text=I+Love+Bootstrap" alt="Second slide">
+                                                <img src="img/2.png" alt="Second slide">
                                                 <div class="carousel-caption">
-                                                    Second Slide
+                                                    Open Course
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <img src="http://placehold.it/900x500/f39c12/ffffff&amp;text=I+Love+Bootstrap" alt="Third slide">
+                                                <img src="img/3.png" alt="Second slide">
                                                 <div class="carousel-caption">
-                                                    Third Slide
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <img src="img/4.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <img src="img/5.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <img src="img/6.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <img src="img/7.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                             <div class="item">
+                                                <img src="img/8.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                             <div class="item">
+                                                <img src="img/9.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                             <div class="item">
+                                                <img src="img/10.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
+                                                </div>
+                                            </div>
+                                             <div class="item">
+                                                <img src="img/11.png" alt="Second slide">
+                                                <div class="carousel-caption">
+                                                    Open Course
                                                 </div>
                                             </div>
                                         </div>
@@ -67,27 +115,43 @@ if(isset($_SESSION['status']))
 			<div class="box box-info">
 		        <div class="box-header">
 		            <i class="fa fa-bullhorn"></i>
-		            <h3 class="box-title">Tips</h3>
+		            <h3 class="box-title">Features</h3>
 		        </div><!-- /.box-header -->
 		        <div class="box-body">
-		            <div class="callout callout-danger">
-		                <h4>Private Messaging</h4>
-		                <p>You can private message the professor or other students. Go to Inbox page to get started.</p>
-		            </div>
-		            <div class="callout callout-info">
-		                <h4>Assignment submission</h4>
-		                <p>You can submit assignments on Open Class</p>
-		            </div>
-
-                    <div class="callout callout-warning">
+                <div class="callout callout-warning">
                         <h4>Participate in course forums</h4>
                         <p>Head over to coursepage to go to forums</p>
                     </div>
+                    <div class="callout callout-warning">
+                        <h4>Access course lectures, assignments and submit solutions</h4>
+                        
+                    </div>
+		            <div class="callout callout-danger">
+		                <h4>Private Messaging</h4>
+		               
+		            </div>
+		            <div class="callout callout-danger">
+		                <h4>Notifications</h4>
+		                <p>Never miss anything on Open Class</p>
+		            </div>
+
+                    <div class="callout callout-info">
+                        <h4> Assignment submissions and grade them</h4>
+                        <p>Upload lectures, assignments. Upload solutions of assignmnets.</p>
+                    </div>
+                    
 
                     <div class="callout callout-info">
                         <h4>Courses</h4>
-                        <p>Students can access registered courses in sidebar and Faculty get the pages associated with the courses they are teaching</p>
+                        <p>Register, Create, Allot Instructors, Allot TAs, Course Timetable. </p>
                     </div>
+
+                    <div class="callout callout-danger">
+                        <h4>Thesis</h4>
+                        <p>Allot professors thesis project BTP, MTP students</p>
+                    </div>
+
+                    
 		        </div><!-- /.box-body -->
 	 		</div>
 	 	</div>

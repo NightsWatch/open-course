@@ -255,7 +255,7 @@ else
 
     </div>
     <div class="col-md-4">
-        <img src="img/avatar.png" alt="user image" class="online" style="width: 150px;height: 150px;border: 2px solid transparent;-webkit-border-radius: 50% !important;-moz-border-radius: 50% !important;border-radius: 50% !important;">
+        <img src="img/avatar04.png" alt="user image" class="online" style="width: 150px;height: 150px;border: 2px solid transparent;-webkit-border-radius: 50% !important;-moz-border-radius: 50% !important;border-radius: 50% !important;">
 
 
     </div>

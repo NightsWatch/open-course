@@ -26,13 +26,14 @@ if(isset($_SESSION['status']))
  <section class="content">
                     <div class="row">
                           <div class="callout callout-info">
-                                        <h4>How to register!</h4>
+                                        <h4>Info!</h4>
 
                                         <?php
                                         include_once '../models/user_details.php';
                                 $ud = New user_details();
                                 $maxcredits= $ud->getMaxCredits($_SESSION['id']);
-                                echo '<p>Click on a row to register for the corresponding course.You cannot register for more than '.$maxcredits.' credits</p>'
+                                echo '<p>Click on the buttons change registration status. You cannot register for more than '.$maxcredits.' credits</p>
+                                <p>Go to Registered Courses page to access coursepages</p>'
                                 ?>
                                         
                                     </div> 

@@ -16,7 +16,7 @@ while($row = mysql_fetch_array($rows))
 
     	//echo $coursedetails;
     	//echo $coursedetails['coursename'];
-        echo '<tr class="clickableRow" href="../controller/courseregister.php?cid='.$cid.'" style="cursor:pointer">
+        echo '<tr >
         		<td>'.$coursedetails['courseno'].'</td>
         		<td>'.$coursedetails['coursename'].'</td>
         		<td>'.$coursedetails['year'].'</td>
