@@ -8,17 +8,30 @@ class courses {
 		$conn = $dbs ->connect();
 
 	}
+
 	public function getAllCourses()
 	{
 		$query = "select courseid from courses;";
 		$result = mysql_query($query);
-		
+		if(!$result) {
+    		echo "Database query failed: " . mysql_error();
+		}
 		return $result;
 	}
 
+	public function getSlots()
+	{
+		$query="select count(*) as count,slot from courses group by slot ORDER BY count DESC;";
+		$result = mysql_query($query);
+		if(!$result) {
+    		echo "Database query failed: " . mysql_error();
+		}
+		return $result;
+
+	}
 	public function getCourseDetails($courseid)
 	{
-		$query = "select courseid, coursename, courseno, year, department,credits from courses where courseid='".$courseid."';";
+		$query = "select courseid, coursename, courseno, year, department,credits,slot from courses where courseid='".$courseid."';";
 		$result = mysql_query($query);
 		$row = mysql_fetch_array($result);
 		return $row;
@@ -55,7 +68,33 @@ class courses {
 	public function getCourseInstructors($courseid){
 		$query="select b.name from coursefacallotment as a, faculty as b where a.courseid='".$courseid."' and b.userid=a.facultyid;";
 	 	$result = mysql_query($query);
+
 	 	return $result;	
+	}
+
+	public function getCourseInstructor($courseid){
+		$query="select b.userid from coursefacallotment as a, faculty as b where a.courseid='".$courseid."' and b.userid=a.facultyid;";
+	 	$result = mysql_query($query);
+
+	 	return $result;	
+	}
+
+	public function checkCourseInstructor($courseid, $userid)
+	{
+		
+            
+            $result=$this->getCourseInstructor($courseid);
+
+            while($row=mysql_fetch_array($result))
+            {
+                if($userid==$row['userid'])
+                {
+                	return true;
+                }
+            }
+
+            return false;
+     
 	}
 
 	public function getCourseidfromlec($lectureid)

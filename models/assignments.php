@@ -3,7 +3,11 @@ require_once 'dbs.php';
 include_once '../models/courses.php';
 
 class assignments {
+
+	public $setgrade;
 	function __construct() {
+
+		$this->setGrade=0;
 		$dbs = New dbs();
 
 		$conn = $dbs ->connect();
@@ -18,7 +22,7 @@ class assignments {
 
 	public function getAssignmentSubmissions($assignid)
 	{
-		$query="select subid, studid, filepath, stime from assignsubmissions where assignid='".$assignid."';";
+		$query="select subid, studid, filepath, stime, marks from assignsubmissions where assignid='".$assignid."';";
 		$result = mysql_query($query);
 		return $result;
 	}
@@ -49,6 +53,42 @@ class assignments {
 		return $result;
 	}
 
+
+	public function setGrade($courseid, $userid, $marks)
+	{
+		$query = "update coursestudregistration SET grade='".$marks."' WHERE courseid='".$courseid."' && studentid='".$userid."';";
+		$result = mysql_query($query);
+		   echo "Add query failed: " . mysql_error();
+
+		if(!$result) {
+    		echo "Add query failed: " . mysql_error();
+	 	}
+	 	$this->setGrade=1;
+		return $result;
+	}
+
+
+	public function checkGrade($courseid, $userid)
+	{
+		$query = "select * from coursestudregistration WHERE courseid='".$courseid."' && studentid='".$userid."';";
+		$result = mysql_query($query);
+		echo mysql_error();
+		if($result)
+		{
+			if($row=mysql_fetch_array($result)) 
+			{
+	    		if(!is_null($row['grade']))
+	    			return 1;
+	    		return 0;
+		 	}
+		}
+		
+	 	
+		return 0;
+	}
+
+
+
 	public function getMarks($subid)
 	{
 		$query = 'select marks from assignsubmissions where subid='.$subid.';';
@@ -67,12 +107,12 @@ class assignments {
 	{
 		$query = 'select marks from assignsubmissions where studid='.$userid.' && assignid='.$assid.';';
 		$result = mysql_query($query);
-		
+		//echo $result;
 		if(!$result) {
     			return -1;
 	 	}
 	 	$row = mysql_fetch_array($result);
-
+	 	//echo $row['marks'];
 		return $row['marks'];
 	}
 

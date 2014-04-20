@@ -24,6 +24,8 @@ while($row = mysql_fetch_array($rows))
         		<td>'.$coursedetails['coursename'].'</td>
         		<td>'.$coursedetails['year'].'</td>
         		<td>'.$coursedetails['department'].'</td>
+                <td>'.$coursedetails['credits'].'</td>
+                <td>'.$coursedetails['slot'].'</td>
         		</tr>
 
         		';

@@ -22,14 +22,22 @@ while($row = mysql_fetch_array($rows))
         		<td>'.$coursedetails['year'].'</td>
         		<td>'.$coursedetails['department'].'</td>
                 <td>'.$coursedetails['credits'].'</td>
+                <td>'.$coursedetails['slot'].'</td>
                 ';
         $checked = $check->checkstudreg($_SESSION['id'], $cid);
+        $canregister = $check->canRegister($coursedetails['slot']);
+        //echo $canregister;
         if($checked==1)
         {
             echo '<td><a href="../controller/courseregister.php?cid='.$cid.'"><button class="btn btn-warning">Registered<br/><small>Click to unregister</small></button></a></td>';
         }
         elseif ($checked==0) {
-            echo '<td><a href="../controller/courseregister.php?cid='.$cid.'"><button class="btn btn-success">Register<br/><small>Click to register</small></button></a></td>';
+            if($canregister==1)
+                {echo '<td><a href="../controller/courseregister.php?cid='.$cid.'"><button class="btn btn-success">Register<br/><small>Click to register</small></button></a></td>';}
+            else
+            {
+                echo '<td><a href=""><button class="btn btn-danger"><small>You are busy in this slot</small></button></a></td>';
+            }
             
         }
 

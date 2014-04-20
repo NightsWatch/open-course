@@ -125,10 +125,17 @@ if(isset($_SESSION['status']))
                                             
                                         </div>
 
-
                                         <div class="form-group">
                                             <label>Program</label>
-                                            <input type="text" name="prog" class="form-control" placeholder="Program" >
+
+                                        <select class="form-control" name="prog">
+                                              <option value="B.Tech">B.Tech</option>
+                                              <option value="M.Tech">M.Tech</option>
+                                              <option value="B.Des">B.Des</option>
+                                              <option value="M.Des">M.Des</option>
+                                              <option value="PhD">PhD</option>
+                                        </select>
+                                            
                                         </div>
 
                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>

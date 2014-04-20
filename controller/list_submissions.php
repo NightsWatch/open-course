@@ -15,7 +15,7 @@ while($row = mysql_fetch_array($rows))
         		<td>'.$studname.'</td>
         		<td><a href='.$row['filepath'].'>Download Assignment</a></td>
         		<td>'.$row['stime'].'</td>
-        		<td>'.$crs->getMarks($row['subid']).'</td>
+        		<td>'.$row['marks'].'</td>
         		</tr>
         		';
 

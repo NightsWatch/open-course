@@ -39,6 +39,38 @@ class user_details {
 	}
 
 
+
+	public function getMaxCredits($userid)
+		{
+			$query = "select maxcredits from students where userid=".$userid."; ";
+			$result = mysql_query($query);
+			if($result)
+			{
+				$row = mysql_fetch_array($result);
+				return $row['maxcredits'];
+			}
+			echo mysql_error();
+			return -1;
+		}
+
+		public function setMaxCredits($credits, $program)
+		{
+			$query = "update students set maxcredits=".$credits." where program='".$program."'; ";
+			//echo $query;
+			$result = mysql_query($query);
+			if($result)
+			{
+				
+				return 1;
+			}
+			echo mysql_error();
+			return -1;
+		}
+
+
+
+
+
 	public function getUserid($username)
 	{
 		$query = "select userid from users where username='".$username."';";

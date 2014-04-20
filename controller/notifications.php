@@ -69,7 +69,7 @@ echo '
 while($assignment = mysql_fetch_array($assignments))
 {
     $hrdate = date("H:i, d M Y", strtotime($assignment['timestamp']));
-    $courseid = $assgns->getCourseidfromassgn($assignment['assignments']);
+    $courseid = $assignment['assignments'];
     $coursedetails = $courses->getCourseDetails($courseid);
 
     echo '<li>

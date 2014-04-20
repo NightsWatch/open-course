@@ -78,6 +78,16 @@ if(isset($_SESSION['status']))
 		                <h4>Assignment submission</h4>
 		                <p>You can submit assignments on Open Class</p>
 		            </div>
+
+                    <div class="callout callout-warning">
+                        <h4>Participate in course forums</h4>
+                        <p>Head over to coursepage to go to forums</p>
+                    </div>
+
+                    <div class="callout callout-info">
+                        <h4>Courses</h4>
+                        <p>Students can access registered courses in sidebar and Faculty get the pages associated with the courses they are teaching</p>
+                    </div>
 		        </div><!-- /.box-body -->
 	 		</div>
 	 	</div>

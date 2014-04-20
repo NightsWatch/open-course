@@ -37,7 +37,7 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <div class="box">
                                 <div class="box-header">
 
@@ -59,6 +59,8 @@ if(isset($_SESSION['status']))
                                                 <th>Course name</th>
                                                 <th>Year</th>
                                                 <th>Department</th>
+                                                <th>Credits</th>
+                                                <th>Slot</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -88,9 +90,12 @@ if(isset($_SESSION['status']))
 
                                 <?php
 
+                                include_once '../models/user_details.php';
+                                $ud = New user_details();
+                                $maxcredits= $ud->getMaxCredits($_SESSION['id']);
                                 $coursereg= New coursereg();
                                 $x=$coursereg->getRegisteredCredits($_SESSION['id']);
-                                $y=48-$x;
+                                $y=$maxcredits-$x;
 
                                 if($_SESSION['usertype']=="Student")
                                 {
@@ -106,7 +111,7 @@ if(isset($_SESSION['status']))
                                     <a href="allcourses.php"><button class="btn bg-blue btn-large">
                                     Register for another course</button></a>
                                     <div style="height:10px"></div>
-                                    <p>You have already taken '.$x.' credits. You can take '.$y.' more credits this semester.</p>
+                                    <p>You have already taken <b>'.$x.'</b> credits. You can take <b>'.$y.'</b> more credits this semester.</p>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box --> ';
                             }

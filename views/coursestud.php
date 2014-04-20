@@ -4,6 +4,7 @@ session_start();
 include 'header.php';
 include_once '../models/user_details.php';
 include_once '../models/courses.php';
+include_once '../models/assignments.php';
 
 
 if(isset($_SESSION['status']))
@@ -41,7 +42,20 @@ $courseid=$_GET['cid'];
         <th>Batch</th>
         <th>Roll-NO</th>
         <th>Department</th>
-   
+        <?php
+        if($_SESSION['usertype']!='Student')
+        {
+             $course= New courses();
+            $check=$course->checkCourseInstructor($courseid, $_SESSION['id']);
+            if($check)
+                {  echo 
+                        '<th>Grade</th>';
+                    
+                }
+        }
+       
+
+   ?>
     </tr>
 </thead>
 <tbody>`
@@ -59,9 +73,22 @@ $courseid=$_GET['cid'];
                                 <td>'.$row['program'].'</td>
                                 <td>'.$row['batch'].'</td>
                                 <td>'.$row['roll'].'</td>
-                                 <td>'.$row['department'].'</td>
+                                 <td>'.$row['department'].'</td>';                               
 
-                                </tr>';
+                        if( $_SESSION['usertype']!='Student' && $check)
+                            {
+                                $assn= New assignments();
+                                if($assn->checkGrade($courseid, $row['userid']))
+                                    $set=1;
+                                else
+                                    $set=0;
+                                if($set)
+                                echo ' <td><a href="grading.php?courseid='.$courseid.'&uid='.$row['userid'].'" class="btn btn-success"><i class="fa fa-star"></i>Update Grade</a></td>';
+                                else
+                                    echo ' <td><a href="grading.php?courseid='.$courseid.'&uid='.$row['userid'].'" class="btn btn-info"><i class="fa fa-star"></i>Give Grade</a></td>';
+
+                            }
+                        echo ' </tr>';
                         
                     } 
 

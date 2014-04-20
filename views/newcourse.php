@@ -24,7 +24,7 @@ if(isset($_SESSION['status']))
 <br/>
  <section class="content">
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 col-md-offset-1">
                             <div class="box box-info">
                                 <div class="box-body">
 
@@ -63,12 +63,34 @@ if(isset($_SESSION['status']))
                                             <input type="text" name="credits" class="form-control" placeholder="Credits" >
                                         </div>
 
+                                        <div class="form-group">
+                                            <label>Time Slot</label>
 
+                                        <select class="form-control" name="slot">
+                                              <option value="A">A</option>
+                                              <option value="B">B</option>
+                                              <option value="C">C</option>
+                                              <option value="D">D</option>
+                                              <option value="E">E</option>
+                                              <option value="F">F</option>
+                                              <option value="G">G</option>
+                                              <option value="A1">A1</option>
+                                              <option value="B1">B1</option>
+                                              <option value="C1">C1</option>
+                                              <option value="D1">D1</option>
+                                              <option value="E1">E1</option>
+                                        </select>
+                                            
+                                        </div>
+
+                                        
                                         <div class="callout callout-info">
                                         <p>You can allot instructors after you click submit</p>
                                        </div>
                                        
-
+                                       <div class="callout callout-warning">
+                                        <p>Please fill all details.</p>
+                                    </div> 
                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>
 
 
@@ -77,10 +99,71 @@ if(isset($_SESSION['status']))
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                           </div>
-                        <div class="col-md-3">
-                           <div class="callout callout-info">
-                                        <p>Please fill all details.</p>
-                                    </div> 
+                        <div class="col-md-4">
+                           <div class="box box-warning">
+                               <div class="box-header" style="cursor: move;">
+                                <h3 class="box-title" style="text-align:center"><i class="fa fa-calendar"></i>
+                                <a href="forum.php?cid=17">Time Slot Status</a></h3>
+                                </div>
+                               <div class="box-body text-center">
+                                    <?php
+                                        $rows=$crs->getSlots();
+                                        $total=0;
+
+                                        $allslots=array();
+                                        $slots = array();
+                                        $allslots[]='A';
+                                        $allslots[]='B';
+                                        $allslots[]='C';
+                                        $allslots[]='D';
+                                        $allslots[]='E';
+                                        $allslots[]='F';
+                                        $allslots[]='G';
+                                        $allslots[]='A1';
+                                        $allslots[]='B1';
+                                        $allslots[]='C1';
+                                        $allslots[]='D1';
+                                        $allslots[]='E1';
+                                        
+                                        while($row = mysql_fetch_array($rows))
+                                        {
+                                            $total  = $total+$row['count'];
+                                         $slots[]=$row['slot'];
+                                        }
+                                        
+                                        $rows=$crs->getSlots();
+                                        while($row = mysql_fetch_array($rows))
+                                        {
+                                        
+                                            //echo $row['slot'],$row['count'];
+                                            $percent = ($row['count']/$total)*100;
+                                           // echo $percent;
+                                           echo '
+                                    <div class="progress vertical">
+                                        <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="'.$row['count'].'" aria-valuemin="0" aria-valuemax="'.$total.'" style="height:'.$percent.'%">
+                                           <span>'.$row['count'].'</span> <br/><span>'.$percent.'%</span><br/><span>'.$row['slot'].'</span>
+                                        </div>
+                                    </div>
+                                ';
+                                        }
+
+                                        foreach ($allslots as &$value) {
+                                            if(!in_array($value,$slots))
+                                            {
+                                                 echo '
+                                    <div class="progress vertical">
+                                        <div class="progress-bar progress-bar-green sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="'.$total.'" style="height: 0%">
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                ';
+                                            }
+                                        }
+
+                                    ?>
+                               </div>
+
+                           </div>     
                         </div>
                   
 

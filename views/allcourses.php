@@ -23,11 +23,21 @@ if(isset($_SESSION['status']))
 <section class="content-header">
 <h1 style="text-align:center"><i class="fa fa-book"></i> All Courses</h1>
 </section>
-<br/>
  <section class="content">
                     <div class="row">
+                          <div class="callout callout-info">
+                                        <h4>How to register!</h4>
 
-                        <div class="col-md-9">
+                                        <?php
+                                        include_once '../models/user_details.php';
+                                $ud = New user_details();
+                                $maxcredits= $ud->getMaxCredits($_SESSION['id']);
+                                echo '<p>Click on a row to register for the corresponding course.You cannot register for more than '.$maxcredits.' credits</p>'
+                                ?>
+                                        
+                                    </div> 
+                        <div class="col-md-12">
+                      
                         <?php 
                         if(isset($_GET['done']))
                         {
@@ -82,6 +92,7 @@ if(isset($_SESSION['status']))
                                                 <th>Year</th>
                                                 <th>Department</th>
                                                 <th>Credits</th>
+                                                <th>Slot</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -96,14 +107,6 @@ if(isset($_SESSION['status']))
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                           </div>
-                        <div class="col-md-3">
-                           <div class="callout callout-info">
-                                        <h4>How to register!</h4>
-                                        <p>Click on a row to register for the corresponding course.</p>
-                                        <p>Note: You cannot register for more than 48 cedits</p>
-                                    </div> 
-                        </div>
-                  
 
                     </div>
 

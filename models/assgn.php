@@ -166,12 +166,15 @@ class assgn
 		$_SESSION['assnid']=1;
 
 		echo " studid ".$_SESSION['id']."\n";
-		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assignid, studid) values ( DEFAULT,'".$this->id."','".$_SESSION['id']."');";
-		echo "Inserting";
+		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assignid, studid,stime) values ( DEFAULT,'".$this->id."','".$_SESSION['id']."','".date('Y-m-d H:i:s')."');";
+		echo $query;
+		//echo "Inserting";
 		$result= mysql_query($query);
 		if($result)
 		{
 			$this->id=intval(mysql_insert_id());
+			//echo "updating ".$this->id;
+			
 			$this->path= "../submissions/".$this->id.'.'.$this->extension; 
 
 			$query= "UPDATE ".DBNAME.".".SUBMS_TBL." SET FILEPATH= '".$this->path."' where subid= '".$this->id."';";

@@ -2155,7 +2155,7 @@ Component: timeline
 }
 .mailbox .table-mailbox tr > td > a {
   color: #444;
-  font-size:24px;
+  font-size:18px;
 }
 @media screen and (max-width: 767px) {
   .mailbox .nav-stacked > li:not(.header) {

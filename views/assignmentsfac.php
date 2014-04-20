@@ -52,16 +52,18 @@ $row = $courses->getCourseDetails($courseid);
                                         <input type="file" name="file" id="exampleInputFile">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">Assignment Name</label>
-                                        <input type="text" name="assnname">
-                                    </div>
 
                                      <div class="form-group">
                                         <label for="exampleInputFile">Assignment Number</label>
                                         <input type="text" name="assignno">
                                     </div>
                                    
+                                   
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Assignment Name</label>
+                                        <input type="text" name="assnname">
+                                    </div>
+
                                     <div class="form-group">
                                         <label>Date range:</label>
                                         <div class="input-group">

@@ -50,8 +50,6 @@ $assignid = $_GET['aid'];
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
             <div class="box-body" style="overflow: hidden; width: auto;">
-              <h4>Deadline: </h4>
-              <h4>No submissions will be entertained after the deadline.</h4>
 
               <?php
               echo '

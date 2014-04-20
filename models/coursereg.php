@@ -89,12 +89,15 @@ class coursereg
 		}
 
 
+		
 		public function checkCreditsTotal($userid, $courseid)
 		{
-			$maxcredits=48;
 
+
+			
 			$user= New user_details();
 
+			$maxcredits = $user->getMaxCredits($userid);
 			$course= New courses();
 
 			$courselist=$user->getCoursesReg($userid);
@@ -144,6 +147,27 @@ class coursereg
 			echo mysql_error();
 			return $credits;
 
+
+		}
+
+
+		public function canRegister($slot)
+		{
+			$userid=$_SESSION['id'];
+
+			$query = "select * from coursestudregistration as a,courses as b where a.studentid=".$userid." and b.slot='".$slot."' and a.courseid=b.courseid;";
+
+			$result = mysql_query($query);
+			if($result)
+			{
+				if(mysql_num_rows($result)>0)
+					return 0;
+				else
+					return 1;
+			}
+			echo mysql_error();
+
+			return -1;
 
 		}
 

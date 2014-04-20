@@ -88,29 +88,50 @@ $assign = New assignments();
                                                         <td>'.$assignment['assign_name'].'</td>
                                                         <td><a href='.$assignment['filepath'].'>Download Assignment</a></td>
                                                         <td>'.date("H:i, d M Y", strtotime($assignment['deadline'])).'</td>';
-                                                if (isset($_SESSION['usertype']) && in_array($assignment['assignid'], $cart))
+
+                                                if(isset($_SESSION['usertype']))
                                                 {
-                                                    $details = $assign->getSubmissionDetails($assignment['assignid'],$_SESSION['id']);
-                                                    //echo $details['filepath'];
-                                                    $hrdate = date("H:i, d M Y", strtotime($details['stime']));
-                                                    echo '<td>Already submitted <a href="'.$details['filepath'].'">this</a> at '.$hrdate.'</td>';
 
 
+                                                        if (in_array($assignment['assignid'], $cart))
+                                                        {
+                                                            $details = $assign->getSubmissionDetails($assignment['assignid'],$_SESSION['id']);
+                                                            //echo $details['filepath'];
+                                                            $hrdate = date("H:i, d M Y", strtotime($details['stime']));
+                                                            echo '<td>Already submitted <a href="'.$details['filepath'].'">this</a> at '.$hrdate.'</td>
+
+                                                            <td>'.$assignment['maxmarks'].'</td>
+                                                            ';
+                                                            $marks= $assign->getStudMarks($_SESSION['id'], $courseid);
+                                                            if($marks!=-1) echo '<td>'.$marks.'</td>';
+
+
+                                                        }
+                                                        else
+                                                        {
+                                                            if(date('Y-m-d H:i:s')<$assignment['deadline'])
+                                                                {echo '<td><a href="assignsubmission.php?aid='
+                                                                .$assignment["assignid"].'">Submit Solution</a></td>';}
+                                                                else{
+                                                                    echo '<td></td>';
+                                                                }
+                                                                echo '
+                                                                    <td>'.$assignment['maxmarks'].'</td>
+                                                                    <td></td>
+
+                                                                   ';
+
+                                                        }
                                                 }
+
                                                 else
                                                 {
-                                                    if( isset($_SESSION['id'] )
-                                                    {                                               
-                                                       $marks= $assign->getStudMarks($_SESSION['id'], $courseid);
-                                                        echo '<td><a href="assignsubmission.php?aid='
-                                                        .$assignment["assignid"].'">Submit Solution</a></td>
-                                                           <td>'.$assignment["maxmarks"].'</td>';
-
-                                                           if($marks!=-1) echo '<td>'.$marks.'</td>
-                                                            </tr>
-                                                            ';
-                                                    }
+                                                    echo '<td></td><td></td><td></td>';
                                                 }
+
+
+                                                echo ' </tr>
+                                                            ';
 
                                             }
 

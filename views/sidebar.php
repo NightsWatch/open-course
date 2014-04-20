@@ -1,4 +1,5 @@
-
+<script src="js/AdminLTE/app.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
 <div class="wrapper row-offcanvas row-offcanvas-left">
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="left-side sidebar-offcanvas">                
@@ -102,17 +103,17 @@
 
               }
 
-
+              //<small style="color:#777"><br/> of Courses you are teaching</small>
              if($_SESSION['usertype']=="Faculty" || $_SESSION['usertype']=="HOD")
               {
                  $crs = New courses();
                  $facobj = New faculty();
                  $rows=$facobj->getCourses($_SESSION['id']);
                  echo '<li class="treeview active">
-                              <a href="#">
-                                  <i class="fa fa-table"></i> <span>Course Pages</span>
+                              <a href="courses.php">
+                                  <i class="fa fa-book"></i> <span>Course Pages</span>
                                   <i class="fa pull-right fa-angle-down"></i>
-                                  <small style="color:#777"><br/> of Courses you are teaching</small>
+                                  
                               </a>
                               <ul class="treeview-menu" style="display: block;">
                               ';
@@ -129,9 +130,9 @@
 
                       echo '<li class="treeview active">
                                     <a href="#">
-                                        <i class="fa fa-table"></i> <span>Assignments Pages</span>
+                                        <i class="fa fa-edit"></i> <span>Assignments Pages</span>
                                         <i class="fa pull-right fa-angle-down"></i>
-                                        <small style="color:#777"><br/> of Courses you are teaching</small>
+                                       
                                     </a>
                                     <ul class="treeview-menu" style="display: block;">
                                     ';
@@ -150,9 +151,9 @@
 
                       echo '<li class="treeview active">
                                     <a href="#">
-                                        <i class="fa fa-table"></i> <span>Lectures Pages</span>
+                                        <i class="fa fa-folder-o"></i> <span>Lectures Pages</span>
                                         <i class="fa pull-right fa-angle-down"></i>
-                                        <small style="color:#777"><br/> of Courses you are teaching</small>
+                                        
                                     </a>
                                     <ul class="treeview-menu" style="display: block;">
                                     ';
@@ -196,7 +197,11 @@
                                 <i class="fa fa-book"></i><span> Faculty Course Allotments</span>
                                 </a>
                                 </li>
-
+                                <li>
+                                <a href="credits.php">
+                                <i class="fa fa-book"></i><span> Maximum credits </span>
+                                </a>
+                                </li>
                                 </ul>
                                 ';
 
