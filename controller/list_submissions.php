@@ -5,7 +5,8 @@ include_once '../models/messages.php';
 $msg = New messages();
 $crs = New assignments();
 $rows = $crs->getAssignmentSubmissions($assignid);
-//echo $rows;
+
+
 
 while($row = mysql_fetch_array($rows))
     {
@@ -14,6 +15,7 @@ while($row = mysql_fetch_array($rows))
         		<td>'.$studname.'</td>
         		<td><a href='.$row['filepath'].'>Download Assignment</a></td>
         		<td>'.$row['stime'].'</td>
+        		<td>'.$crs->getMarks($row['subid']).'</td>
         		</tr>
         		';
 

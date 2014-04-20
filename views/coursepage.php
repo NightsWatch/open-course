@@ -54,7 +54,11 @@ $courseid=$_GET['cid'];
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center"><i class="fa fa-folder-o">
                 <?php
-                    echo '<a href="lectures.php?cid='.$courseid.'">Course Lectures</a></h3>';
+                    if($_SESSION['usertype']=="Student")
+                        echo '<a href="lectures.php?cid='.$courseid.'">Course Lectures</a></h3>';
+                    if($_SESSION['usertype']=="Faculty")
+                        echo '<a href="lecturesfac.php?cid='.$courseid.'">Course Lectures</a></h3>';
+                    
                 ?></i>
                 
             </div>
@@ -69,8 +73,12 @@ $courseid=$_GET['cid'];
  		<div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center"><i class="fa fa-edit">
-                <?php
-                    echo '<a href="assignments.php?cid='.$courseid.'">Course Assignments</a></h3>';
+                 <?php
+                    if($_SESSION['usertype']=="Student")
+                        echo '<a href="assignments.php?cid='.$courseid.'">Assignment Lectures</a></h3>';
+                    if($_SESSION['usertype']=="Faculty")
+                        echo '<a href="assignmentsfac.php?cid='.$courseid.'">Assignment Lectures</a></h3>';
+                    
                 ?></i>
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">

@@ -1,6 +1,7 @@
 <?php
 
 include 'dbs.php';
+include_once 'courses.php';
 
 class coursereg
 {
@@ -22,6 +23,12 @@ class coursereg
 
 		public function registerStudent($studid, $courseid)
 		{
+			$crs=New courses();
+			$row=$crs->getCourseDetails($courseid);
+
+			if($row['year']<date("Y"))
+				return 2;
+			
 			$query = "INSERT INTO coursemgs.coursestudregistration (courseid, studentid) values ('".$courseid."',
 					'".$studid."');";
 
@@ -42,7 +49,7 @@ class coursereg
 		public function checkstudreg($studid, $courseid)
 		{
 			$query = "SELECT * FROM coursemgs.coursestudregistration  where courseid='".$courseid."' 
-			&& studentid='".$studid."');";
+			and studentid=".$studid.";";
 				
 			$result= mysql_query($query);
 			if($result)
@@ -56,5 +63,8 @@ class coursereg
 			return 0;
 
 		}
+
+
+
 
 }

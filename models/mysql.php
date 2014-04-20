@@ -183,6 +183,8 @@ class mysql {
 		$result= mysql_query($query);
 		if($result)
 		{
+			$msql=New mysql();
+			$msql->setFill($userid);
 			return 1;
 		}
 
@@ -258,6 +260,7 @@ class mysql {
 	public function setFill($userid)
 	{
 		$query="update users set fill=1 where userid=".$userid.";";
+		echo $query;
 		$result = mysql_query($query);
 		return $result;
 

@@ -8,6 +8,13 @@ class courses {
 		$conn = $dbs ->connect();
 
 	}
+	public function getAllCourses()
+	{
+		$query = "select courseid from courses;";
+		$result = mysql_query($query);
+		
+		return $result;
+	}
 
 	public function getCourseDetails($courseid)
 	{
@@ -26,7 +33,7 @@ class courses {
 
 	public function getCourseAssignments($courseid)
 	{
-		$query="select assignid, assignno, assign_name,	filepath, deadline, maxmarks, studmarks from assignments where courseid='".$courseid."';";
+		$query="select assignid, assignno, assign_name,	filepath, deadline, maxmarks from assignments where courseid='".$courseid."';";
 	 	$result = mysql_query($query);
 	 	return $result;
 	}
@@ -106,7 +113,8 @@ class courses {
 		{
 			if(mysql_num_rows($result) > 0)
 			{
-				return $result['coursename'];
+				$row = mysql_fetch_array($result);
+				return $row['coursename'];
 			}
 			
 			return 0;
@@ -116,6 +124,25 @@ class courses {
     	
 	}
 
+	public function getCourseYear($courseid)
+	{
+		$query = "select year from coursemgs.courses where courseid='".$courseid."';";
+		$result = mysql_query($query);
+
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+			{
+				$row = mysql_fetch_array($result);
+				return $row['year'];
+			}
+			
+			return 0;
+		
+		}
+
+    	
+	}
 	
 
 }

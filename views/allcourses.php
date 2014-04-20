@@ -4,6 +4,9 @@ session_start();
 
 
 include 'header.php';
+include_once '../models/courses.php';
+
+$crs = New courses();
 
 if(isset($_SESSION['status']))
 {
@@ -18,36 +21,54 @@ if(isset($_SESSION['status']))
 
 
 <section class="content-header">
-
-<?php 
-
-    if($_SESSION['usertype']=="Student")
-        echo '<h1 style="text-align:center"><i class="fa fa-book"></i> Registered Courses</h1>';
-    if($_SESSION['usertype']=="Faculty")
-        echo '<h1 style="text-align:center"><i class="fa fa-book"></i> Allotted Courses</h1>'; ?>
-
+<h1 style="text-align:center"><i class="fa fa-book"></i> All Courses</h1>
 </section>
 <br/>
  <section class="content">
                     <div class="row">
+
                         <div class="col-md-8">
-                            <div class="box">
+                        <?php 
+                        if(isset($_GET['done']))
+                        {
+                            $cid = $_GET['done'];
+                            $cname = $crs->getCourseName($cid);
+                            echo '<div class="alert alert-success alert-dismissable">
+                                        <i class="fa fa-check"></i>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <b>Success!</b> Successfully registered for the course:  '.$cname.'</div>';
+                        }
+
+                        if(isset($_GET['already']))
+                        {
+                            $cid = $_GET['already'];
+                            $cname = $crs->getCourseName($cid);
+                            echo '<div class="alert alert-danger alert-dismissable">
+                                        <i class="fa fa-warning"></i>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        You are already registered for the course:  '.$cname.', '.date("Y").'</div>';
+                        }
+                          
+                          if(isset($_GET['cant']))
+                        {
+                           
+                            echo '<div class="alert alert-warning alert-dismissable">
+                                        <i class="fa fa-ban"></i>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        Cant register for this course as its year is less than todays!</div>';
+                        }
+                                    ?>
+
+                            <div class="box box-info">
                                 <div class="box-header">
-
-                                <?php
-
-                                if($_SESSION['usertype']=="Student")
-                                    echo '<h3 class="box-title">You have registered for the following courses</h3>';                                    
-                                if($_SESSION['usertype']=="Faculty")
-                                    echo '<h3 class="box-title">You are taking the following courses</h3>';                                    
-                                ?>                                    
+                                    <h3 class="box-title">List of All Courses</h3>                                    
+                                    
                                 </div><!-- /.box-header -->
 
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                
                                                 <th>Course number</th>
                                                 <th>Course name</th>
                                                 <th>Year</th>
@@ -57,19 +78,7 @@ if(isset($_SESSION['status']))
                                         <tbody>
 
                                         <?php
-
-                                         
-
-                                        if($_SESSION['usertype']=="Student")
-                                        {
-                                            include_once '../controller/registered_courses.php';
-                                        }
-
-                                        if($_SESSION['usertype']=="Faculty")
-                                        {
-                                            include_once '../controller/faccourses.php';
-                                        }
-
+                                            include_once '../controller/list_courses.php';
 
                                         ?>
                                         
@@ -78,23 +87,10 @@ if(isset($_SESSION['status']))
                             </div><!-- /.box -->
                           </div>
                         <div class="col-md-3">
-
-                                <?php
-
-                                if($_SESSION['usertype']=="Student")
-                                {
-                                echo'
-                                <div class="box">
-
-                                <div class="box-body">
-                                    <a href="../controller/courseregister.php?courseid=2"><button class="btn bg-blue btn-large">
-                                    Register for another course</button></a>
-                                    <div></div>
-                                    <p>You have already take x credits. You can take y more credits this semester.</p>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box --> ';
-                            }
-                            ?>
+                           <div class="callout callout-info">
+                                        <h4>How to register!</h4>
+                                        <p>Click on a row to register for the corresponding course.</p>
+                                    </div> 
                         </div>
                   
 

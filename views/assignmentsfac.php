@@ -131,7 +131,7 @@ $row = $courses->getCourseDetails($courseid);
 
                                             while($row = mysql_fetch_array($rows))
                                                 {
-                                                    echo '<tr>
+                                                    echo '<tr class="clickableRow" href="assignsubmissionfac.php?aid='.$row['assignid'].'" style="cursor:pointer">
                                                             <td>'.$row['assignno'].'</td>
                                                             <td>'.$row['assign_name'].'</td>
                                                             <td><a href='.$row['filepath'].'>Download Assignment</a></td>

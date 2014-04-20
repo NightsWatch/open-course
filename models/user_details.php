@@ -125,6 +125,23 @@ class user_details {
 		return $query_row['username'];
 	}
 
+	public function getIsta($userid)
+	{
+		$query = "SELECT * FROM coursemgs.students  where userid='".$userid."' 
+			and ista=1;";
+				
+			$result= mysql_query($query);
+
+			if (mysql_num_rows($result)>0) {
+    			return 1;
+			}
+			else
+				return 0;
+
+	}
+
+
+
 	public function getStudDetails($id)
 	{
 		$query= "SELECT * FROM coursemgs.students WHERE userid= '".$id."';";

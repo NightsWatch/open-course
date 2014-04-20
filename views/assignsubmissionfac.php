@@ -40,7 +40,7 @@ $assignid = $_GET['aid'];
                                 <th>Student name</th>
                                 <th>Submitted file</th>
                                 <th>Timestamp</th>
-                                
+                                <th>Given Marks</th>
                             </tr>
                         </thead>
                         <tbody>

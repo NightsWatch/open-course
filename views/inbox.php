@@ -38,7 +38,7 @@ if(isset($_SESSION['status']))
                 <div class="box-body"> -->
                     <div class="row">
 
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="box box-solid">
                                 <div class="box-header">
                                     <i class="fa fa-group"></i>
@@ -84,7 +84,7 @@ if(isset($_SESSION['status']))
                                 </div><!-- /.box-body -->
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#compose-modal"><i class="fa fa-pencil"></i> Compose Message</a>
                             <p><p/>
                             <div class="box box-solid">

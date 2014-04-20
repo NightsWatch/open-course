@@ -144,8 +144,9 @@
                                 
                                 <li class="user-header bg-light-blue">
                                     <img src="img/avatar04.png" class="img-circle" alt="User Image" />
-                                   <p>'.$_SESSION["username"].'<br/>
-                                   '.$_SESSION["id"].'</p>
+                                   <p>Username: '.$_SESSION["username"].'<br/>
+                                   '.$_SESSION["usertype"].'
+                                   </p>
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">

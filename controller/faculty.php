@@ -4,7 +4,7 @@ require '../models/mysql.php';
 
 session_start();
 
-if( isset($_POST['name']) && isset($_POST['desgn']) && isset($_POST['dept']) && isset($_POST['joined']) 	
+if( isset($_POST['name']) && isset($_POST['desgn']) && isset($_POST['dept']) && isset($_POST['joined']) 	)
 {
 	$username = mysql_real_escape_string($_POST['name']);
 
@@ -18,7 +18,7 @@ if( isset($_POST['name']) && isset($_POST['desgn']) && isset($_POST['dept']) && 
 
 	 
 	 if( ($mysql->insertFacDetails($_SESSION['id'], $username, $desgn, $dept, $joined) )==1 )
-		header ('Location: ../views/profile.php?set=1');
+		header ('Location: ../views/index.php');
 	else
 		header ('Location: ../views/profile.php');
 

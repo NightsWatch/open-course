@@ -9,6 +9,7 @@ if(isset($_SESSION['status']))
 {
 	include 'sidebar.php';
 }
+
 ?>
 
 

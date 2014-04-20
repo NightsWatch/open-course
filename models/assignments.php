@@ -11,7 +11,7 @@ class assignments {
 	}
 	public function getAssignmentDetails($assignid)
 	{
-		$query="select assignid, assign_name, courseid, assignno, filepath, deadline, maxmarks, studmarks from assignments where assignid='".$assignid."';";
+		$query="select assignid, assign_name, courseid, assignno, filepath, deadline, maxmarks from assignments where assignid='".$assignid."';";
 		$result = mysql_query($query);
 		return mysql_fetch_array($result);
 	}
@@ -47,6 +47,19 @@ class assignments {
     		die("Database query failed: " . mysql_error());
 	 	}
 		return $result;
+	}
+
+	public function getMarks($subid)
+	{
+		$query = 'select marks from assignsubmissions where subid='.$subid.';';
+		$result = mysql_query($query);
+		
+		if(!$result) {
+    		die("Database query failed: " . mysql_error());
+	 	}
+	 	$row = mysql_fetch_array($result);
+
+		return $row['marks'];
 	}
 
 	public function getCourseidfromassgn($assignid)
