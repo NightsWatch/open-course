@@ -141,7 +141,7 @@ $row = $courses->getCourseDetails($courseid);
                 $('#example1').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
-                    "bFilter": false,
+                    "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false

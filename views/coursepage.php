@@ -2,6 +2,7 @@
 
 session_start();
 include 'header.php';
+include_once '../models/user_details.php';
 
 
 if(isset($_SESSION['status']))
@@ -19,7 +20,7 @@ $courseid=$_GET['cid'];
 <br/>
  <section class="content">
  <div class="row">
- 	<div class="col-md-6 col-md-offset-1">
+ 	<div class="col-md-4 col-md-offset-2">
  		   <?php 
             include_once '../controller/add_course_description.php';
             ?>
@@ -28,17 +29,20 @@ $courseid=$_GET['cid'];
  	</div>
 
  	<div class="col-md-4">
- 		 <a href="coursestud.php"><button class="btn bg-olive btn-block">List of students taking the course</button>	</a><br/>
- 		 <a href="courseta.php"><button class="btn bg-olive btn-block">List of TAs for the course</button>	</a><br/>
- 		<?php
-        if($_SESSION['usertype']!='Student') echo '<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#allot"><i class="fa fa-group"></i> Allot TAs for the Course</a><br/>';
+ 		<?php echo '<a href="coursestud.php?cid='.$courseid.'"><button class="btn bg-olive btn-block">List of students taking the 
+        course</button>	</a><br/>';
+ 		
+        if(isset($_SESSION['usertype']) && $_SESSION['usertype']!='Student') echo '<a class="btn btn-large btn-block btn-primary " href="showtas.php?cid='.$courseid.'">
+            <i class="fa fa-group"></i>  Allot and Show TAs for the Course</a>
+                            <br/>';
  	?> </div>
  	</div>
+    <div style="height:20px;"></div>
  	<div class="row">
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><i class="fa fa-bullhorn">
+                <h3 class="box-title" style="text-align:center"><i class="fa fa-bullhorn"></i>
                     <?php
                     echo '<a href="forum.php?cid='.$courseid.'">Course Forum</a></h3>';
                     ?></i>
@@ -53,14 +57,15 @@ $courseid=$_GET['cid'];
  	<div class="col-md-4">
  		 <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><i class="fa fa-folder-o">
+                <h3 class="box-title" style="text-align:center"><i class="fa fa-folder-o"></i>
                 <?php
-                    if($_SESSION['usertype']=="Student")
-                        echo '<a href="lectures.php?cid='.$courseid.'">Course Lectures</a></h3>';
-                    if($_SESSION['usertype']=="Faculty")
+                    if(isset($_SESSION['usertype']) && $_SESSION['usertype']!="Student")
                         echo '<a href="lecturesfac.php?cid='.$courseid.'">Course Lectures</a></h3>';
+                        
+                    else
+                        echo '<a href="lectures.php?cid='.$courseid.'">Course Lectures</a></h3>';
                     
-                ?></i>
+                ?>
                 
             </div>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 50px;">
@@ -73,12 +78,12 @@ $courseid=$_GET['cid'];
  	<div class="col-md-4">
  		<div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
-                <h3 class="box-title" style="text-align:center"><i class="fa fa-edit">
+                <h3 class="box-title" style="text-align:center"><i class="fa fa-edit"></i>
                  <?php
-                    if($_SESSION['usertype']=="Student")
-                        echo '<a href="assignments.php?cid='.$courseid.'">Assignment Lectures</a></h3>';
-                    if($_SESSION['usertype']=="Faculty")
-                        echo '<a href="assignmentsfac.php?cid='.$courseid.'">Assignment Lectures</a></h3>';
+                    if(isset($_SESSION['usertype']) && $_SESSION['usertype']!="Student")
+                        echo '<a href="assignmentsfac.php?cid='.$courseid.'">Assignments</a></h3>';
+                    else
+                        echo '<a href="assignments.php?cid='.$courseid.'">Assignments</a></h3>';
                     
                 ?></i>
             </div>
@@ -91,7 +96,9 @@ $courseid=$_GET['cid'];
  	</div>
  </div>
 
-
+<?php
+/*
+echo '
  <div class="modal fade" id="allot" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -99,52 +106,17 @@ $courseid=$_GET['cid'];
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"><i class="fa fa-envelope-o"></i> Allot TAs for the Course</h4>
             </div>
-            <form action="../controller/allot_ta.php" method="POST" role="form">
-                <div class="modal-body">
-                <?php 
-
-                $course= New $courses;
-                $students=$course->getCourseStudents($courseid);
-
-                while($row = mysql_fetch_array($students))
-                    {
-                       
-                        echo '<tr>
-                                <td>'.$row['name'].'</td>
-                                <td>'.$coursedetails['program'].'</td>
-                                <td>'.$coursedetails['batch'].'</td>
-                                <td>'.$coursedetails['rollno'].'</td>
-                                <td>
-
-
-                                    ';
-
-                                    $facrows = $crs->getCourseInstructors($cid);
-                                    if(mysql_num_rows($facrows) != 0)
-                                    {
-                                        echo '<ul class="list-unstyled">';
-
-                                while($fac =mysql_fetch_array($facrows))
-                                    {
-                                        echo '<li>'.$fac['name'].'</li>';
-                                    }
-                                    echo'</ul>';
-                                }
-                                echo '</td>
-                                ';
-                    } 
-
-                    ?>
-                 
-                </div>
-                <div class="modal-footer clearfix">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                    <button type="submit" name="messages" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Send Message</button>
-                </div>
-            </form>
+           
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+';
+*/
+
+
+?>
+<!-- COMPOSE MESSAGE MODAL -->
 
 
 <?php

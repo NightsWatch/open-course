@@ -99,7 +99,7 @@ while($lecture = mysql_fetch_array($lectures))
 {
     $hrdate = date("H:i, d M Y", strtotime($thread['timestamp']));
 
-    $courseid = $courses->getCourseidfromlec($lecture['lectures']);
+    $courseid = $lecture['lectures'];
     $coursedetails = $courses->getCourseDetails($courseid);
     echo '<li>
         <i class="fa fa-folder-o bg-aqua"></i>

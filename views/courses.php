@@ -2,14 +2,21 @@
 
 session_start();
 
+if(!isset($_SESSION['id']))
+header('Location: 505.php');
 
 include 'header.php';
+include_once '../models/coursereg.php';
 
 if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
+
+
 ?>
+
+
 
 
 <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
@@ -81,16 +88,25 @@ if(isset($_SESSION['status']))
 
                                 <?php
 
+                                $coursereg= New coursereg();
+                                $x=$coursereg->getRegisteredCredits($_SESSION['id']);
+                                $y=48-$x;
+
                                 if($_SESSION['usertype']=="Student")
                                 {
+
                                 echo'
                                 <div class="box">
-
+                                    <div class="alert alert-info ">
+                                        <i class="fa fa-info"></i>
+                                        
+                                        <b>Info!</b> Click on the course row to go to the course-home page                                     </div>
+                
                                 <div class="box-body">
-                                    <a href="../controller/courseregister.php?courseid=2"><button class="btn bg-blue btn-large">
+                                    <a href="allcourses.php"><button class="btn bg-blue btn-large">
                                     Register for another course</button></a>
-                                    <div></div>
-                                    <p>You have already take x credits. You can take y more credits this semester.</p>
+                                    <div style="height:10px"></div>
+                                    <p>You have already taken '.$x.' credits. You can take '.$y.' more credits this semester.</p>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box --> ';
                             }

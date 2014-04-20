@@ -3,6 +3,11 @@
 session_start();
 
 
+if(!isset($_SESSION['usertype']) )
+{
+    header('Location: ../views/505.php');
+}
+
 include_once 'header.php';
 
 include_once '../models/messages.php';
@@ -100,7 +105,7 @@ if(isset($_SESSION['status']))
                                            { echo '<br/><div class="alert alert-info alert-dismissable">
                                         <i class="fa fa-info"></i>
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                        <b>Alert!</b> Choose an user on left to see conversation with that user 
+                                        <b>Info!</b> Choose an user on left to see conversation with that user. If you dont find a user on left, hit Compose New Message to send to an user you have not conversed earlier
                                     </div>';}
                                         ?>
 

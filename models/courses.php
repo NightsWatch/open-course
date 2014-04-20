@@ -38,13 +38,6 @@ class courses {
 	 	return $result;
 	}
 
-	// public function getStudentCourses($useridid) {
-	// 	//$mysql = New mysql();
-	// 	$query = "select * from 'coursemgs'.'courses' where 'courseid' in (select 'courseid' from 'coursemsgs'.'course-stud-registration' where 'studentid'='".$userid."');";
-	// 	$result=mysql_query($query);
-	// 	return $result;
-	// }
-
 	public function getCourseStudents($courseid) {
 		$query = "select * from coursemgs.students where userid in ( select studentid from coursestudregistration where courseid='".$courseid."');";
 		$result = mysql_query($query);
@@ -52,21 +45,6 @@ class courses {
 		return $result;
 	}
 
-	// public function getCourseTAs($courseid) {
-	// 	$query = "select * from 'coursemgs'.'student' where 'userid' in (select 'taid' from 'course-ta-allotment' where 'courseid'='".$courseid."');";
-	// 	$result = mysql_query($query);
-	// 	return $result;
-	// }
-
-	// public function getCourseAssignments($courseid) {
-	// 	$query = "select * from 'coursemgs'.'assignments' where 'courseid'=".$courseid."';";
-	// 	$result = mysql_query($query);
-	// 	return $result;
-	// }
-
-	// public function getCourseLectures($courseid) {
-
-	// }
 
 	public function getCourseForumThreads($courseid) {
 	 	$query="select threadid, threadtitle,starterid,timestamp from forums where courseid='".$courseid."';";
@@ -88,8 +66,6 @@ class courses {
 		return $row['courseid'];
 	}
 
-
-	//harshith's function
 
 
 	public function getCourseInfo($courseid) {
@@ -166,6 +142,46 @@ class courses {
 		return 0;
 	
 	}
+
+
+	public function addCourse($courseno, $coursename, $department, $year, $credits)
+	{
+		$query ="insert into courses(courseno, coursename, department, year, credits) values('".$courseno."','".$coursename."','".$department."','".$year."','".$credits."')";
+		$result= mysql_query($query);
+		if($result)
+		{
+			return 1;
+		}
+		else
+			{echo "Failed";
+		return 0;}
+	}
 	
 
+	public function addCourseInstructor($courseid, $facultyid)
+	{
+		$query ="insert into coursefacallotment(courseid, facultyid) values('".$courseid."','".$facultyid."')";
+		$result= mysql_query($query);
+		echo mysql_error();
+		if($result)
+		{
+			return 1;
+		}
+		else
+			{return 0;}
+	}
+
+	public function removeCourseInstructor($courseid, $facultyid)
+	{
+		$query ="delete from coursefacallotment where courseid=".$courseid." and facultyid=".$facultyid."";
+		$result= mysql_query($query);
+		echo mysql_error();
+		if($result)
+		{
+			return 1;
+		}
+		else
+			{return 0;}
+	}
+	
 }

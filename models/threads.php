@@ -15,10 +15,10 @@ class threads{
 
 	public function newThread($title, $courseid, $userid)
 	{
-		echo $title;
-		echo $courseid;
+		//echo $title;
+		//echo $courseid;
 		$query = "insert into coursemgs.forums (courseid, threadtitle,starterid) values('".$courseid."','".$title."','".$userid."');";
-		echo $query;
+		//echo $query;
 		$result=mysql_query($query);
 		if(!$result)
 			echo mysql_error();

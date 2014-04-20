@@ -51,8 +51,14 @@ $courseid = $_GET['cid'];
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+            <?php 
+            if(isset($_SESSION['id']))
+            {
+                echo '
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><i class="fa fa-pencil"></i> Add New Thread</h4>
+                <h4 class="modal-title"><i class="fa fa-pencil"></i> Add New Thread</h4>';
+            } 
+            ?>
             </div>
             <?php echo '<form action="../controller/newthread.php?cid='.$courseid.'" method="POST" role="form">'; ?>
                 <div class="modal-body">

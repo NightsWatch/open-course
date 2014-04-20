@@ -66,7 +66,7 @@ else
                 <div class="footer">                                                               
                     <button type="submit" class="btn bg-olive btn-block submit" name="login" value="Sign In">Sign me in</button>  
                     <div class="errormsg"></div>
-                    <p><a href="#">I forgot my password</a></p>
+                    <!--<p><a href="#">I forgot my password</a></p>-->
                     <a href="signup.php" class="text-center">Register a new membership</a>
                 </div>
             </form>

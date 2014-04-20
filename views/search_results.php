@@ -3,8 +3,8 @@
 session_start();
 
 
-include 'header.php';
-include '../models/courses.php';
+include_once 'header.php';
+include_once '../models/courses.php';
 include_once '../models/user_details.php';
 
 if(isset($_SESSION['status']) )
@@ -38,7 +38,7 @@ $user = New user_details();
        <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center">
-        <?php echo '<a href="thread.php?user='.$row["userid"].'">'.$row["username"].'</a></h3>
+        <?php echo '<a>'.$row["username"].'</a></h3>
             </div>'; ?>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
             <div class="box-body" style="overflow: hidden; width: auto;">
@@ -117,7 +117,7 @@ if($category=="Courses")
      <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center">
-                <?php echo '<a href="coursepage.php?courseid='.$row["courseid"].'">'.$row["coursename"].'</a></h3>
+                <?php echo '<a href="coursepage.php?cid='.$row["courseid"].'">'.$row["coursename"].'</a></h3>
             </div>';
             ?>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
@@ -145,7 +145,7 @@ if($category=="Assignments")
      <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center">
-                <?php echo '<a href="assignments.php?assnid='.$row["courseid"].'">'.$row["assn_name"].'</a></h3>
+                <?php echo '<a href="assignments.php?cid='.$row["courseid"].'">'.$row["assign_name"].'</a></h3>
             </div>';
             ?>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
@@ -179,7 +179,7 @@ if($category=="Lectures")
      <div class="box box-success" style="position: relative;">
             <div class="box-header" style="cursor: move;">
                 <h3 class="box-title" style="text-align:center">
-                <?php echo '<a href="lectures.php?lecid='.$row["courseid"].'">'.$row["lecturename"].'</a></h3>
+                <?php echo '<a href="lectures.php?cid='.$row["courseid"].'">'.$row["lecturename"].'</a></h3>
             </div>';
             ?>
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">

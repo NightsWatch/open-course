@@ -6,7 +6,7 @@ $row = $courses->getCourseDetails($courseid);
 
 echo '<div class="box box-success" style="position: relative;">
                 <div class="box-header" style="cursor: move;">
-                    <h3 class="box-title" style="text-align:center"><a href="">Course Description</a></h3>
+                    <h3 class="box-title" style="text-align:center"><i class="fa fa-book"></i><a href=""> Course Description</a></h3>
                 </div>
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
                     <div class="box-body" style="overflow: hidden; width: auto;">

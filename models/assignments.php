@@ -62,6 +62,20 @@ class assignments {
 		return $row['marks'];
 	}
 
+
+	public function getStudMarks($userid, $assid)
+	{
+		$query = 'select marks from assignsubmissions where studid='.$userid.' && assignid='.$assid.';';
+		$result = mysql_query($query);
+		
+		if(!$result) {
+    			return -1;
+	 	}
+	 	$row = mysql_fetch_array($result);
+
+		return $row['marks'];
+	}
+
 	public function getCourseidfromassgn($assignid)
 	{
 		$query = "select courseid from assignments where assignid='".$assignid."';";

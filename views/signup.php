@@ -48,8 +48,8 @@
                     <div class="form-group" >
                       <label class="sr-only" for="signup-role">Role</label>
                       <select class="form-control" name="usertype">
-                          <option name="fac">Faculty</option>
                           <option  name="stud">Student</option>
+                          <option name="fac">Faculty</option>
                           <option name="hod">HOD</option>
                        </select>
                     </div>

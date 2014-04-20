@@ -3,6 +3,11 @@
 session_start();
 
 
+if(!isset($_SESSION['usertype'])  )
+{
+    header('Location: ../views/505.php');
+}
+
 include 'header.php';
 
 if(isset($_SESSION['status']))
@@ -33,7 +38,11 @@ $assignid = $_GET['aid'];
                     <h3 class="box-title">List of students who have submitted this assignment</h3>                                    
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
-                <p>Click on a submission row to go to the grading page</p>
+                <div class="alert alert-info ">
+                                        <i class="fa fa-info"></i>
+                                        
+                                        <b>Info!</b> Click on the submission row to go to the grading page for the assignment.
+                                    </div>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                            <tr>
@@ -71,7 +80,7 @@ $assignid = $_GET['aid'];
                 $('#example1').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
-                    "bFilter": false,
+                    "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false

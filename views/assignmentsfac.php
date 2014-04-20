@@ -2,6 +2,10 @@
 
 session_start();
 
+if(!isset($_SESSION['usertype']) )
+{
+    header('Location: ../views/505.php');
+}
 
 include 'header.php';
 include_once '../models/courses.php';
@@ -106,10 +110,15 @@ $row = $courses->getCourseDetails($courseid);
               ?>
                             <div class="box box-warning">
                                 <div class="box-header">
-                                    <h3 class="box-title">Assignments</h3>                                   
+                                    <h3 class="box-title">Assignments</h3>       
                                     
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
+                                    <div class="alert alert-info ">
+                                        <i class="fa fa-info"></i>
+                                        
+                                        <b>Info!</b> Click on the assignment row to see all students' submissions for the assignment.
+                                    </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -152,6 +161,8 @@ $row = $courses->getCourseDetails($courseid);
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
+
+                      
                         </div>
                     </div>
 

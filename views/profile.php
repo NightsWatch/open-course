@@ -107,8 +107,25 @@ if(isset($_SESSION['status']))
                                         </div>
                                          <div class="form-group">
                                             <label>Department</label>
-                                            <input type="text" name="dept"  class="form-control" placeholder="Department">
+
+                                        <select class="form-control" name="dept">
+                                              <option value="CSE">CSE</option>
+                                              <option value="ECE">ECE</option>
+                                              <option value="EEE">EEE</option>
+                                              <option value="Mech">Mech</option>
+                                              <option value="Chemical">Chemical</option>
+                                              <option value="CST">CST</option>
+                                              <option value="EP">EP</option>
+                                              <option value="HSS">HSS</option>
+                                              <option value="Civil">Civil</option>
+                                              <option value="Design">Design</option>
+                                              <option value="BT">BT</option>
+                                              <option value="Math">Math</option>
+                                        </select>
+                                            
                                         </div>
+
+
                                         <div class="form-group">
                                             <label>Program</label>
                                             <input type="text" name="prog" class="form-control" placeholder="Program" >
@@ -186,9 +203,24 @@ else
                                             <label>Designation</label>
                                             <input type="text" name="desgn" class="form-control" placeholder="Designation" >
                                         </div>
-                                         <div class="form-group">
+                                        <div class="form-group">
                                             <label>Department</label>
-                                            <input type="text" name="dept" class="form-control" placeholder="Department">
+
+                                        <select class="form-control" name="dept">
+                                              <option value="CSE">CSE</option>
+                                              <option value="ECE">ECE</option>
+                                              <option value="EEE">EEE</option>
+                                              <option value="Mech">Mech</option>
+                                              <option value="Chemical">Chemical</option>
+                                              <option value="CST">CST</option>
+                                              <option value="EP">EP</option>
+                                              <option value="HSS">HSS</option>
+                                              <option value="Civil">Civil</option>
+                                              <option value="Design">Design</option>
+                                              <option value="BT">BT</option>
+                                              <option value="Math">Math</option>
+                                        </select>
+                                            
                                         </div>
                                         <div class="form-group">
                                             <label>Joined</label>
@@ -200,7 +232,6 @@ else
 
                             </form>
                             <br/>
-                            <a href="profile.php" <button  class="btn bg-aqua btn-block">Undo Edit</button></a>
                             <br/>
     <div class="callout callout-info">
                                         <h4>Please fill up all the details before submitting</h4>

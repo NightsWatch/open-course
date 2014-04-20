@@ -120,6 +120,35 @@ class coursereg
 		}
 
 
+		public function getRegisteredCredits($userid)
+		{
+			$maxcredits=48;
+
+			$user= New user_details();
+
+			$course= New courses();
+
+			$courselist=$user->getCoursesReg($userid);
+
+			$credits=0;
+
+
+			while($row=mysql_fetch_array($courselist))
+			{
+
+				$regcredits=$course->getCourseCredits($row['courseid']);
+				$credits= $credits+$regcredits;
+
+			}
+
+			echo mysql_error();
+			return $credits;
+
+
+		}
+
+
+
 }
 
 ?>

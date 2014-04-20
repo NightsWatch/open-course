@@ -59,11 +59,15 @@
                             <div class="input-group-btn">
 
                                 <select class="form-control" name="category" style="width:100px">
+                                <option>Users</option>>
+                                  <option>HOD</option>>
+
                                   <option name="fac">Faculty</option>
                                   <option  name="stud">Students</option>
+                                    <option >Courses</option>
+
                                   <option> Assignments</option>
                                   <option >Lectures</option>
-                                  <option>Users</option>>
                                </select>
 
                                     </div>
@@ -99,8 +103,8 @@
 
 
                                     echo '
-                        <li class="dropdown messages-menu">
-                            <a href="inbox.php" class="dropdown-toggle" data-toggle="dropdown">
+                        <li class="messages-menu">
+                            <a href="inbox.php" >
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-success">'.$msg->getUnreadCount($msg->getUserid($_SESSION['username'])).'</span>
                             </a>
@@ -110,7 +114,7 @@
                         
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-warning"></i>
+                                <i class="fa fa-bell"></i>
                                 <span class="label label-warning">'.$totalcount.'</span>
                             </a>';
 
@@ -124,8 +128,12 @@
                                         <li>
                                             <a href="notifications.php">
                                                 <i class="fa fa-users warning"></i> '.$cnts['threadcount'].' new threads have started in your forums                                            </a>
-                                        </li>
-                                        <li>
+                                        </li>';
+
+                                        if(($_SESSION['usertype'])=="Student")
+                                          {
+                                            echo '
+                                            <li>
                                             <a href="notifications.php">
                                                 <i class="fa fa-edit success"></i>'.$cnts['assignmentcount'].' new assignments
                                             </a>
@@ -134,8 +142,11 @@
                                             <a href="notifications.php">
                                                 <i class="fa fa-folder-o aqua"></i> '.$cnts['lecturecount'].' new lectures have been uploaded
                                             </a>
-                                        </li>
-                                    </ul>
+                                        </li> ';
+
+                                          }  
+                                        
+                                  echo '  </ul>
                                 </li>
                                 <li class="footer"><a href="notifications.php">View all</a></li>
                             </ul> ';
@@ -153,8 +164,8 @@
                                                  <ul class="dropdown-menu">
                                 
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/avatar04.png" class="img-circle" alt="User Image" />
-                                   <p>Username: '.$_SESSION["username"].'<br/>
+                                    
+                                   <p>Hello, '.$_SESSION["username"].'<br/>
                                    '.$_SESSION["usertype"].'
                                    </p>
                                 </li>

@@ -31,7 +31,7 @@ class lectures
 		}	
 
 		$upFile = $_FILES["file"];
-		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xlsx","pptx","mp4");
+		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xlsx","pptx","xls","txt","c","cpp","tar.gz","tar","java","py","sql");
 
 		$extension = end(explode(".", $_FILES["file"]["name"]));		
 		$extension = strtolower($extension);
@@ -56,8 +56,10 @@ class lectures
 				if(!move_uploaded_file ($upFile["tmp_name"], $this->path) )
 						return -1;
 				else{
+
 					if($this->addLectureNotifs($this->id))
 					return 1;
+				  return 1;
 				}
 						
 			}
@@ -66,7 +68,7 @@ class lectures
 		else
 		{
 			echo "Invalid extension";
-				return -1;
+				return -2;
 		}
 
 	}

@@ -41,13 +41,25 @@ if( isset($_POST['category']) && isset($_POST['query']) )
 			header('Location: ../views/404.php');
 	}
 
+	if($category=="Courses")
+	{
+		//echo "query is".$query;
+		$table= "courses";
+		$field="coursename";
+		 $result=$mysql->search($table, $query, $field);
+		 if( $result== -1)
+			header('Location: ../views/404.php');
+			//header('Location: ../views/404.php');
+			//echo "result ".$result;
+	}
+
 	if($category=="Lectures")
 	{
 		$table= "lectures";
 		$field="lecturename";
-		if( $result=($mysql->search($table, $query, $field)) == -1)
-			echo "print ".$result;//header('Location: ../views/404.php');
-		echo "hh ".$result;
+		$result=$mysql->search($table, $query, $field);
+		 if( $result== -1)
+			header('Location: ../views/404.php');
 	}
 
 	if($category=="Assignments")
@@ -55,9 +67,9 @@ if( isset($_POST['category']) && isset($_POST['query']) )
 		//echo "query is".$query;
 		$table= "assignments";
 		$field="assign_name";
-		if( $result=($mysql->search($table, $query, $field)) == -1)
-			//header('Location: ../views/404.php');
-			echo "result ".$result;
+		$result=$mysql->search($table, $query, $field);
+		 if( $result== -1)
+			header('Location: ../views/404.php');
 	}
 
 	if($category=="Users")

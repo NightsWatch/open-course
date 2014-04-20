@@ -43,7 +43,7 @@ $assign = New assignments();
                       {
                         $success= $_GET['success']; 
                         if($success==1)  
-                        echo '<div class="alert alert-success">Your assignment was uploaded successfully.</div>';     
+                        echo '<div class="alert alert-success">Your assignment solution was uploaded successfully.</div>';     
                       }
               ?>
       
@@ -66,10 +66,12 @@ $assign = New assignments();
                                         <tbody>
                                            
                                             <?php
-                                          
+                                            
                                                
-                                                $assignments = $courses->getCourseAssignments($courseid);
-                                                $aids=$assign->getAssignmentidsSubmittedCourse($_SESSION['id'],$courseid);
+                                            $assignments = $courses->getCourseAssignments($courseid);
+
+                                             if(isset($_SESSION['id']) )
+                                             {  $aids=$assign->getAssignmentidsSubmittedCourse($_SESSION['id'],$courseid);
                                                 //echo $aids;
                                                 $cart = array();
                                                 
@@ -78,34 +80,39 @@ $assign = New assignments();
                                                     $cart[] = $aid['assignid'];
                                                     
                                                 }
-                                                while($assignment = mysql_fetch_array($assignments))
-                                                    {
-                                                        echo '<tr>
-                                                                <td>'.$assignment['assignno'].'</td>
-                                                                <td>'.$assignment['assign_name'].'</td>
-                                                                <td><a href='.$assignment['filepath'].'>Download Assignment</a></td>
-                                                                <td>'.date("H:i, d M Y", strtotime($assignment['deadline'])).'</td>';
-                                                        if (in_array($assignment['assignid'], $cart))
-                                                        {
-                                                            $details = $assign->getSubmissionDetails($assignment['assignid'],$_SESSION['id']);
-                                                            //echo $details['filepath'];
-                                                            $hrdate = date("H:i, d M Y", strtotime($details['stime']));
-                                                            echo '<td>Already submitted <a href="'.$details['filepath'].'">this</a> at '.$hrdate.'</td>';
+                                            }
+                                        while($assignment = mysql_fetch_array($assignments))
+                                            {
+                                                echo '<tr>
+                                                        <td>'.$assignment['assignno'].'</td>
+                                                        <td>'.$assignment['assign_name'].'</td>
+                                                        <td><a href='.$assignment['filepath'].'>Download Assignment</a></td>
+                                                        <td>'.date("H:i, d M Y", strtotime($assignment['deadline'])).'</td>';
+                                                if (isset($_SESSION['usertype']) && in_array($assignment['assignid'], $cart))
+                                                {
+                                                    $details = $assign->getSubmissionDetails($assignment['assignid'],$_SESSION['id']);
+                                                    //echo $details['filepath'];
+                                                    $hrdate = date("H:i, d M Y", strtotime($details['stime']));
+                                                    echo '<td>Already submitted <a href="'.$details['filepath'].'">this</a> at '.$hrdate.'</td>';
 
 
-                                                        }
-                                                        else
-                                                        {
-                                                            echo '<td><a href="assignsubmission.php?aid='.$assignment['assignid'].'"">Submit Solution</a></td>';
-                                                        }
-                                                        echo '
-                                                                <td>'.$assignment['maxmarks'].'</td>
-                                                                <td>'.$assignment['studmarks'].'</td>
-                                                                </tr>
-                                                                ';
+                                                }
+                                                else
+                                                {
+                                                    if( isset($_SESSION['id'] )
+                                                    {                                               
+                                                       $marks= $assign->getStudMarks($_SESSION['id'], $courseid);
+                                                        echo '<td><a href="assignsubmission.php?aid='
+                                                        .$assignment["assignid"].'">Submit Solution</a></td>
+                                                           <td>'.$assignment["maxmarks"].'</td>';
 
-
+                                                           if($marks!=-1) echo '<td>'.$marks.'</td>
+                                                            </tr>
+                                                            ';
                                                     }
+                                                }
+
+                                            }
 
                                             ?>
                                             
@@ -149,4 +156,4 @@ $assign = New assignments();
             });
         </script>
 
-   <?php include_once 'footer.php';?>
+   <?php include_once 'footer.php'; ?>

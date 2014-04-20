@@ -232,11 +232,11 @@ class mysql {
 		{
 			if(mysql_num_rows($result) > 0)
 			{
-				echo "returning";
+				//echo "returning";
 					echo mysql_error();
-				$row= mysql_fetch_array($result);
-				echo "name: ".$row['assign_name'];
-				return $row;
+				//$row= mysql_fetch_array($result);
+				//echo "name: ".$row['assign_name'];
+				return $result;
 
 			}
 			else

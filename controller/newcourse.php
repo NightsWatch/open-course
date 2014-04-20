@@ -1,42 +1,34 @@
 <?php
 
-require '../models/mysql.php';
+require '../models/courses.php';
+include_once '../models/faculty_details.php';
 
 session_start();
-
-if( isset($_POST['coursename']) && isset($_POST['courseno']) && isset($_POST['year']) && isset($_POST['department']) && isset($_POST['credits']) && isset($_POST['facs']) )
+if( isset($_POST['coursename']) && isset($_POST['courseno']) && isset($_POST['year']) && isset($_POST['credits']) )
 {
+
 	$coursename = mysql_real_escape_string($_POST['coursename']);
-	$department = mysql_real_escape_string($_POST['department']);
 	$year = mysql_real_escape_string($_POST['year']);
 	$courseno = mysql_real_escape_string($_POST['courseno']);
-	$roll = mysql_real_escape_string($_POST['roll']);
+	$credits = mysql_real_escape_string($_POST['credits']);
 
+	$fac=New faculty_details();
 
-	$mysql = New mysql();
+	$department = $fac->getDept($_SESSION['id']);
+	$crs = New courses();
 
-	if(isset($_GET['update']))
-	{
-		if( ($mysql->updateStudDetails($_SESSION['id'], $username, $prog, $batch, $dept, $roll) )==1 )
-			header ('Location: ../views/profile.php?set=1');
-		//echo "yes";
+		if( ($crs->addCourse($courseno, $coursename, $department, $year, $credits) )==1 )
+		{
+			$inid = mysql_insert_id();
+			
+		 	header ('Location: ../views/allotcoursefac.php?cid='.$inid.'');
+		}
+			
 		else
-			//echo "no";
-		header ('Location: ../views/profile.php');
-	
+			header ('Location: ../views/newcourse.php?fail=1');
 
-	}
 
-	else
-	{
 
-		if( ($mysql->insertStudDetails($_SESSION['id'], $username, $prog, $batch, $dept, $roll) )==1 )
-		header ('Location: ../views/profile.php?set=1');
-		//echo "yes";
-		else
-		header ('Location: ../views/profile.php');
-	
-	}		//echo "no";
 }
 
 ?>

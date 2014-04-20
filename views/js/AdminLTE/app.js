@@ -1124,4 +1124,5 @@ $(window).load(function() {
             })
         })
     }
-})(window.jQuery || window.Zepto);
+})
+(window.jQuery || window.Zepto);

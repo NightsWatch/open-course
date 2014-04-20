@@ -2,6 +2,10 @@
 
 session_start();
 
+if(!isset($_SESSION['usertype'])  )
+{
+    header('Location: ../views/505.php');
+}
 
 include 'header.php';
 
@@ -34,7 +38,11 @@ $assignid = $_GET['aid'];
                       {
                         $success= $_GET['success']; 
                         if($success==0)  
-                        echo '<div class="alert alert-warning">Assignment Submission failed. Try again.</div>';     
+                        echo '<div class="alert alert-warning">Assignment Submission failed. Try again.</div>';
+                      else if($success==2)  
+                        echo '<div class="alert alert-warning">Assignment submission failed due to unsupported file format.</div>';      
+                        else if($success==1)  
+                        echo '<div class="alert alert-warning">Your assignment was submitted scuccessfully.</div>';      
                       }
               ?>
             <div class="box-header" style="cursor: move;">

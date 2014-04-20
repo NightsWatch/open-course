@@ -30,6 +30,21 @@ class faculty_details {
 	}
 
 
+	public function isTeachingCourse($facultyid,$courseid)
+	{
+		$query='select * from coursefacallotment where facultyid='.$facultyid.' and courseid='.$courseid.';';
+		$result = mysql_query($query);
+		echo mysql_error();
+		if($result)
+		{
+			if(mysql_num_rows($result) ==1 )
+			{
+				return 1;
+			}
+			return 0;//no results found
+		}
+		return 0;
+	}
 	public function getAllFac($dept)
 	{
 		$query= "SELECT userid, name from coursemgs.faculty where department='".$dept."' ;";
@@ -45,6 +60,23 @@ class faculty_details {
 		return 0;
 	}
 
+
+	public function getAllFacDetails($dept)
+	{
+		$query= "SELECT * from coursemgs.faculty where department='".$dept."' ;";
+		$result = mysql_query($query);
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+			{
+				return $result;
+			}
+			return 0;//no results found
+		}
+		return 0;
+	}
+
+
 	public function getDept($userid)
 	{
 		$query =  "select department from faculty where userid='".$userid."';";
@@ -53,6 +85,8 @@ class faculty_details {
 
 		return $row['department'];
 	}
+
+
 
 	
 }

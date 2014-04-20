@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
+/*@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
 
 @import url(//fonts.googleapis.com/css?family=Kaushan+Script);
 /*! 
@@ -863,7 +863,7 @@ body > .header .logo .icon {
   margin-left: -10px;
 }
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
-  height: 175px;
+  height: 100px;
   padding: 10px;
   background: #3c8dbc;
   text-align: center;
@@ -2503,9 +2503,9 @@ Component: timeline
 .skin-blue .sidebar a:hover {
   text-decoration: none;
 }
-.skin-blue .treeview-menu > li > a {
+/*.skin-blue .treeview-menu > li > a {
   color: #777;
-}
+}*/
 .skin-blue .treeview-menu > li.active > a,
 .skin-blue .treeview-menu > li > a:hover {
   color: #111;

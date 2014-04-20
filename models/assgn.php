@@ -31,7 +31,7 @@ class assgn
 				return -1;
 		}	
 		$upFile = $_FILES["file"];
-		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xls","pptx",".mp4");
+		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xlsx","pptx","xls","txt","c","cpp","tar.gz","tar","java","py","sql");
 
 		$extension = end(explode(".", $_FILES["file"]["name"]));		
 		$extension = strtolower($extension);
@@ -72,7 +72,7 @@ class assgn
 		else
 		{
 			echo "Invalid extension";
-				return -1;
+				return -2;
 		}
 
 	}
@@ -90,7 +90,7 @@ class assgn
 		}	
 
 		$upFile = $_FILES["file"];
-		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xls","pptx");
+		$allowedExts = array("pdf","docx","doc","ppt","zip","rar","xlsx","pptx","xls","txt","c","cpp","tar.gz","tar","java","py","sql");
 
 		$extension = end(explode(".", $_FILES["file"]["name"]));		
 		$extension = strtolower($extension);
@@ -121,7 +121,7 @@ class assgn
 		else
 		{
 			echo "Invalid extension";
-				return -1;
+				return -2;
 		}
 
 	}
@@ -160,13 +160,13 @@ class assgn
 
 	public	function submit( ) 
 	{
-		$TIME = time();
+		
 
 
 		$_SESSION['assnid']=1;
 
 		echo " studid ".$_SESSION['id']."\n";
-		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assignid, stime, studid) values ( DEFAULT,'".$this->id."', '".$TIME."','".$_SESSION['id']."');";
+		$query = "INSERT INTO ".DBNAME.".".SUBMS_TBL." (subid, assignid, studid) values ( DEFAULT,'".$this->id."','".$_SESSION['id']."');";
 		echo "Inserting";
 		$result= mysql_query($query);
 		if($result)

@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-
+if(!isset($_SESSION['id']))
+    header('Location: ../views/505.php');
 
 include 'header.php';
 include '../models/threads.php';

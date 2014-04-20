@@ -20,7 +20,7 @@ if( isset($_POST['name']) && isset($_POST['dept']) && isset($_POST['batch']) && 
 	if(isset($_GET['update']))
 	{
 		if( ($mysql->updateStudDetails($_SESSION['id'], $username, $prog, $batch, $dept, $roll) )==1 )
-			header ('Location: ../views/profile.php?set=1');
+			header ('Location: ../views/index.php');
 		//echo "yes";
 		else
 			//echo "no";
@@ -33,7 +33,7 @@ if( isset($_POST['name']) && isset($_POST['dept']) && isset($_POST['batch']) && 
 	{
 
 		if( ($mysql->insertStudDetails($_SESSION['id'], $username, $prog, $batch, $dept, $roll) )==1 )
-		header ('Location: ../views/profile.php?set=1');
+		header ('Location: ../views/index.php');
 		//echo "yes";
 		else
 		header ('Location: ../views/profile.php');

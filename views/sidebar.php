@@ -13,7 +13,6 @@
                 <?php
                 echo '<p>Hello, '.$_SESSION["username"].'</p>';
                 ?>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
     
@@ -59,17 +58,7 @@
                         <i class="fa fa-book"></i> <span>Registered Courses</span>
                     </a>
                 </li>
-                <li>
-                    <a href="allcourses.php">
-                        <i class="fa fa-book"></i> <span>All Courses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="allotments.php">
-                        <i class="fa fa-check-square"></i> <span>Allotments</span>
-                    </a>
-                </li>
-
+                
 
                
                 ';
@@ -102,11 +91,11 @@
                    echo '</ul></li>';
               }
 
-              if($_SESSION['usertype']=="Student")
+              if($_SESSION['usertype']=="Student" )
               {
 
                 echo'  <li>
-                    <a href="courses.php">
+                    <a href="allcourses.php">
                       <i class="fa fa-book"></i><span>All Courses</span>
                   </a>
                  </li>';
@@ -123,9 +112,9 @@
                               <a href="#">
                                   <i class="fa fa-table"></i> <span>Course Pages</span>
                                   <i class="fa pull-right fa-angle-down"></i>
+                                  <small style="color:#777"><br/> of Courses you are teaching</small>
                               </a>
                               <ul class="treeview-menu" style="display: block;">
-                                <li><a><small> Course Pages of Teaching Courses</small></a></li>
                               ';
 
 
@@ -142,9 +131,9 @@
                                     <a href="#">
                                         <i class="fa fa-table"></i> <span>Assignments Pages</span>
                                         <i class="fa pull-right fa-angle-down"></i>
+                                        <small style="color:#777"><br/> of Courses you are teaching</small>
                                     </a>
                                     <ul class="treeview-menu" style="display: block;">
-                                      <li><a><small> Assignments of Teaching Courses</small></a></li>
                                     ';
 
                         $rows=$facobj->getCourses($_SESSION['id']);
@@ -157,25 +146,61 @@
                       
                       echo '</ul></li>';
 
-                      echo '<li>
-                       <a href="coursefacallot.php">
-                      <i class="fa fa-book"></i><span>View Course Allotments</span>
+
+
+                      echo '<li class="treeview active">
+                                    <a href="#">
+                                        <i class="fa fa-table"></i> <span>Lectures Pages</span>
+                                        <i class="fa pull-right fa-angle-down"></i>
+                                        <small style="color:#777"><br/> of Courses you are teaching</small>
+                                    </a>
+                                    <ul class="treeview-menu" style="display: block;">
+                                    ';
+
+                        $rows=$facobj->getCourses($_SESSION['id']);
+                       while($row=mysql_fetch_array($rows))
+                       {
+                        $cid=$row['courseid'];
+                        echo '<li><a href="lecturesfac.php?cid='.$cid.'"><i class="fa fa-check"></i> 
+                        '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
+                      }
+                      
+                      echo '</ul></li>';
+
+                       echo'  <li>
+                    <a href="thesis.php">
+                      <i class="fa fa-book"></i><span> Take Thesis Students</span>
                   </a>
-                      </li>';
+                 </li>';
 
               }
 
                if($_SESSION['usertype']=="HOD")
               {
+                echo '
+                  <li class="treeview active">
+                              <a href="#">
+                                  <i class="fa fa-table"></i> <span>HOD Duties</span>
+                                  <i class="fa pull-right fa-angle-down"></i>
+                              </a>
+                              <ul class="treeview-menu" style="display: block;">
+                                 <li>
+                                  <a href="newcourse.php">
+                                  <i class="fa fa-book"></i><span>Create New Course</span>
+                                  </a>
+                                </li>
 
-                echo'
-                <li>
-                    <a href="newcourse.php">
-                      <i class="fa fa-book"></i><span>Create New Course</span>
-                  </a>
-                 </li>';
 
-              }
+                                <li>
+                                <a href="coursefacallotments.php">
+                                <i class="fa fa-book"></i><span> Faculty Course Allotments</span>
+                                </a>
+                                </li>
+
+                                </ul>
+                                ';
+
+                              }
 
 
               echo '
@@ -193,12 +218,12 @@
             ?>
 
 
-                <li>
+                <!-- <li>
                     <a href="calendar.php">
                         <i class="fa fa-calendar"></i> <span>Calendar</span>
                         <small class="badge pull-right bg-red">3</small>
                     </a>
-                </li>
+                </li> -->
         </ul>
 
     </section>

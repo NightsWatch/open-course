@@ -2,6 +2,8 @@
 
 require_once 'dbs.php';
 
+include_once '../models/courses.php';
+
 class user_details {
 
 
@@ -12,7 +14,17 @@ class user_details {
 
 	}
 
-	
+	public function getAllStudents()
+	{
+		$query = "select * from students;";
+		$result = mysql_query($query);
+
+			if(!$result) {
+    		die("Database query failed: " . mysql_error());
+	 	}
+	 
+	 	return $result;
+	}
 
 	public function getCoursesReg($userid)
 	{
@@ -87,6 +99,34 @@ class user_details {
 		return 0;
 
 	}
+
+
+
+	public function getAllStudentsNotCourse($courseid)
+	{
+		
+
+		$query="
+		SELECT * FROM students WHERE students.userid NOT IN (select studentid from coursestudregistration where courseid='".$courseid."');";
+
+		$result= mysql_query($query);
+
+		if($result)
+		{
+			if(mysql_num_rows($result) > 0)
+				return $result;
+			else
+			{
+					echo mysql_error();
+
+				return 0;
+			}
+		}
+
+		echo mysql_error();
+		return 0;
+	}
+
 
 	
 }
