@@ -108,7 +108,7 @@ class mysql {
 
 			return 1;
 		}
-		  die('\nCould not insert: ' . mysql_error());
+		  //Could not insert: ' . mysql_error());
 
 		return 0;
 

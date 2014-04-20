@@ -61,18 +61,14 @@
 
                     <a href="login.php" class="text-center">I already have a membership</a>
                 </div>
-            </form>
-
-            <div class="margin text-center">
-        
-          <?php
+                <?php
             if(isset($_GET['error']))
             {               
-              echo '<div class="alert alert-warning">User already exists</div>';     
+              echo '<div class="alert alert-warning">uaername or email-id already exists</div>';     
             }
           ?>
-               
-        </div>
+            </form>
+
 
 
         <!-- jQuery 2.0.2 -->
