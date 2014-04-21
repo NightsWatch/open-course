@@ -59,8 +59,7 @@
                             <div class="input-group-btn">
 
                                 <select class="form-control" name="category" style="width:100px">
-                                <option>Users</option>>
-                                  <option>HOD</option>>
+                                <option>Users</option>
 
                                   <option name="fac">Faculty</option>
                                   <option  name="stud">Students</option>
@@ -84,7 +83,7 @@
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
                         <?php
-                            if(isset($_SESSION['status']))
+                            if(isset($_SESSION['status']) )
                                 {
 
                                     include_once '../models/messages.php';
@@ -108,11 +107,12 @@
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-success">'.$msg->getUnreadCount($msg->getUserid($_SESSION['username'])).'</span>
                             </a>
-                        </li>
+                        </li>';
 
-                        <!--Notifs-->
+
                         
-                        <li class="dropdown notifications-menu">
+                        
+                        echo '<li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell"></i>
                                 <span class="label label-warning">'.$totalcount.'</span>
@@ -124,15 +124,32 @@
                                 <li class="header">You have '.$totalcount.' notifications</li>
                                 <li>
                                     
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="notifications.php">
+                                    <ul class="menu">';
+
+                                    if(($_SESSION['usertype'])=="Faculty"  || $_SESSION['usertype']=="HOD")
+                                          {
+                                        echo '<li>
+                                            <a href="notificationsfac.php">
                                                 <i class="fa fa-users warning"></i> '.$cnts['threadcount'].' new threads have started in your forums                                            </a>
                                         </li>';
 
+
+                                      echo '  </ul>
+                                </li>
+                                <li class="footer"><a href="notificationsfac.php">View all</a></li>
+                            </ul> ';
+                       
+
+
+                                           } 
                                         if(($_SESSION['usertype'])=="Student")
                                           {
                                             echo '
+                                            <li>
+                                            <a href="notifications.php">
+                                                <i class="fa fa-users warning"></i> '.$cnts['threadcount'].' new threads have started in your forums                                            </a>
+                                        </li>
+
                                             <li>
                                             <a href="notifications.php">
                                                 <i class="fa fa-edit success"></i>'.$cnts['assignmentcount'].' new assignments
@@ -144,15 +161,14 @@
                                             </a>
                                         </li> ';
 
-                                          }  
+                                         
                                         
                                   echo '  </ul>
                                 </li>
                                 <li class="footer"><a href="notifications.php">View all</a></li>
                             </ul> ';
-
-
-
+                       
+                                }
                        echo '</li>
                         
                         <!--  User Account: style can be found in dropdown.less -->

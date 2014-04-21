@@ -32,7 +32,7 @@ class messages {
 		$query = "update messages set seen=1 where senderid='".$senderid."' and receiverid='".$receiverid."' and seen=0;";
 		$result = mysql_query($query);
 			if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo mysql_error();
 		}
 		return $result;
 	}
@@ -41,12 +41,9 @@ class messages {
 		//echo $userid;
 		$query = "select messages.message,messages.seen,messages.senderid, messages.receiverid, messages.timestamp from users, messages where ((messages.receiverid='".$inboxofuser."' and messages.senderid='".$userid."')or (messages.senderid='".$inboxofuser."' and messages.receiverid='".$userid."')) and users.userid=messages.senderid order by messages.timestamp DESC ;";		
 		$result=mysql_query($query);
-		// while($row = mysql_fetch_array($result)) {
-		// 	echo $row['username'],$row['message'],$row['seen'];
-		// 	}
 
 		if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo mysql_error();
 		}
 		return $result;
 	}
@@ -61,7 +58,7 @@ class messages {
 		// 	}
 
 		if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo mysql_error();
 		}
 		return $result;
 	}
@@ -74,9 +71,14 @@ class messages {
 		$result=mysql_query($query);
 
 		if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo "Database query failed: " . mysql_error();
+    		return -1;
 		}
-		return $result;
+		else
+		{
+			return 1;		
+		}
+		
 	}
 
 	public function changeSeen($messageid,$seen)
@@ -85,7 +87,7 @@ class messages {
 		$result=mysql_query($query);
 
 		if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo mysql_error();
 		}
 		return $result;
 	}
@@ -96,7 +98,7 @@ public function getUserid($username)
 		$query_row=mysql_fetch_array($result);
 
 		if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo mysql_error();
 		}
 		return $query_row['userid'];
 	}
@@ -108,7 +110,7 @@ public function getUsername($userid)
 		$query_row=mysql_fetch_array($result);
 
 		if(!$result) {
-    		die("Database query failed: " . mysql_error());
+    		echo mysql_error();
 		}
 		return $query_row['username'];
 	}

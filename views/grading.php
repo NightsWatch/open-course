@@ -32,6 +32,20 @@ $filepath = $assgn->getAssignmentLink($subid);
 	?>
  <section class="content">
 	<div class="row">
+	<?php if(isset($_GET['done']))
+			{
+				if($_GET['done']==0)
+				{
+					echo '
+					<div class="alert alert-danger ">
+                                        <i class="fa fa-ban"></i>
+                                        
+                                        <b>Failed!</b>Please check if entered marks are within maximum or for other errors.
+                                    </div>
+                                   ';
+				}
+			}
+			?>
 	<div class="col-md-4 col-md-offset-2">
 	        <?php
 	        include_once '../controller/add_assign_description.php';
@@ -50,16 +64,15 @@ $filepath = $assgn->getAssignmentLink($subid);
 	            	<div><?php
 	            			echo '<a href="'.$filepath.'">';
 	            			?>
-	            		<button class="btn bg-olive">Download student's assignment submission</button></a>
-	            			Assignment submitted at: 	
+	            		<button class="btn btn-block bg-olive">Download student's assignment submission</button></a>
 	            	</div>
 	            	<hr>
 	           		<div class="form-group">
 	                    <label> Marks</label>
-	                   	<input type="text" class="form-control" name="marks" id="marks" placeholder="Marks received">
+	                   	<input type="number" class="form-control" name="marks" id="marks" placeholder="Marks received" required>
 	                </div>
 	                <div class="box-footer">
-	                   	<button type="submit" class="btn bg-olive btn-large submit" name="add_marks" value="Add Marks">Submit</button>
+	                   	<button type="submit" class="btn bg-olive btn-block submit" name="add_marks" value="Add Marks">Submit</button>
 	                </div>                             
 					</div><!-- /.box-body -->
 	    		</div><!-- /.box -->
@@ -97,7 +110,7 @@ $userid= $_GET['uid'];
 	            	<hr>
 	           		<div class="form-group">
 	                    <label> Grade</label>
-	                   	<input type="text" class="form-control" name="marks" id="marks" placeholder="Marks received">
+	                   	<input type="text" class="form-control" name="marks" id="marks" placeholder="Grade received" required>
 	                </div>
 	                <div class="box-footer">
 	                   	<button type="submit" class="btn bg-olive btn-large submit" name="add_marks" value="Add Marks">Submit</button>

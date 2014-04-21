@@ -32,15 +32,6 @@ if( isset($_POST['category']) && isset($_POST['query']) )
 			header('Location: ../views/404.php');
 	}
 
-	if($category=="HOD")
-	{
-		$table= "hod";
-		$field= "name";
-
-		if( $result== -1)
-			header('Location: ../views/404.php');
-	}
-
 	if($category=="Courses")
 	{
 		//echo "query is".$query;

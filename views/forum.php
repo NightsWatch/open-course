@@ -1,11 +1,18 @@
 <?php
 
 session_start();
-include_once 'header.php';
+
+
+if(!isset($_SESSION['id']))
+        header('Location:505.php');
+
+
+include 'header.php';
 if(isset($_SESSION['status']))
     {
         include 'sidebar.php';
     }
+
 
 $courseid = $_GET['cid'];
 
@@ -64,7 +71,7 @@ $courseid = $_GET['cid'];
                 <div class="modal-body">
                     <p>Start a new thread in this course forum by mentioning the title</p>
                     <div class="form-group">
-                        <textarea name="title" id="title" class="form-control" placeholder="Title" style="height: 80px;"></textarea>
+                        <textarea name="title" id="title" class="form-control" placeholder="Title" style="height: 80px;" required></textarea>
                     </div><!-- 
                     <div class="form-group">                                
                         <div class="btn btn-success btn-file">

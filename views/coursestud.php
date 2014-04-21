@@ -83,9 +83,14 @@ $courseid=$_GET['cid'];
                                 else
                                     $set=0;
                                 if($set)
-                                echo ' <td><a href="grading.php?courseid='.$courseid.'&uid='.$row['userid'].'" class="btn btn-success"><i class="fa fa-star"></i>Update Grade</a></td>';
+                                {
+
+                                    echo ' <td><a href="grading.php?courseid='.$courseid.'&uid='.$row['userid'].'" class="btn btn-success"><i class="fa fa-star"></i> Current grade: '.$assn->getGrade($courseid, $row['userid']).'<br/> Update Grade</a></td>';
+                                }
+
                                 else
-                                    echo ' <td><a href="grading.php?courseid='.$courseid.'&uid='.$row['userid'].'" class="btn btn-info"><i class="fa fa-star"></i>Give Grade</a></td>';
+
+                                    echo ' <td><a href="grading.php?courseid='.$courseid.'&uid='.$row['userid'].'" class="btn btn-info"><i class="fa fa-star"></i> Give Grade</a></td>';
 
                             }
                         echo ' </tr>';

@@ -4,29 +4,15 @@ session_start();
 
 
 include 'header.php';
-include_once '../models/courses.php';
-
-$crs = New courses();
+include_once '../models/allotthesis.php';
 
 if(isset($_SESSION['status']))
 {
     include 'sidebar.php';
 }
 
-$studid = $_GET['studid'];
-$string = "../controller/allotthesis.php?studid=".$studid."&";
-
-
-if(isset($_GET['add']))
-{
-    $string ="".$string."add=".$_GET['add']."";
-}
-
-if(isset($_GET['edit']))
-{
-    $string ="".$string."edit=".$_GET['edit']."";
-}
-
+$alt = New allotthesis();
+$row = $alt->getTP($_SESSION['id']);
 
 ?>
 
@@ -43,39 +29,42 @@ if(isset($_GET['edit']))
                         <div class="col-md-6 col-md-offset-3">
                             <div class="box box-info">
                                 <div class="box-body">
+                                <br/>
+                                    <div class="alert alert-info alert-dismissable">
+                                        <i class="fa fa-info"></i>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <b>Info!</b> Talk to a faculty to assign a thesis for you. If you later want to change your thesis details, you will have to discuss with the faculty.
+                                    </div>
 
-
-                                    <form role="form" action=<?php echo $string;?> method="post">
-
-                          
+                       
+                                    <form role="form" action="" method="post">
+                                        <fieldset disabled>
+                                
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Thesis Title</label>
-                                            <input type="text" name="title" class="form-control" placeholder="Thesis Title" required>
+                                            <input type="text" name="title" class="form-control" <?php echo 'value="'.$row['title'].'"';?> >
                                         </div>
 
                                          <div class="form-group">
                                             <label>Field</label>
-                                            <input type="text" name="field" class="form-control" placeholder="Field" required>
+                                            <input type="text" name="field" class="form-control" <?php echo 'value="'.$row['field'].'"';?> >
                                         </div>
                                          <div class="form-group">
-                                            <label>Year</label>
-                                            <input type="year" name="year"  class="form-control" placeholder="Year" required>
+                                            <label>Thesis advisor</label>
+                                            <input type="year" name="year"  class="form-control" <?php echo 'value="'.$row['facultyname'].'"';?>>
                                         </div>
-                                       
-                                    <button type="submit" class="btn bg-olive btn-block">Submit</button>
-
+                                        
+                                        </fieldset>
+                                    
 
                             </form>
 
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                           </div>
-                        <div class="col-md-3">
-                           <div class="callout callout-info">
-                                        <p>Please fill all details.</p>
-                                    </div> 
-                        </div>
+                        <div class="col-md-6">
+                          
                   
 
                     </div>

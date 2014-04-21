@@ -31,7 +31,7 @@ class allotthesis
 
 		else
 		{
-			$query="update thesis set title='".$title."',year='".$year."',field='".$year."' where studentid=".$studentid." and facultyid=".$facultyid.";";
+			$query="update thesis set title='".$title."',year='".$year."',field='".$field."' where studentid=".$studentid." and facultyid=".$facultyid.";";
 			echo $query;
 			$result = mysql_query($query);
 			if($result)
@@ -63,6 +63,19 @@ class allotthesis
 		return 0;
 	}
 
+
+	public function getTP($userid)
+	{
+		$query="select a.title as title, a.year as year, a.field as field, b.name as facultyname from thesis as a,faculty as b where studentid='".$userid."' and a.facultyid=b.userid;";
+		$result=mysql_query($query);
+		if($result)
+		{
+			return mysql_fetch_array($result);
+		}
+
+		echo mysql_error();
+		return 0;
+	}
 
 		public function checkInsert($studid)
 		{

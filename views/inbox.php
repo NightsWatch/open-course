@@ -17,10 +17,7 @@ $msg = New messages();
 
 $senderid=$msg->getUserid($_SESSION["username"]);
 $loggedinuserid = $senderid;
-//$rows=$msg->getInbox($senderid);
 
-
-           
 
 if(isset($_SESSION['status']))
 {
@@ -98,7 +95,17 @@ if(isset($_SESSION['status']))
                                 <div class="box-header">
                                    
                                     <?php 
-
+                                        if(isset($_GET['done']))
+                                        {
+                                            if($_GET['done']==0)
+                                            {
+                                                echo '<div class="alert alert-danger alert-dismissable">
+                                        <i class="fa fa-ban"></i>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <b>Failed!</b> Enter correct username to send. You may find username by using the search bar above
+                                    </div>';
+                                            }
+                                        }
                                         if(isset($_GET['username']))
                                            { echo ' <i class="fa fa-inbox"></i><h3 class="box-title">Conversation with '.$_GET['username'].'</h3>';}
 
@@ -165,11 +172,11 @@ if(isset($_SESSION['status']))
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">TO:</span>
-                            <input name="receiverusername" id="receiverusername" type="username" class="form-control" placeholder="Enter username of receiver">
+                            <input name="receiverusername" id="receiverusername" type="username" class="form-control" placeholder="Enter username of receiver" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" id="message" class="form-control" placeholder="Message" style="height: 120px;"></textarea>
+                        <textarea name="message" id="message" class="form-control" placeholder="Message" style="height: 120px;" required></textarea>
                     </div><!-- 
                     <div class="form-group">                                
                         <div class="btn btn-success btn-file">

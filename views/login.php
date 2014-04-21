@@ -51,12 +51,12 @@ else
                 <div class="body bg-gray">
                     <div class="form-group">
                          <span class="add-on"><i class="icon-user"></i></span>
-                        <input type="text" id="username" name="username" class="form-control input-text" placeholder="User ID"/>
+                        <input type="text" id="username" name="username" class="form-control input-text" placeholder="User ID" required/>
                         <span id="usererror"></span>
                     </div>
                     <div class="form-group">
                         <span class="add-on"><i class="icon-lock"></i></span>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
                         <span id="passerror"></span>
                     </div>          
                     <div class="form-group">

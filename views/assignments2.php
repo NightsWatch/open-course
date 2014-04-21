@@ -95,8 +95,6 @@ $assign = New assignments();
 
                                                         if (in_array($assignment['assignid'], $cart))
                                                         {
-                                                            $crs = New assignments();
-                                                            $rows = $crs->getAssignmentSubmissions($assignment['assignid']);
                                                             $details = $assign->getSubmissionDetails($assignment['assignid'],$_SESSION['id']);
                                                             //echo $details['filepath'];
                                                             $hrdate = date("H:i, d M Y", strtotime($details['stime']));
@@ -104,8 +102,8 @@ $assign = New assignments();
 
                                                             <td>'.$assignment['maxmarks'].'</td>
                                                             ';
-                                                            //$marks= $assign->getStudMarks($_SESSION['id'], $courseid);
-                                                            echo '<td>'.$details['marks'].'</td>';
+                                                            $marks= $assign->getStudMarks($_SESSION['id'], $courseid);
+                                                            if($marks!=-1) echo '<td>'.$marks.'</td>';
 
 
                                                         }

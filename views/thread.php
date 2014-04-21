@@ -64,7 +64,7 @@ $rows = $thrds -> getPosts($threadid);
     <?php echo '<form action ="../controller/addpost.php?threadid='.$threadid.'" method="post" role="form">'; ?>
     <div class="box-footer">
         <div class="input-group">
-            <input class="form-control" name="postmsg" type="text" placeholder="Add post to this thread...">
+            <input class="form-control" name="postmsg" type="text" placeholder="Add post to this thread..." required>
             <div class="input-group-btn">
                 <button class="btn btn-success" title="Post"><i class="fa fa-plus"></i></button>
             </div>

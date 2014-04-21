@@ -37,13 +37,13 @@
             <form action="../controller/signup.php" method="post">
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" name="username" id="signup-usernamename"class="form-control" placeholder="Username"/>
+                        <input type="text" name="username" id="signup-usernamename"class="form-control" placeholder="Username" required/>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="signup-email" name="email" class="form-control" placeholder="Email address"/>
+                        <input type="text" id="signup-email" name="email" class="form-control" placeholder="Email address" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="signup-password" name="password" class="form-control" placeholder="Password"/>
+                        <input type="password" id="signup-password" name="password" class="form-control" placeholder="Password" required/>
                     </div>
                     <div class="form-group" >
                       <label class="sr-only" for="signup-role">Role</label>

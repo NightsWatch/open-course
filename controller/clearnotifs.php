@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 include '../models/notifications.php';
 $ntf = New notifications();
 
@@ -12,5 +12,10 @@ if ($type==2)
 else
 	$ntf->setSeenLectures();
 
-header("Location: ../views/notifications.php");
+
+
+if($_SESSION['usertype']=="Student")
+	header("Location: ../views/notifications.php");
+else
+	header("Location: ../views/notificationsfac.php");
 ?>

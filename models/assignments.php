@@ -20,6 +20,25 @@ class assignments {
 		return mysql_fetch_array($result);
 	}
 
+	public function checkWithinMax($assignid,$marks)
+	{
+		$query="select * from assignments where assignid='".$assignid."';";
+		$result=mysql_query($query);
+		if($result)
+		{
+			$row = mysql_fetch_array($result);
+			$max = $row['maxmarks'];
+			if($marks<$max)
+				return 1;
+			else
+				return 0;
+		}
+
+		echo mysql_error();
+		return -1;
+	}
+
+	
 	public function getAssignmentSubmissions($assignid)
 	{
 		$query="select subid, studid, filepath, stime, marks from assignsubmissions where assignid='".$assignid."';";
@@ -88,6 +107,41 @@ class assignments {
 	}
 
 
+	public function getGrade($courseid, $userid)
+	{
+
+		$query = "select grade from coursestudregistration WHERE courseid='".$courseid."' && studentid='".$userid."';";
+		
+		$result = mysql_query($query);
+		echo mysql_error();
+
+		if($result)
+		{			
+			$row=mysql_fetch_array($result);
+			
+			
+			if($row) 
+			{			
+	    		if(!is_null($row['grade']))
+	    		{
+	    			
+	    			return $row['grade'];
+	    		}
+	    		echo mysql_error();
+	    		{
+	    			return 0;
+	    		}
+		 	}
+
+		
+	 		    	
+
+		return 0;
+	}
+
+	}
+
+
 
 	public function getMarks($subid)
 	{
@@ -142,7 +196,7 @@ class assignments {
 	public function getSubmissionDetails($assignid, $userid)
 	{
 		//echo $assignid; echo $userid;
-		$query = "select filepath,stime from assignsubmissions where studid='".$userid."' and assignid='".$assignid."';";
+		$query = "select filepath,stime,marks from assignsubmissions where studid='".$userid."' and assignid='".$assignid."';";
 		$result = mysql_query($query);
 
 		//echo mysql_error();
@@ -163,6 +217,8 @@ class assignments {
 
 		while($row= mysql_fetch_array($results))
 		{
+			print_r ($row);
+			echo 'entered';
 			$query = "insert into notifsassignments (notifid, foruserid, assignments, seen) values(DEFAULT, '".$row['userid']."', '".$courseid."','0');";
 
 			$output= mysql_query($query);
@@ -170,14 +226,11 @@ class assignments {
 			if($output)
 			{	
 				echo "added notifs";
-				return $output;
 			}
-			else
-						//if(!$result) echo " Error: ". mysql_error();
-
-				return 0;
 
 		}
+
+				return 1;
 
 	} 
 

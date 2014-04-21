@@ -43,21 +43,40 @@ class threads{
 
 		while($row= mysql_fetch_array($results))
 		{
-			$query = "insert into notifsthreads (foruserid,threadid) values('".$row['userid']."', '".$threadid."');";
+			if($row['userid']!=$_SESSION['id'])
+			{	$query = "insert into notifsthreads (foruserid,threadid) values('".$row['userid']."', '".$threadid."');";
 
-			$output= mysql_query($query);
+				$output= mysql_query($query);
 
-			if($output)
-			{	
-				echo "added notifs";
-				return $output;
+				if($output)
+				{	
+					echo "added notifs";
+				
+				}
+				
 			}
-			else
-						//if(!$result) echo " Error: ". mysql_error();
+		}
 
-				return 0;
+		$results = $course->getCourseInstructor($courseid);
+
+		while($row= mysql_fetch_array($results))
+		{
+			if($row['userid']!=$_SESSION['id'])
+			{
+				$query = "insert into notifsthreads (foruserid,threadid) values('".$row['userid']."', '".$threadid."');";
+
+				$output= mysql_query($query);
+
+				if($output)
+				{	
+					echo "added notifs";
+				
+				}
+			}
 
 		}
+
+		return 1;
 
 	} 
 

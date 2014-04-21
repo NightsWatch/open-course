@@ -37,7 +37,7 @@ while($row = mysql_fetch_array($rows))
                     echo'</ul>';
                     echo '</td>';
                     $fd = New faculty_details();
-                if($_SESSION['usertype']=="HOD" && $fd->getDept($_SESSION['id']) )
+                if($_SESSION['usertype']=="HOD" && ($fd->getDept($_SESSION['id'])== $coursedetails['department']))
                     echo'<td><a class="btn btn-large btn-danger" href="allotcoursefac.php?cid='.$cid.'" ><i class="fa fa-check"></i> Edit Allotment</a></td>';
         echo '</tr>';
         }

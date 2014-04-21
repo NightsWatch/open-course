@@ -59,12 +59,6 @@
                         <i class="fa fa-book"></i> <span>Registered Courses</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="thesisstud.php">
-                        <i class="fa fa-archive "></i> <span>Thesis</span>
-                    </a>
-                </li>
                 
 
                
@@ -72,7 +66,7 @@
               }
 
 
-              //echo $_SESSION['id'];
+
               $ista=$ud->getIsta($_SESSION['id']);
               //echo $ista;
               if($ista)
@@ -85,7 +79,7 @@
                                   <i class="fa pull-right fa-angle-down"></i>
                               </a>
                               <ul class="treeview-menu" style="display: block;">
-                                <li><a> Assignments of Course</a></li>
+                                <li><a> Students Assignments of Course</a></li>
                               ';
                   $targ = New tareg();
                   $rows=$targ->getTaCourses($_SESSION['id']);
@@ -93,7 +87,7 @@
                   while($row=mysql_fetch_array($rows))
                   {
                     $cid=$row['courseid'];
-                    echo '<li><a href="assignmentsfac.php?cid='.$cid.'"><i class="fa fa-angle-double-right"></i> '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
+                    echo '<li><a href="assignmentsfac.php?cid='.$cid.'"><i class="fa fa-check"></i> '.$crs->getCourseName($cid).','.$crs->getCourseYear($cid).' </a></li>';
                   }
                    echo '</ul></li>';
               }
@@ -116,7 +110,7 @@
                  $facobj = New faculty();
                  $rows=$facobj->getCourses($_SESSION['id']);
                  echo '<li class="treeview active">
-                              <a href="#">
+                              <a href="courses.php">
                                   <i class="fa fa-book"></i> <span>Course Pages</span>
                                   <i class="fa pull-right fa-angle-down"></i>
                                   
@@ -124,18 +118,13 @@
                               <ul class="treeview-menu" style="display: block;">
                               ';
 
-                        if(mysql_num_rows($rows)<0)
-                        {
-                          echo '<ul class="treeview-menu" style="display: block;">
-                          <li><a href="coursepage.php><i class="fa fa-angle-double-right"></i>No courses found</a>';
-                        }
+
                        while($row=mysql_fetch_array($rows))
                        {
                         $cid=$row['courseid'];
-                        echo '<li><a href="coursepage.php?cid='.$cid.'"><i class="fa fa-angle-double-right"></i> 
+                        echo '<li><a href="coursepage.php?cid='.$cid.'"><i class="fa fa-check"></i> 
                         '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
                       }
-
                       echo '</ul></li>';
 
 
@@ -152,32 +141,12 @@
                        while($row=mysql_fetch_array($rows))
                        {
                         $cid=$row['courseid'];
-                        echo '<li><a href="assignmentsfac.php?cid='.$cid.'"><i class="fa fa-angle-double-right"></i> 
+                        echo '<li><a href="assignmentsfac.php?cid='.$cid.'"><i class="fa fa-check"></i> 
                         '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
                       }
                       
                       echo '</ul></li>';
 
-
-
-                      echo '<li class="treeview active">
-                                    <a href="#">
-                                        <i class="fa fa-edit"></i> <span>Exams Pages</span>
-                                        <i class="fa pull-right fa-angle-down"></i>
-                                       
-                                    </a>
-                                    <ul class="treeview-menu" style="display: block;">
-                                    ';
-
-                        $rows=$facobj->getCourses($_SESSION['id']);
-                       while($row=mysql_fetch_array($rows))
-                       {
-                        $cid=$row['courseid'];
-                        echo '<li><a href="exams_questions_fac.php?cid='.$cid.'"><i class="fa fa-angle-double-right"></i> 
-                        '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
-                      }
-                      
-                      echo '</ul></li>';
 
 
                       echo '<li class="treeview active">
@@ -193,7 +162,7 @@
                        while($row=mysql_fetch_array($rows))
                        {
                         $cid=$row['courseid'];
-                        echo '<li><a href="lecturesfac.php?cid='.$cid.'"><i class="fa fa-angle-double-right"></i> 
+                        echo '<li><a href="lecturesfac.php?cid='.$cid.'"><i class="fa fa-check"></i> 
                         '.$crs->getCourseName($cid).', '.$crs->getCourseYear($cid).' </a></li>';
                       }
                       
@@ -218,19 +187,19 @@
                               <ul class="treeview-menu" style="display: block;">
                                  <li>
                                   <a href="newcourse.php">
-                                  <i class="fa fa-angle-double-right"></i><span>Create New Course</span>
+                                  <i class="fa fa-book"></i><span>Create New Course</span>
                                   </a>
                                 </li>
 
 
                                 <li>
                                 <a href="coursefacallotments.php">
-                                <i class="fa fa-angle-double-right"></i><span> Faculty Course Allotments</span>
+                                <i class="fa fa-book"></i><span> Faculty Course Allotments</span>
                                 </a>
                                 </li>
                                 <li>
                                 <a href="credits.php">
-                                <i class="fa fa-angle-double-right"></i><span> Maximum credits </span>
+                                <i class="fa fa-book"></i><span> Maximum credits </span>
                                 </a>
                                 </li>
                                 </ul>

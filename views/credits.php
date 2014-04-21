@@ -19,7 +19,7 @@ if(isset($_SESSION['status']))
 
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-book"></i> Create a Course</h1>
+<h1 style="text-align:center"><i class="fa fa-check "></i> Set Credits</h1>
 </section>
 <br/>
  <section class="content">
@@ -72,7 +72,7 @@ if(isset($_SESSION['status']))
 
                                          <div class="form-group">
                                             <label>Credits</label>
-                                            <input type="text" name="credits" class="form-control" placeholder="Credits" >
+                                            <input type="text" name="credits" class="form-control" placeholder="Credits" required >
                                         </div>
                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>
                                 

@@ -51,12 +51,44 @@ class courses {
 	 	return $result;
 	}
 
+	public function getCourseExamQuestions($courseid)
+	{
+		$query="select * from exams where courseid='".$courseid."';";
+	 	$result = mysql_query($query);
+	 	return $result;
+	}
+
 	public function getCourseStudents($courseid) {
 		$query = "select * from coursemgs.students where userid in ( select studentid from coursestudregistration where courseid='".$courseid."');";
 		$result = mysql_query($query);
 		if(!$result) echo " Error: ". mysql_error();
 		return $result;
 	}
+
+
+	public function getCourseExamSolutionsStudents($examid) {
+		$query = "select * from examsolutions as a,exams as b where b.examid=".$examid." and a.examid=".$examid." ;";
+		$result = mysql_query($query);
+		if(!$result) echo " Error: ". mysql_error();
+		return $result;
+	}
+
+
+	public function getExamMarksStud($courseid, $userid) {
+		$query = "select a.examtitle as examtitle, a.examid as examid,b.marks as marks, a.maxmarks as maxmarks, a.filepath as question,a.weightage as weightage, b.filepath as corrected,b.reeval as reeval from examsolutions as b, exams as a where a.courseid=".$courseid."  
+		and a.examid=b.examid and b.studentid=".$userid." ;";
+		
+		//$query="select * from examsolutions where studentid='".$userid."';";
+		//echo $query;
+		$result = mysql_query($query);
+		if(!$result) 
+			{
+				echo " Error: ". mysql_error();
+				return 0;
+			}
+		return $result;
+	}
+
 
 
 	public function getCourseForumThreads($courseid) {
@@ -183,9 +215,9 @@ class courses {
 	}
 
 
-	public function addCourse($courseno, $coursename, $department, $year, $credits)
+	public function addCourse($courseno, $coursename, $department, $year, $credits,$slot)
 	{
-		$query ="insert into courses(courseno, coursename, department, year, credits) values('".$courseno."','".$coursename."','".$department."','".$year."','".$credits."')";
+		$query ="insert into courses(courseno, coursename, department, year, credits,slot) values('".$courseno."','".$coursename."','".$department."','".$year."','".$credits."','".$slot."')";
 		$result= mysql_query($query);
 		if($result)
 		{

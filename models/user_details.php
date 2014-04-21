@@ -26,6 +26,31 @@ class user_details {
 	 	return $result;
 	}
 
+
+	public function getAllStudentsDept($dept)
+	{
+		$query = "select * from students where department='".$dept."';";
+		$result = mysql_query($query);
+
+			if(!$result) {
+    		die("Database query failed: " . mysql_error());
+	 	}
+	 
+	 	return $result;
+	}
+
+	public function getFacDepartment($userid)
+	{
+		$query="select department from faculty where userid='".$userid."';";
+		$result = mysql_query($query);
+
+			if(!$result) {
+    		die("Database query failed: " . mysql_error());
+	 	}
+	 
+	 	return mysql_fetch_array($result)['department'];
+
+	}
 	public function getCoursesReg($userid)
 	{
 		$query = "select d.courseid from coursestudregistration as d where d.studentid='".$userid."';";
@@ -98,7 +123,7 @@ class user_details {
 	public function getIsta($userid)
 	{
 		$query = "SELECT * FROM coursemgs.students  where userid='".$userid."' 
-			and ista=1;";
+			and ista>0;";
 				
 			$result= mysql_query($query);
 

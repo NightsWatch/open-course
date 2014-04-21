@@ -24,7 +24,7 @@ if( isset($_POST['assignno']) && isset($_POST['assnname']) && isset($_POST['time
 	$assgn = New assgn();
 
 	if( ($assgn->uploadAssgn($assn, $courseid, $deadline, $maxmarks, $assnname) )==1)
-		//	echo 'yes';
+			//echo 'yes';
 			header('Location: ../views/assignmentsfac.php?cid='.$courseid.'&success=1');
 	else
 		//echo 'no';

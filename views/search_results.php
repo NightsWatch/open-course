@@ -152,7 +152,7 @@ if($category=="Assignments")
             <div class="box-body" style="overflow: hidden; width: auto;">
               <ul>
 
-                <li>Assignment No: <?php echo $row['assnno']; ?></li>
+                <li>Assignment No: <?php echo $row['assignno']; ?></li>
                <li>Course: 
                <?php 
                   $course= New courses();
@@ -185,7 +185,7 @@ if($category=="Lectures")
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
             <div class="box-body" style="overflow: hidden; width: auto;">
               <ul>
-                <li>Lecture No: <?php echo $row['lecno']; ?></li>
+                <li>Lecture No: <?php echo $row['lectureno']; ?></li>
                <li>Course: 
                <?php $course= New courses();
                   echo $course->getCourseName($row['courseid']);

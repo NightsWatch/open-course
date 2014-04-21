@@ -24,12 +24,17 @@ else if(isset($_POST['marks']) )
 	$subid = $_GET['sid'];
 	$marks = mysql_real_escape_string($_POST['marks']);
 	$assgn = New assignments();
-	echo $assgn->setMarks($subid,$marks); 
-	//echo 'action="../controller/add_marks.php?sid='.$subid.'" method="POST" role="form">';
-	//echo $subid;
-	   $assgnid = $assgn->getAssignmentId($subid);
-	   echo $assgnid;
-	header('Location: ../views/assignsubmissionfac.php?aid='.$assgnid.'');
+	$assgnid = $assgn->getAssignmentId($subid);
+	if($assgn->checkWithinMax($assgnid,$marks))
+		{
+			echo $assgn->setMarks($subid,$marks); 
+			header('Location: ../views/assignsubmissionfac.php?aid='.$assgnid.'');
+		}
+
+	else
+		{
+			header('Location: ../views/grading.php?sid='.$subid.'&done=0');
+		}
 }
 
 

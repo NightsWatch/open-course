@@ -49,19 +49,19 @@ $row = $courses->getCourseDetails($courseid);
                                 <div class="box-body table-responsive">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Upload Assignment</label>
-                                        <input type="file" name="file" id="exampleInputFile">
+                                        <input type="file" name="file" id="exampleInputFile" required>
                                     </div>
 
 
                                      <div class="form-group">
                                         <label for="exampleInputFile">Assignment Number</label>
-                                        <input type="text" name="assignno">
+                                        <input type="number" name="assignno" required>
                                     </div>
                                    
                                    
                                     <div class="form-group">
                                         <label for="exampleInputFile">Assignment Name</label>
-                                        <input type="text" name="assnname">
+                                        <input type="text" name="assnname" required>
                                     </div>
 
                                     <div class="form-group">
@@ -70,7 +70,7 @@ $row = $courses->getCourseDetails($courseid);
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" name="date" class="form-control pull-right" id="reservation"/>
+                                            <input type="text" name="date" class="form-control pull-right" id="reservation" required/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                             
@@ -78,7 +78,7 @@ $row = $courses->getCourseDetails($courseid);
                                         <div class="form-group">
                                             <label>Time:</label>
                                             <div class="input-group">                                            
-                                                <input type="text" name="time" class="form-control timepicker"/>
+                                                <input type="text" name="time" class="form-control timepicker" required/>
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
@@ -89,7 +89,7 @@ $row = $courses->getCourseDetails($courseid);
                                     
                                     <div class="form-group">
                                         <label> Max marks</label>
-                                        <input type="text" name="maxmarks" class="form-control" placeholder="Total">
+                                        <input type="number" name="maxmarks" class="form-control" placeholder="Total" required>
                                     </div>
                                 </div>
                                 <div class="box-footer">
@@ -175,9 +175,9 @@ $row = $courses->getCourseDetails($courseid);
 
         <!-- jQuery 2.0.2 -->
         <script src="js/jquery.min.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="css/jquery-ui.css">
+         <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui.js"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->

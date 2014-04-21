@@ -16,7 +16,7 @@ $courseid=$_GET['cid'];
 ?>
 
 <section class="content-header">
-<h1 style="text-align:center"><i class="fa fa-edit"></i> Course Page</h1>
+<h1 style="text-align:center"><i class="fa fa-edit"></i> Allot TAs</h1>
 </section>
 <br/>
  <section class="content">

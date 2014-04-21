@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION['id']) || $_SESSION['usertype']=='Student')
 header('Location: ../views/505.php');
-include 'header.php';
+include_once 'header.php';
 include_once '../models/user_details.php';
 include_once '../models/allotthesis.php';
 
@@ -47,7 +47,7 @@ if(isset($_SESSION['status']))
        <?php 
 
                 $user= New user_details();
-                $students=$user->getAllStudents();
+                $students=$user->getAllStudentsDept($user->getFacDepartment($_SESSION['id']));
 
                 while($row = mysql_fetch_array($students))
                     {
@@ -70,7 +70,7 @@ if(isset($_SESSION['status']))
                             else if(($allot->checkInsert($row['userid']))==0)
                                 echo '<a class="btn btn-large btn-primary" href="thesisdetails.php?add=1&studid='.$row['userid'].'"><i class="fa fa-group"></i> Add</a></td></tr>'; 
                             else
-                                echo '<a class="btn btn-large btn-primary" href="thesisdetails.php?add=1&studid='.$row['userid'].'"><i class="fa fa-group"></i> Taken</a></td></tr>'; 
+                                echo '<a class="btn btn-large btn-warning" href=""><i class="fa fa-group"></i> Taken</a></td></tr>'; 
                     } 
 
                     ?>

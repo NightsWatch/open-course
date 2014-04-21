@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 21, 2014 at 04:24 AM
+-- Generation Time: Apr 22, 2014 at 12:05 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -36,15 +36,17 @@ CREATE TABLE IF NOT EXISTS `assignments` (
   `maxmarks` int(11) NOT NULL DEFAULT '10',
   PRIMARY KEY (`assignid`),
   KEY `index-courseid` (`courseid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `assignments`
 --
 
 INSERT INTO `assignments` (`assignid`, `assign_name`, `courseid`, `assignno`, `filepath`, `deadline`, `maxmarks`) VALUES
-(27, 'Introductory', 17, 1, '../assignments/27.txt', '2014-04-22 01:30:00', 32),
-(28, 'Basics', 17, 2, '../assignments/28.zip', '2014-04-20 01:30:00', 21);
+(36, 'Sorting', 25, 1, '../assignments/36.zip', '2014-04-20 23:00:00', 20),
+(37, 'Quick Sort', 25, 2, '../assignments/37.zip', '2014-04-29 23:00:00', 25),
+(38, 'Merge Sort', 25, 3, '../assignments/38.pptx', '2014-04-29 23:00:00', 35),
+(39, 'Test', 25, 4, '../assignments/39.zip', '2014-04-22 23:30:00', 22);
 
 -- --------------------------------------------------------
 
@@ -57,20 +59,19 @@ CREATE TABLE IF NOT EXISTS `assignsubmissions` (
   `filepath` varchar(50) NOT NULL,
   `assignid` int(11) NOT NULL,
   `marks` int(11) DEFAULT NULL,
-  `stime` datetime NOT NULL,
+  `stime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `studid` int(11) NOT NULL,
   PRIMARY KEY (`subid`),
   KEY `index-studid` (`studid`),
   KEY `assgnid` (`assignid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `assignsubmissions`
 --
 
 INSERT INTO `assignsubmissions` (`subid`, `filepath`, `assignid`, `marks`, `stime`, `studid`) VALUES
-(29, '../submissions/29.txt', 27, 3, '2014-04-21 01:48:00', 22),
-(30, '../submissions/30.txt', 27, NULL, '2014-04-21 01:49:16', 22);
+(35, '../submissions/35.zip', 37, 22, '2014-04-21 23:55:17', 23);
 
 -- --------------------------------------------------------
 
@@ -90,8 +91,10 @@ CREATE TABLE IF NOT EXISTS `coursefacallotment` (
 --
 
 INSERT INTO `coursefacallotment` (`courseid`, `facultyid`) VALUES
-(17, 31),
-(18, 32);
+(25, 26),
+(26, 27),
+(24, 32),
+(25, 33);
 
 -- --------------------------------------------------------
 
@@ -108,15 +111,16 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `credits` int(10) NOT NULL,
   `slot` varchar(2) NOT NULL,
   PRIMARY KEY (`courseid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `courses`
 --
 
 INSERT INTO `courses` (`courseid`, `courseno`, `coursename`, `department`, `year`, `credits`, `slot`) VALUES
-(17, 'CL201', 'Chemical Systems', 'Chemical', 2014, 8, 'A'),
-(18, 'CL555', 'Thermodynamics', 'Chemical', 2014, 6, 'A');
+(24, 'CL 201', 'Chemical Systems', 'Chemical', 2014, 8, 'A'),
+(25, 'CS201', 'Algorithms', 'CSE', 2014, 8, 'B'),
+(26, 'CS200', 'Data Structures', 'CSE', 2014, 6, 'A');
 
 -- --------------------------------------------------------
 
@@ -127,7 +131,7 @@ INSERT INTO `courses` (`courseid`, `courseno`, `coursename`, `department`, `year
 CREATE TABLE IF NOT EXISTS `coursestudregistration` (
   `courseid` int(11) NOT NULL,
   `studentid` int(11) NOT NULL,
-  `grade` int(11) DEFAULT NULL,
+  `grade` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`courseid`,`studentid`),
   KEY `course-stud-registration_ibfk_2` (`studentid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -137,9 +141,11 @@ CREATE TABLE IF NOT EXISTS `coursestudregistration` (
 --
 
 INSERT INTO `coursestudregistration` (`courseid`, `studentid`, `grade`) VALUES
-(17, 22, NULL),
-(17, 23, 28),
-(18, 23, NULL);
+(24, 23, NULL),
+(24, 37, NULL),
+(25, 23, NULL),
+(25, 34, NULL),
+(25, 37, 'AA');
 
 -- --------------------------------------------------------
 
@@ -154,7 +160,14 @@ CREATE TABLE IF NOT EXISTS `coursetaallotment` (
   PRIMARY KEY (`ctallotid`),
   KEY `course-ta-allotment_ibfk_2` (`taid`),
   KEY `index-courseid` (`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `coursetaallotment`
+--
+
+INSERT INTO `coursetaallotment` (`ctallotid`, `courseid`, `taid`) VALUES
+(10, 25, 22);
 
 -- --------------------------------------------------------
 
@@ -164,13 +177,22 @@ CREATE TABLE IF NOT EXISTS `coursetaallotment` (
 
 CREATE TABLE IF NOT EXISTS `exams` (
   `examid` int(11) NOT NULL AUTO_INCREMENT,
-  `examno` int(11) NOT NULL,
-  `examtitle` int(11) NOT NULL,
+  `examtitle` varchar(50) NOT NULL,
   `courseid` int(11) NOT NULL,
   `maxmarks` int(11) NOT NULL,
+  `weightage` text NOT NULL,
+  `filepath` varchar(1000) NOT NULL,
   PRIMARY KEY (`examid`),
   KEY `courseid` (`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `exams`
+--
+
+INSERT INTO `exams` (`examid`, `examtitle`, `courseid`, `maxmarks`, `weightage`, `filepath`) VALUES
+(8, 'Quiz 1', 25, 30, '30', '../exams/questions/8.zip'),
+(9, 'Midsem', 25, 60, '60', '../exams/questions/9.pptx');
 
 -- --------------------------------------------------------
 
@@ -182,13 +204,22 @@ CREATE TABLE IF NOT EXISTS `examsolutions` (
   `solid` int(11) NOT NULL AUTO_INCREMENT,
   `studentid` int(11) NOT NULL,
   `examid` int(11) NOT NULL,
-  `filepath` int(11) NOT NULL,
+  `filepath` varchar(100) NOT NULL,
   `studcomments` text NOT NULL,
   `marks` int(11) NOT NULL,
   `reeval` varchar(10) NOT NULL DEFAULT 'no',
   PRIMARY KEY (`solid`),
-  KEY `studentid` (`studentid`,`examid`,`filepath`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `studentid` (`studentid`,`examid`,`filepath`),
+  KEY `exfk` (`examid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+--
+-- Dumping data for table `examsolutions`
+--
+
+INSERT INTO `examsolutions` (`solid`, `studentid`, `examid`, `filepath`, `studcomments`, `marks`, `reeval`) VALUES
+(32, 23, 9, '../exams/solutions/32.pptx', '', 50, 'no'),
+(33, 23, 8, '../exams/solutions/33.zip', 'Question 1 I used this which is right accd to Cormen', 12, 'no');
 
 -- --------------------------------------------------------
 
@@ -210,12 +241,13 @@ CREATE TABLE IF NOT EXISTS `faculty` (
 --
 
 INSERT INTO `faculty` (`userid`, `name`, `department`, `designation`, `joined`) VALUES
-(26, 'Ranbir Singh', 'CSE', 'Assistant Prof', 2009),
+(26, 'Ranjan Singh', 'CSE', 'Assistant Prof', 2009),
 (27, 'Arnab Sarkar', 'CSE', 'Assistant Prof', 2010),
 (28, 'Arijit Sur', 'CSE', 'Assistant Prof', 2012),
 (31, 'BKPatel', 'Chemical', 'Professor', 1999),
 (32, 'Mohan Singh', 'Chemical', 'Professor', 2005),
-(33, 'SB Nair', 'CSE', 'Professor', 2004);
+(33, 'SB Nair', 'CSE', 'Professor', 2004),
+(36, 'HK Singh', 'Design', 'HOD', 2004);
 
 -- --------------------------------------------------------
 
@@ -232,15 +264,18 @@ CREATE TABLE IF NOT EXISTS `forums` (
   PRIMARY KEY (`threadid`),
   KEY `courseidindex` (`courseid`),
   KEY `id` (`starterid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `forums`
 --
 
 INSERT INTO `forums` (`courseid`, `threadid`, `threadtitle`, `timestamp`, `starterid`) VALUES
-(17, 16, 'Hi! Course Textbook', '2014-04-21 00:37:17', 31),
-(17, 18, 'Doubt', '2014-04-21 00:46:55', 22);
+(25, 26, 'Hello Students, Course Book', '2014-04-21 23:09:03', 33),
+(25, 27, 'I''m new here', '2014-04-21 23:16:50', 23),
+(25, 28, 'Doubt', '2014-04-21 23:18:33', 23),
+(25, 29, 'Another doubt', '2014-04-21 23:19:06', 23),
+(25, 30, 'Website course', '2014-04-21 23:19:17', 23);
 
 -- --------------------------------------------------------
 
@@ -256,15 +291,16 @@ CREATE TABLE IF NOT EXISTS `lectures` (
   `filepath` text NOT NULL,
   PRIMARY KEY (`lecid`),
   KEY `cid` (`courseid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `lectures`
 --
 
 INSERT INTO `lectures` (`lecid`, `courseid`, `lectureno`, `lecturename`, `filepath`) VALUES
-(19, 17, 1, 'Basics', '../lectures/19.pptx'),
-(20, 17, 2, 'Enzyme', '../lectures/20.zip');
+(23, 25, 1, 'Intro', '../lectures/23.pptx'),
+(24, 25, 2, 'Basics', '../lectures/24.zip'),
+(25, 25, 3, 'Sorting', '../lectures/25.pptx');
 
 -- --------------------------------------------------------
 
@@ -278,11 +314,11 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `receiverid` int(11) NOT NULL,
   `message` varchar(1000) NOT NULL,
   `seen` tinyint(1) NOT NULL DEFAULT '0',
-  `timestamp` datetime NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`messageid`),
   KEY `indexsender` (`senderid`),
   KEY `indexreceiver` (`receiverid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `messages`
@@ -290,7 +326,16 @@ CREATE TABLE IF NOT EXISTS `messages` (
 
 INSERT INTO `messages` (`messageid`, `senderid`, `receiverid`, `message`, `seen`, `timestamp`) VALUES
 (1, 22, 31, 'Hi Sir. How are you?', 1, '2014-04-21 01:50:52'),
-(2, 31, 22, 'H', 1, '2014-04-21 04:00:57');
+(4, 34, 23, 'This is a test message! Hi!', 1, '2014-04-21 14:10:28'),
+(5, 23, 34, 'reply back', 1, '2014-04-21 14:11:52'),
+(6, 28, 22, 'Your grades are very low. Meet me in the office tomorrow.', 1, '2014-04-21 14:30:49'),
+(19, 33, 23, 'Meet me in office', 1, '2014-04-21 23:28:48'),
+(20, 33, 23, 'Meet me', 1, '2014-04-21 23:29:13'),
+(21, 33, 22, 'Hi', 1, '2014-04-21 23:29:27'),
+(23, 33, 23, 'Hi', 1, '2014-04-21 23:31:07'),
+(24, 33, 23, 'Hi', 1, '2014-04-21 23:33:05'),
+(25, 33, 34, 'Hi', 0, '2014-04-21 23:33:44'),
+(26, 33, 34, 'Meet me in office tmrw', 0, '2014-04-21 23:34:05');
 
 -- --------------------------------------------------------
 
@@ -303,28 +348,20 @@ CREATE TABLE IF NOT EXISTS `notifsassignments` (
   `foruserid` int(11) NOT NULL,
   `assignments` int(11) NOT NULL,
   `seen` tinyint(1) NOT NULL DEFAULT '0',
-  `timestamp` datetime NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`notifid`),
   KEY `useridindex` (`foruserid`),
   KEY `courselect` (`assignments`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `notifsassignments`
 --
 
 INSERT INTO `notifsassignments` (`notifid`, `foruserid`, `assignments`, `seen`, `timestamp`) VALUES
-(10, 22, 17, 1, '0000-00-00 00:00:00'),
-(11, 22, 17, 1, '0000-00-00 00:00:00'),
-(12, 22, 17, 1, '0000-00-00 00:00:00'),
-(13, 22, 17, 1, '0000-00-00 00:00:00'),
-(14, 22, 17, 1, '0000-00-00 00:00:00'),
-(15, 22, 17, 1, '0000-00-00 00:00:00'),
-(16, 22, 17, 1, '0000-00-00 00:00:00'),
-(17, 22, 17, 1, '0000-00-00 00:00:00'),
-(18, 22, 17, 1, '0000-00-00 00:00:00'),
-(19, 22, 17, 1, '0000-00-00 00:00:00'),
-(20, 22, 17, 1, '0000-00-00 00:00:00');
+(27, 23, 25, 0, '2014-04-21 23:39:22'),
+(28, 34, 25, 0, '2014-04-21 23:39:23'),
+(29, 37, 25, 0, '2014-04-21 23:39:23');
 
 -- --------------------------------------------------------
 
@@ -337,18 +374,26 @@ CREATE TABLE IF NOT EXISTS `notifslectures` (
   `foruserid` int(11) NOT NULL,
   `lectures` int(11) NOT NULL,
   `seen` bit(1) NOT NULL DEFAULT b'0',
-  `timestamp` datetime NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`notifid`),
   KEY `useridindex` (`foruserid`),
   KEY `courselect` (`lectures`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `notifslectures`
 --
 
 INSERT INTO `notifslectures` (`notifid`, `foruserid`, `lectures`, `seen`, `timestamp`) VALUES
-(8, 22, 17, b'1', '0000-00-00 00:00:00');
+(11, 23, 25, b'0', '2014-04-21 23:23:34'),
+(12, 34, 25, b'0', '2014-04-21 23:23:35'),
+(13, 37, 25, b'0', '2014-04-21 23:23:36'),
+(14, 23, 25, b'0', '2014-04-21 23:23:45'),
+(15, 34, 25, b'0', '2014-04-21 23:23:45'),
+(16, 37, 25, b'0', '2014-04-21 23:23:46'),
+(17, 23, 25, b'0', '2014-04-21 23:23:55'),
+(18, 34, 25, b'0', '2014-04-21 23:23:55'),
+(19, 37, 25, b'0', '2014-04-21 23:23:55');
 
 -- --------------------------------------------------------
 
@@ -365,14 +410,32 @@ CREATE TABLE IF NOT EXISTS `notifsthreads` (
   PRIMARY KEY (`notifid`),
   KEY `useridindex` (`foruserid`),
   KEY `threadid` (`threadid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `notifsthreads`
 --
 
 INSERT INTO `notifsthreads` (`notifid`, `foruserid`, `threadid`, `seen`, `timestamp`) VALUES
-(13, 22, 18, b'1', '2014-04-21 00:46:56');
+(37, 26, 26, b'1', '2014-04-21 23:09:04'),
+(38, 33, 26, b'1', '2014-04-21 23:09:04'),
+(39, 23, 27, b'1', '2014-04-21 23:16:50'),
+(40, 34, 27, b'1', '2014-04-21 23:16:51'),
+(41, 37, 27, b'1', '2014-04-21 23:16:51'),
+(42, 26, 27, b'1', '2014-04-21 23:16:52'),
+(43, 33, 27, b'1', '2014-04-21 23:16:52'),
+(44, 34, 28, b'1', '2014-04-21 23:18:33'),
+(45, 37, 28, b'1', '2014-04-21 23:18:33'),
+(46, 26, 28, b'1', '2014-04-21 23:18:33'),
+(47, 33, 28, b'1', '2014-04-21 23:18:34'),
+(48, 34, 29, b'1', '2014-04-21 23:19:06'),
+(49, 37, 29, b'1', '2014-04-21 23:19:07'),
+(50, 26, 29, b'1', '2014-04-21 23:19:08'),
+(51, 33, 29, b'1', '2014-04-21 23:19:08'),
+(52, 34, 30, b'1', '2014-04-21 23:19:17'),
+(53, 37, 30, b'1', '2014-04-21 23:19:17'),
+(54, 26, 30, b'1', '2014-04-21 23:19:17'),
+(55, 33, 30, b'1', '2014-04-21 23:19:17');
 
 -- --------------------------------------------------------
 
@@ -389,18 +452,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`postid`),
   KEY `useridindex` (`userid`),
   KEY `tidindex` (`threadid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`threadid`, `postid`, `userid`, `timestamp`, `content`) VALUES
-(16, 9, 31, '2014-04-21 00:39:25', 'This is by ABC'),
-(16, 10, 22, '2014-04-21 00:46:20', 'Hi SIr'),
-(16, 11, 22, '2014-04-21 04:07:38', 'Sure man'),
-(16, 12, 22, '2014-04-21 04:08:22', 'Their primary weakness was that they were almost entirely reliant upon cavalry. Mongol tactics, training and organization were focused on mounted combat, and although they could be flexible -- for example, by using Chinese and other engineers for help with breaching defenses when it came to siege warfare (which required infantry units as well) -- they were inevitably hampered by more mountainous, broken terrain compared to their success in the open Steppes. The army was almost entirely composed of cavalry, with forty percent heavy cavalry, and the remaining sixty percent designated light cavalry. There were no organic Mongol infantry units, but often units of conquered peoples (or even their civilian populations) were pressed into service for specific campaigns. These units were considered entirely expendable. It was common Mongol practice to attack the outlying and less defended cities and towns before bringing a major city or fortress under attack. The captured populations of these t'),
-(16, 13, 22, '2014-04-21 04:08:57', 'Their primary weakness was that they were almost entirely reliant upon cavalry. Mongol tactics, training and organization were focused on mounted combat, and although they could be flexible -- for example, by using Chinese and other engineers for help with breaching defenses when it came to siege warfare (which required infantry units as well) -- they were inevitably hampered by more mountainous, broken terrain compared to their success in the open Steppes. The army was almost entirely composed of cavalry, with forty percent heavy cavalry, and the remaining sixty percent designated light cavalry. There were no organic Mongol infantry units, but often units of conquered peoples (or even their civilian populations) were pressed into service for specific campaigns. These units were considered entirely expendable. It was common Mongol practice to attack the outlying and less defended cities and towns before bringing a major city or fortress under attack. The captured populations of these towns were then driven forward in advance of the Mongol army and forced directly against the enemy army. Often these "infantry" were used as laborers in sieges, or driven against the walls of a city where they suffered terrible casualties...." Genghis Khan''s Greatest General: Subotai the Valiant[1] by Richard A. Gabriel Common Mongol cavalry tactics -- for example, the devastating hit-and-run tactic of circling with light cavalry and chipping away at enemy formations with flights of arrows, then retreating swiftly -- don''t adapt well to infantry combat. In addition, the ability to cover great distances so as to take an enemy by surprise is hampered to a degree by the mountainous (and forested) terrain of Europe and the Caucasus. Not that these problems couldn''t be overcome: Mongol forces easily won most of their major engagements with Europeans. But the terrain wasn''t a natural fit for their most successful tactics. Massive cavalry armies also have a serious logistical problem. A Mongolian "tuman," the largest military division, consisted of 10,000 mounted soldiers, each of whom traveled with and often fought with 3-4 spare mounts. 40,000 horses require a lot of forage, and overgrazing was a continual issue.');
+(26, 16, 33, '2014-04-21 23:09:10', 'Is this');
 
 -- --------------------------------------------------------
 
@@ -426,24 +485,13 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 INSERT INTO `students` (`userid`, `name`, `program`, `batch`, `department`, `roll`, `ista`, `maxcredits`) VALUES
-(22, 'Rahul Huilgol', 'B.Tech', '2011', 'CSE', 11010156, 0, 22),
-(23, 'Harshith Reddy', 'B.Tech', '2011', 'CSE', 11010149, 0, 22),
-(24, 'Harsha Tirumala', 'B.Tech', '2011', 'CSE', 1101010120, 0, 22),
-(29, 'Gowtam Dora', 'B.Tech', '2011', 'Civil', 11010565, 0, 22),
-(30, 'Sameer Nekalapu', 'B.Tech', '2011', 'EEE', 11010456, 0, 22);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `studtaallotment`
---
-
-CREATE TABLE IF NOT EXISTS `studtaallotment` (
-  `studid` int(11) NOT NULL,
-  `ctallotid` int(11) NOT NULL,
-  PRIMARY KEY (`studid`,`ctallotid`),
-  KEY `stud-ta-allotment_ibfk_2` (`ctallotid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(22, 'Rahul Huilgol', 'B.Tech', '2011', 'CSE', 11010156, 2, 25),
+(23, 'Harshith Reddy', 'B.Tech', '2011', 'CSE', 11010149, 0, 25),
+(24, 'Harsha Tirumala', 'B.Tech', '2011', 'CSE', 11010120, 0, 25),
+(29, 'Gowtam Dora', 'B.Tech', '2011', 'Civil', 11010565, 2, 25),
+(30, 'Sameer Nekalapu', 'B.Tech', '2011', 'EEE', 11010456, 0, 25),
+(34, 'Simrat', 'B.Tech', '2011', 'CSE', 11010165, 3, 25),
+(37, 'Harsha Nadimpalli', 'B.Tech', '2011', 'CSE', 11010144, 0, 25);
 
 -- --------------------------------------------------------
 
@@ -461,6 +509,17 @@ CREATE TABLE IF NOT EXISTS `thesis` (
   KEY `facultyid` (`facultyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `thesis`
+--
+
+INSERT INTO `thesis` (`studentid`, `facultyid`, `title`, `year`, `field`) VALUES
+(22, 31, 'Dynamics of RDBMS', 2014, 'ML'),
+(23, 33, 'AI of Robot', 2015, 'AI'),
+(24, 31, 'Randomized Algorithms', 2000, 'ML'),
+(34, 36, 'Dynamics of Human Brain', 2014, 'Inter'),
+(37, 33, 'RDMS', 2008, 'DBMS');
+
 -- --------------------------------------------------------
 
 --
@@ -477,7 +536,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`userid`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email_id` (`email_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `users`
@@ -495,7 +554,10 @@ INSERT INTO `users` (`userid`, `username`, `password`, `usertype`, `email_id`, `
 (30, 'sameer', '202cb962ac59075b964b07152d234b70', 'Student', 'sameer@iitg.ernet.in', 1),
 (31, 'bkpatel', '202cb962ac59075b964b07152d234b70', 'HOD', 'bkpatel@iitg.ernet.in', 1),
 (32, 'mohan', '202cb962ac59075b964b07152d234b70', 'Faculty', 'mohansingh@iitg.ernet.in', 1),
-(33, 'sbn', '202cb962ac59075b964b07152d234b70', 'HOD', 'sbn@iitg.ernet.in', 1);
+(33, 'sbn', '202cb962ac59075b964b07152d234b70', 'HOD', 'sbn@iitg.ernet.in', 1),
+(34, 'simrat', '81cd19286e44dc52c7a5b15379427d7f', 'Student', 'simratsingh@something.com', 1),
+(36, 'hksingh', '202cb962ac59075b964b07152d234b70', 'HOD', 'hksingh', 1),
+(37, 'nadim', '202cb962ac59075b964b07152d234b70', 'Student', 'nadim', 1);
 
 --
 -- Constraints for dumped tables
@@ -534,6 +596,13 @@ ALTER TABLE `coursestudregistration`
 ALTER TABLE `coursetaallotment`
   ADD CONSTRAINT `coursetaallotment_ibfk_1` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `coursetaallotment_ibfk_2` FOREIGN KEY (`taid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `examsolutions`
+--
+ALTER TABLE `examsolutions`
+  ADD CONSTRAINT `a2` FOREIGN KEY (`examid`) REFERENCES `exams` (`examid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `a1` FOREIGN KEY (`studentid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `faculty`
@@ -594,13 +663,6 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `studtaallotment`
---
-ALTER TABLE `studtaallotment`
-  ADD CONSTRAINT `studtaallotment_ibfk_1` FOREIGN KEY (`studid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `studtaallotment_ibfk_2` FOREIGN KEY (`ctallotid`) REFERENCES `coursetaallotment` (`ctallotid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `thesis`

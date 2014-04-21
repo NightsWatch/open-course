@@ -55,24 +55,24 @@ if(isset($_SESSION['status']))
                             <div class="form-group">
 
                                             <label>Name</label>
-                                            <input type="text" name="name" class="form-control" placeholder="'.$row["name"].'">
+                                            <input type="text" name="name" class="form-control" placeholder="'.$row["name"].'" required>
                                         </div>
 
                                          <div class="form-group">
                                             <label>Roll number</label>
-                                            <input type="text" name="roll" class="form-control" placeholder="'.$row["roll"].'" >
+                                            <input type="text" name="roll" class="form-control" placeholder="'.$row["roll"].'" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Batch</label>
-                                            <input type="text" name="batch" class="form-control" placeholder="'.$row["batch"].'" >
+                                            <input type="text" name="batch" class="form-control" placeholder="'.$row["batch"].'" required>
                                         </div>
                                          <div class="form-group">
                                             <label>Department</label>
-                                            <input type="text" name="dept"  class="form-control" placeholder="'.$row["department"].'">
+                                            <input type="text" name="dept"  class="form-control" placeholder="'.$row["department"].'"required>
                                         </div>
                                         <div class="form-group">
                                             <label>Program</label>
-                                            <input type="text" name="prog" class="form-control" placeholder="'.$row["program"].'" >
+                                            <input type="text" name="prog" class="form-control" placeholder="'.$row["program"].'" required>
                                         </div>
 
                                  </fieldset disabled>
@@ -94,16 +94,16 @@ if(isset($_SESSION['status']))
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Name">
+                                           <input type="text" name="name" class="form-control" placeholder="Name" required>
                                         </div>
 
                                          <div class="form-group">
                                             <label>Roll number</label>
-                                            <input type="text" name="roll" class="form-control" placeholder="Roll number" >
+                                            <input type="text" name="roll" class="form-control" placeholder="Roll number" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Batch</label>
-                                            <input type="text" name="batch" class="form-control" placeholder="Joining year" >
+                                            <input type="text" name="batch" class="form-control" placeholder="Joining year" required>
                                         </div>
                                          <div class="form-group">
                                             <label>Department</label>
@@ -203,12 +203,12 @@ else
                                                                     <!-- text input -->
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Name">
+                                            <input type="text" name="name" class="form-control" placeholder="Name" required>
                                         </div>
 
                                          <div class="form-group">
                                             <label>Designation</label>
-                                            <input type="text" name="desgn" class="form-control" placeholder="Designation" >
+                                            <input type="text" name="desgn" class="form-control" placeholder="Designation" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Department</label>
@@ -231,7 +231,7 @@ else
                                         </div>
                                         <div class="form-group">
                                             <label>Joined</label>
-                                            <input type="text" name="joined" class="form-control" placeholder="Joining year" >
+                                            <input type="number" name="joined" class="form-control" placeholder="Joining year" required>
                                         </div>
                                     <button type="submit" class="btn bg-olive btn-block">Submit</button>
 

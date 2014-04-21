@@ -130,14 +130,13 @@ class lectures
 			if($output)
 			{	
 				echo "added notifs";
-				return $output;
+				
 			}
-			else
-						//if(!$result) echo " Error: ". mysql_error();
 
-				return 0;
+
 
 		}
+		return $output;
 
 	} 
 

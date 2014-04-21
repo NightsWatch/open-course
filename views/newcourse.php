@@ -35,12 +35,12 @@ if(isset($_SESSION['status']))
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Course Name</label>
-                                            <input type="text" name="coursename" class="form-control" placeholder="Course Name">
+                                            <input type="text" name="coursename" class="form-control" placeholder="Course Name" required>
                                         </div>
 
                                          <div class="form-group">
                                             <label>Course number</label>
-                                            <input type="text" name="courseno" class="form-control" placeholder="Course number" >
+                                            <input type="text" name="courseno" class="form-control" placeholder="Course number" required>
                                         </div>
                                         <fieldset disabled>
                                         <div class="form-group">
@@ -56,11 +56,11 @@ if(isset($_SESSION['status']))
                                         </fieldset>
                                          <div class="form-group">
                                             <label>Year</label>
-                                            <input type="text" name="year"  class="form-control" placeholder="Year">
+                                            <input type="number" name="year"  class="form-control" placeholder="Year" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Credits</label>
-                                            <input type="text" name="credits" class="form-control" placeholder="Credits" >
+                                            <input type="text" name="credits" class="form-control" placeholder="Credits" required>
                                         </div>
 
                                         <div class="form-group">
@@ -139,9 +139,9 @@ if(isset($_SESSION['status']))
                                             $percent = ($row['count']/$total)*100;
                                            // echo $percent;
                                            echo '
-                                    <div class="progress vertical">
-                                        <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="'.$row['count'].'" aria-valuemin="0" aria-valuemax="'.$total.'" style="height:'.$percent.'%">
-                                           <span>'.$row['count'].'</span> <br/><span>'.$percent.'%</span><br/><span>'.$row['slot'].'</span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="'.$row['count'].'" aria-valuemin="0" aria-valuemax="'.$total.'" style="width:'.$percent.'%">
+                                           <span>'.$row['slot'].', </span><span>'.$row['count'].', </span><span>'.ROUND($percent,0).'%</span>
                                         </div>
                                     </div>
                                 ';
@@ -151,8 +151,8 @@ if(isset($_SESSION['status']))
                                             if(!in_array($value,$slots))
                                             {
                                                  echo '
-                                    <div class="progress vertical">
-                                        <div class="progress-bar progress-bar-green sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="'.$total.'" style="height: 0%">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-orange sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="'.$total.'" style="width: 0%">
                                             <span>0%</span>
                                         </div>
                                     </div>

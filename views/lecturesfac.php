@@ -51,12 +51,12 @@ $row = $courses->getCourseDetails($courseid);
 
                                          <div class="form-group">
                                             <label>Lecture Number</label>
-                                            <input type="text" name="num" class="form-control" placeholder="number">
+                                            <input type="number" name="num" class="form-control" placeholder="number" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Lecture Title</label>
-                                            <input type="text" name="title" class="form-control" placeholder="Name">
+                                            <input type="text" name="title" class="form-control" placeholder="Name" required>
                                         </div>
 
 
@@ -64,7 +64,7 @@ $row = $courses->getCourseDetails($courseid);
 
                                          <div class="form-group">
                                            <label for="exampleInputFile">Upload Lecture</label>
-                                            <input type="file" name="file" id="exampleInputFile">
+                                            <input type="file" name="file" id="exampleInputFile" required>
                                         </div>
                                         <button type="submit" class="btn bg-olive btn-block">Submit</button>
 

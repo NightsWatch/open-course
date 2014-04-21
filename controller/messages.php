@@ -19,9 +19,12 @@ if( isset($_POST['receiverusername']) && isset($_POST['message']))
 	$date = date('Y-m-d H:i:s');
 	if ($msgs->insertMessage($senderid, $receiverid, $message, $date)== -1 )
 			{
-				echo 'failed';
-				header('Location: ../views/inbox.php');
+				header('Location: ../views/inbox.php?done=0');
 			}
+		else
+		{
+			header ('Location: ../views/inbox.php');
+		}
 
 	//	$msgs->getInbox($senderid);
 }
