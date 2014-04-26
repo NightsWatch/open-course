@@ -5,15 +5,21 @@ PHP, Mysql
 
 
 1. Course Registration 
+
 	a. Cant register if more credits than maximum 
 	b. Cant register if Time slot clashes 
 	c. List registered courses 
 2. Course Forums. 
+
 	a. One forum for each course 
+	
 	b. Many threads in each forum 
+	
 	c. Many posts in each thread 
 3. Lectures 
+
 	a. Faculty can upload new lectures 
+
 	b. Students can download them 
 4. Assignments 
 	a. Faculty or TA can upload new assignments 
