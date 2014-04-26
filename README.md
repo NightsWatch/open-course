@@ -1,6 +1,7 @@
 # Open Course
 ## A course management system, would be useful for universities.
-### PHP, Mysql
+### PHP & Mysql, Using Models Views and Controllers (**MVC 
+Architecture**)
 
 
 1. **Course Registration**
@@ -70,5 +71,3 @@ Approve or Reject HOD registrations
  
 
 26. **Clean, Easy to use&navigate User Interface** 
-27. Structured Code in PHP and MySQL using Models Views and Controllers (**MVC 
-Architecture**)
