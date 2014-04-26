@@ -1,7 +1,6 @@
 # Open Course
 ## A course management system, would be useful for universities.
-### PHP & Mysql, Using Models Views and Controllers (**MVC 
-Architecture**)
+### PHP & Mysql, Using Models Views and Controllers (MVC Architecture)
 
 
 1. **Course Registration**
