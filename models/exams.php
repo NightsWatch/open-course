@@ -163,7 +163,7 @@ class exams
 
 		}
 
-		echo "Error: ".mysql_error();
+			echo "Error: ".mysql_error();
 		return 0;
 	}
 

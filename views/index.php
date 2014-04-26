@@ -17,6 +17,7 @@ if(isset($_SESSION['status']))
 <h1 style="text-align:center"><i class="fa fa-magic"></i> Open Course</h1>
 </section>
 <br/>
+
  <section class="content">
 <div class="row">
 		<div class="col-md-8">
@@ -156,6 +157,10 @@ if(isset($_SESSION['status']))
 	 		</div>
 	 	</div>
 	 </div>
+
+
+
+
 <?php
 
 include 'footer.php';

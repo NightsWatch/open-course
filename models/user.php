@@ -28,9 +28,10 @@ class user {
 			echo $_SESSION['status']." username ".$_SESSION['username'];
 
 			echo $fill;
-
+			//echo $_SESSION['usertype'];
+			header("Location: ../views/index.php?session=1");
 				 //if($fill==1)
-					header("Location: ../views/index.php?session=1");
+					//header("Location: ../views/index.php?session=1");
 				 //else
 				 	//header("Location: ../views/profile.php?session=1");
 		} 

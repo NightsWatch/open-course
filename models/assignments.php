@@ -28,7 +28,7 @@ class assignments {
 		{
 			$row = mysql_fetch_array($result);
 			$max = $row['maxmarks'];
-			if($marks<$max)
+			if($marks<=$max)
 				return 1;
 			else
 				return 0;

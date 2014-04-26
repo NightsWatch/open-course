@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Open Class</title>
+        <title>Open Course</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -41,7 +41,7 @@
         <header class="header">
             <a href="index.php" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                Open Class
+                Open Course
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -126,7 +126,7 @@
                                     
                                     <ul class="menu">';
 
-                                    if(($_SESSION['usertype'])=="Faculty"  || $_SESSION['usertype']=="HOD")
+                                    if(($_SESSION['usertype'])=="Faculty"  || $_SESSION['usertype']=="HOD" ||$_SESSION['usertype']=="admin")
                                           {
                                         echo '<li>
                                             <a href="notificationsfac.php">

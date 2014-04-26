@@ -110,7 +110,7 @@
               }
 
               //<small style="color:#777"><br/> of Courses you are teaching</small>
-             if($_SESSION['usertype']=="Faculty" || $_SESSION['usertype']=="HOD")
+             if($_SESSION['usertype']=="Faculty" || $_SESSION['usertype']=="HOD" )
               {
                  $crs = New courses();
                  $facobj = New faculty();
@@ -204,6 +204,14 @@
                       <i class="fa fa-book"></i><span> Take Thesis Students</span>
                   </a>
                  </li>';
+                 echo '
+              <li>
+                    <a href="profile.php">
+                        <i class="fa fa-user"></i> <span>Profile</span>
+                       
+                    </a>
+                </li>   
+                ';
 
               }
 
@@ -228,25 +236,31 @@
                                 <i class="fa fa-angle-double-right"></i><span> Faculty Course Allotments</span>
                                 </a>
                                 </li>
-                                <li>
+                               
+                                </ul>
+                                ';
+                                                  
+                              }
+
+
+              if($_SESSION['usertype']=="admin")
+              {
+                echo '<li>
+                    <a href="admin.php">
+                    <i class="fa fa-user"></i><span>Admin Page</span></a>
+
+                </li>
+
+                 <li>
                                 <a href="credits.php">
                                 <i class="fa fa-angle-double-right"></i><span> Maximum credits </span>
                                 </a>
                                 </li>
-                                </ul>
-                                ';
-
-                              }
 
 
-              echo '
-              <li>
-                    <a href="profile.php">
-                        <i class="fa fa-user"></i> <span>Profile</span>
-                       
-                    </a>
-                </li>   
                 ';
+              }
+
                 
                 
 

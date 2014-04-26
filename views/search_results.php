@@ -124,7 +124,7 @@ if($category=="Courses")
             <div class="box-body" style="overflow: hidden; width: auto;">
               <ul>
                 <li>Course No: <?php echo $row['courseno']; ?></li>
-               <li>Department: <?php echo $row['courseid']; ?> </li>
+               <li>Department: <?php echo $row['department']; ?> </li>
               <li>Year: <?php echo $row['year'] ?> </li>
               </ul>
             </div>

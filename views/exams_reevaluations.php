@@ -43,7 +43,7 @@ $examid = $_GET['eid'];
               echo ' <table class="table table-bordered table-striped dataTable ">
                         <thead>   
                         <tr>
-                          <th>Stud id</th>
+                          <th>Stud username</th>
                             <th>Max Marks</th>
                             <th>Stud Marks</th>
                             <th>Reevaluation</th>
@@ -53,15 +53,17 @@ $examid = $_GET['eid'];
                     <tbody>';
 
             include_once '../models/courses.php';
-
+            include_once '../models/user_details.php';
             $course= New courses();
+            $un = New user_details();
+
             $students=$course->getCourseExamSolutionsStudents($examid);
 
             while($row = mysql_fetch_array($students))
                 {
                    
                     echo '<tr>
-                        <td>'.$row['studentid'].'</td>
+                        <td>'.$un->getUsername($row['studentid']).'</td>
                             <td>'.$row['maxmarks'].'</td>
                             <td>'.$row['marks'].'</td>';
                             if($row['reeval']=="yes")

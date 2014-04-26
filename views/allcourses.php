@@ -132,7 +132,7 @@ if(isset($_SESSION['status']))
                 $('#example1').dataTable({
                     "bPaginate": false,
                     "bLengthChange": true,
-                    "bFilter": false,
+                    "bFilter": true,
                     "bSort": true,
                     "bInfo": true,
                     "bAutoWidth": false
