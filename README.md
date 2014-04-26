@@ -5,7 +5,6 @@ PHP, Mysql
 
 
 1. Course Registration 
-
 	a. Cant register if more credits than maximum 
 	b. Cant register if Time slot clashes 
 	c. List registered courses 
