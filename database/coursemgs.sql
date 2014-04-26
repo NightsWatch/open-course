@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 22, 2014 at 12:05 AM
+-- Generation Time: Apr 27, 2014 at 01:33 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -64,14 +64,15 @@ CREATE TABLE IF NOT EXISTS `assignsubmissions` (
   PRIMARY KEY (`subid`),
   KEY `index-studid` (`studid`),
   KEY `assgnid` (`assignid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `assignsubmissions`
 --
 
 INSERT INTO `assignsubmissions` (`subid`, `filepath`, `assignid`, `marks`, `stime`, `studid`) VALUES
-(35, '../submissions/35.zip', 37, 22, '2014-04-21 23:55:17', 23);
+(35, '../submissions/35.zip', 37, 20, '2014-04-21 23:55:17', 23),
+(36, '../submissions/36.pdf', 37, 21, '2014-04-22 02:24:42', 22);
 
 -- --------------------------------------------------------
 
@@ -93,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `coursefacallotment` (
 INSERT INTO `coursefacallotment` (`courseid`, `facultyid`) VALUES
 (25, 26),
 (26, 27),
+(27, 27),
 (24, 32),
 (25, 33);
 
@@ -111,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `credits` int(10) NOT NULL,
   `slot` varchar(2) NOT NULL,
   PRIMARY KEY (`courseid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `courses`
@@ -120,7 +122,8 @@ CREATE TABLE IF NOT EXISTS `courses` (
 INSERT INTO `courses` (`courseid`, `courseno`, `coursename`, `department`, `year`, `credits`, `slot`) VALUES
 (24, 'CL 201', 'Chemical Systems', 'Chemical', 2014, 8, 'A'),
 (25, 'CS201', 'Algorithms', 'CSE', 2014, 8, 'B'),
-(26, 'CS200', 'Data Structures', 'CSE', 2014, 6, 'A');
+(26, 'CS200', 'Data Structures', 'CSE', 2014, 6, 'A'),
+(27, 'CS 305', 'Databases', 'CSE', 2014, 25, 'A');
 
 -- --------------------------------------------------------
 
@@ -141,8 +144,8 @@ CREATE TABLE IF NOT EXISTS `coursestudregistration` (
 --
 
 INSERT INTO `coursestudregistration` (`courseid`, `studentid`, `grade`) VALUES
-(24, 23, NULL),
 (24, 37, NULL),
+(25, 22, NULL),
 (25, 23, NULL),
 (25, 34, NULL),
 (25, 37, 'AA');
@@ -160,14 +163,15 @@ CREATE TABLE IF NOT EXISTS `coursetaallotment` (
   PRIMARY KEY (`ctallotid`),
   KEY `course-ta-allotment_ibfk_2` (`taid`),
   KEY `index-courseid` (`courseid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `coursetaallotment`
 --
 
 INSERT INTO `coursetaallotment` (`ctallotid`, `courseid`, `taid`) VALUES
-(10, 25, 22);
+(10, 25, 22),
+(11, 25, 24);
 
 -- --------------------------------------------------------
 
@@ -211,15 +215,16 @@ CREATE TABLE IF NOT EXISTS `examsolutions` (
   PRIMARY KEY (`solid`),
   KEY `studentid` (`studentid`,`examid`,`filepath`),
   KEY `exfk` (`examid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `examsolutions`
 --
 
 INSERT INTO `examsolutions` (`solid`, `studentid`, `examid`, `filepath`, `studcomments`, `marks`, `reeval`) VALUES
-(32, 23, 9, '../exams/solutions/32.pptx', '', 50, 'no'),
-(33, 23, 8, '../exams/solutions/33.zip', 'Question 1 I used this which is right accd to Cormen', 12, 'no');
+(32, 23, 9, '../exams/solutions/32.pptx', 'question 1', 11, 'no'),
+(33, 23, 8, '../exams/solutions/33.zip', 'Q1 is correct', 12, 'yes'),
+(34, 22, 8, '../exams/solutions/34.pptx', 'Ques 1 I used different', 25, 'yes');
 
 -- --------------------------------------------------------
 
@@ -247,7 +252,8 @@ INSERT INTO `faculty` (`userid`, `name`, `department`, `designation`, `joined`) 
 (31, 'BKPatel', 'Chemical', 'Professor', 1999),
 (32, 'Mohan Singh', 'Chemical', 'Professor', 2005),
 (33, 'SB Nair', 'CSE', 'Professor', 2004),
-(36, 'HK Singh', 'Design', 'HOD', 2004);
+(36, 'HK Singh', 'Design', 'HOD', 2004),
+(39, 'Admin', 'Math', 'Director', 2000);
 
 -- --------------------------------------------------------
 
@@ -264,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `forums` (
   PRIMARY KEY (`threadid`),
   KEY `courseidindex` (`courseid`),
   KEY `id` (`starterid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `forums`
@@ -275,7 +281,10 @@ INSERT INTO `forums` (`courseid`, `threadid`, `threadtitle`, `timestamp`, `start
 (25, 27, 'I''m new here', '2014-04-21 23:16:50', 23),
 (25, 28, 'Doubt', '2014-04-21 23:18:33', 23),
 (25, 29, 'Another doubt', '2014-04-21 23:19:06', 23),
-(25, 30, 'Website course', '2014-04-21 23:19:17', 23);
+(25, 30, 'Website course', '2014-04-21 23:19:17', 23),
+(25, 31, 'Doubt in question 2', '2014-04-26 23:00:16', 23),
+(25, 32, 'Doubt in question 2 in Assn 1', '2014-04-26 23:00:59', 23),
+(25, 33, 'lecture no 11\r\n', '2014-04-26 23:41:30', 33);
 
 -- --------------------------------------------------------
 
@@ -410,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `notifsthreads` (
   PRIMARY KEY (`notifid`),
   KEY `useridindex` (`foruserid`),
   KEY `threadid` (`threadid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
 -- Dumping data for table `notifsthreads`
@@ -435,7 +444,22 @@ INSERT INTO `notifsthreads` (`notifid`, `foruserid`, `threadid`, `seen`, `timest
 (52, 34, 30, b'1', '2014-04-21 23:19:17'),
 (53, 37, 30, b'1', '2014-04-21 23:19:17'),
 (54, 26, 30, b'1', '2014-04-21 23:19:17'),
-(55, 33, 30, b'1', '2014-04-21 23:19:17');
+(55, 33, 30, b'1', '2014-04-21 23:19:17'),
+(56, 22, 31, b'0', '2014-04-26 23:00:16'),
+(57, 34, 31, b'0', '2014-04-26 23:00:16'),
+(58, 37, 31, b'0', '2014-04-26 23:00:16'),
+(59, 26, 31, b'0', '2014-04-26 23:00:16'),
+(60, 33, 31, b'0', '2014-04-26 23:00:16'),
+(61, 22, 32, b'0', '2014-04-26 23:01:00'),
+(62, 34, 32, b'0', '2014-04-26 23:01:00'),
+(63, 37, 32, b'0', '2014-04-26 23:01:00'),
+(64, 26, 32, b'0', '2014-04-26 23:01:00'),
+(65, 33, 32, b'0', '2014-04-26 23:01:01'),
+(66, 22, 33, b'0', '2014-04-26 23:41:30'),
+(67, 23, 33, b'0', '2014-04-26 23:41:30'),
+(68, 34, 33, b'0', '2014-04-26 23:41:30'),
+(69, 37, 33, b'0', '2014-04-26 23:41:30'),
+(70, 26, 33, b'0', '2014-04-26 23:41:31');
 
 -- --------------------------------------------------------
 
@@ -452,14 +476,16 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`postid`),
   KEY `useridindex` (`userid`),
   KEY `tidindex` (`threadid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`threadid`, `postid`, `userid`, `timestamp`, `content`) VALUES
-(26, 16, 33, '2014-04-21 23:09:10', 'Is this');
+(26, 16, 33, '2014-04-21 23:09:10', 'Is this'),
+(26, 17, 33, '2014-04-26 23:09:50', 'df'),
+(33, 18, 33, '2014-04-26 23:41:48', 'refer slides');
 
 -- --------------------------------------------------------
 
@@ -487,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 INSERT INTO `students` (`userid`, `name`, `program`, `batch`, `department`, `roll`, `ista`, `maxcredits`) VALUES
 (22, 'Rahul Huilgol', 'B.Tech', '2011', 'CSE', 11010156, 2, 25),
 (23, 'Harshith Reddy', 'B.Tech', '2011', 'CSE', 11010149, 0, 25),
-(24, 'Harsha Tirumala', 'B.Tech', '2011', 'CSE', 11010120, 0, 25),
+(24, 'Harsha Tirumala', 'B.Tech', '2011', 'CSE', 11010120, 1, 25),
 (29, 'Gowtam Dora', 'B.Tech', '2011', 'Civil', 11010565, 2, 25),
 (30, 'Sameer Nekalapu', 'B.Tech', '2011', 'EEE', 11010456, 0, 25),
 (34, 'Simrat', 'B.Tech', '2011', 'CSE', 11010165, 3, 25),
@@ -517,8 +543,7 @@ INSERT INTO `thesis` (`studentid`, `facultyid`, `title`, `year`, `field`) VALUES
 (22, 31, 'Dynamics of RDBMS', 2014, 'ML'),
 (23, 33, 'AI of Robot', 2015, 'AI'),
 (24, 31, 'Randomized Algorithms', 2000, 'ML'),
-(34, 36, 'Dynamics of Human Brain', 2014, 'Inter'),
-(37, 33, 'RDMS', 2008, 'DBMS');
+(34, 36, 'Dynamics of Human Brain', 2014, 'Inter');
 
 -- --------------------------------------------------------
 
@@ -533,31 +558,34 @@ CREATE TABLE IF NOT EXISTS `users` (
   `usertype` varchar(10) NOT NULL,
   `email_id` varchar(50) NOT NULL,
   `fill` tinyint(1) NOT NULL DEFAULT '0',
+  `approved` varchar(10) NOT NULL DEFAULT 'no',
   PRIMARY KEY (`userid`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email_id` (`email_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `username`, `password`, `usertype`, `email_id`, `fill`) VALUES
-(22, 'rahul', '202cb962ac59075b964b07152d234b70', 'Student', 'rahulhuilgol@gmail.com', 1),
-(23, 'harshith', '202cb962ac59075b964b07152d234b70', 'Student', 'harshith2794@gmail.com', 1),
-(24, 'harsha', '202cb962ac59075b964b07152d234b70', 'Student', 'harsha1469@gmail.com', 1),
-(25, 'Bhanu', '202cb962ac59075b964b07152d234b70', 'Student', 'bhanu@iitg.ernet.in', 0),
-(26, 'ranbir', '202cb962ac59075b964b07152d234b70', 'Faculty', 'ranbir@iitg.ernet.in', 1),
-(27, 'arnab', '202cb962ac59075b964b07152d234b70', 'Faculty', 'arnabsarkar@iitg.ernet.in', 1),
-(28, 'arijit', '202cb962ac59075b964b07152d234b70', 'Faculty', 'arijitsur@iitg.ernet.in', 1),
-(29, 'gowtam', '202cb962ac59075b964b07152d234b70', 'Student', 'sunkavalli@live.com', 1),
-(30, 'sameer', '202cb962ac59075b964b07152d234b70', 'Student', 'sameer@iitg.ernet.in', 1),
-(31, 'bkpatel', '202cb962ac59075b964b07152d234b70', 'HOD', 'bkpatel@iitg.ernet.in', 1),
-(32, 'mohan', '202cb962ac59075b964b07152d234b70', 'Faculty', 'mohansingh@iitg.ernet.in', 1),
-(33, 'sbn', '202cb962ac59075b964b07152d234b70', 'HOD', 'sbn@iitg.ernet.in', 1),
-(34, 'simrat', '81cd19286e44dc52c7a5b15379427d7f', 'Student', 'simratsingh@something.com', 1),
-(36, 'hksingh', '202cb962ac59075b964b07152d234b70', 'HOD', 'hksingh', 1),
-(37, 'nadim', '202cb962ac59075b964b07152d234b70', 'Student', 'nadim', 1);
+INSERT INTO `users` (`userid`, `username`, `password`, `usertype`, `email_id`, `fill`, `approved`) VALUES
+(22, 'rahul', '202cb962ac59075b964b07152d234b70', 'Student', 'rahulhuilgol@gmail.com', 1, 'no'),
+(23, 'harshith', '202cb962ac59075b964b07152d234b70', 'Student', 'harshith2794@gmail.com', 1, 'no'),
+(24, 'harsha', '202cb962ac59075b964b07152d234b70', 'Student', 'harsha1469@gmail.com', 1, 'no'),
+(25, 'Bhanu', '202cb962ac59075b964b07152d234b70', 'Student', 'bhanu@iitg.ernet.in', 0, 'no'),
+(26, 'ranbir', '202cb962ac59075b964b07152d234b70', 'Faculty', 'ranbir@iitg.ernet.in', 1, 'no'),
+(27, 'arnab', '202cb962ac59075b964b07152d234b70', 'Faculty', 'arnabsarkar@iitg.ernet.in', 1, 'no'),
+(28, 'arijit', '202cb962ac59075b964b07152d234b70', 'Faculty', 'arijitsur@iitg.ernet.in', 1, 'no'),
+(29, 'gowtam', '202cb962ac59075b964b07152d234b70', 'Student', 'sunkavalli@live.com', 1, 'no'),
+(30, 'sameer', '202cb962ac59075b964b07152d234b70', 'Student', 'sameer@iitg.ernet.in', 1, 'no'),
+(31, 'bkpatel', '202cb962ac59075b964b07152d234b70', 'HOD', 'bkpatel@iitg.ernet.in', 1, 'yes'),
+(32, 'mohan', '202cb962ac59075b964b07152d234b70', 'Faculty', 'mohansingh@iitg.ernet.in', 1, 'no'),
+(33, 'sbn', '202cb962ac59075b964b07152d234b70', 'HOD', 'sbn@iitg.ernet.in', 1, 'no'),
+(34, 'simrat', '81cd19286e44dc52c7a5b15379427d7f', 'Student', 'simratsingh@something.com', 1, 'no'),
+(36, 'hksingh', '202cb962ac59075b964b07152d234b70', 'HOD', 'hksingh', 1, 'no'),
+(37, 'nadim', '202cb962ac59075b964b07152d234b70', 'Student', 'nadim', 1, 'no'),
+(38, 'pill', '2ec840f1a4feb1a1fb28e11f703ba468', 'Student', 'pill', 0, 'no'),
+(39, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', 1, 'no');
 
 --
 -- Constraints for dumped tables
@@ -601,8 +629,8 @@ ALTER TABLE `coursetaallotment`
 -- Constraints for table `examsolutions`
 --
 ALTER TABLE `examsolutions`
-  ADD CONSTRAINT `a2` FOREIGN KEY (`examid`) REFERENCES `exams` (`examid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `a1` FOREIGN KEY (`studentid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `a1` FOREIGN KEY (`studentid`) REFERENCES `students` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `a2` FOREIGN KEY (`examid`) REFERENCES `exams` (`examid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `faculty`

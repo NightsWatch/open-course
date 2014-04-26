@@ -1,0 +1,12 @@
+find . -name 'secrep' | xargs wc -l | tail -1
+
+to find size of folder 
+du
+
+recursive chmod
+chmod -R
+
+ssh copy
+scp -p(permissions) *(all files) rahul@172.16.24.79:/home/rahul/
+
+

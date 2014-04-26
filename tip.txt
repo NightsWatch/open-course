@@ -1,5 +1,27 @@
-use harshith 
+Going through these pages will be good because these entries are populated in the database.
 
-sbnair
 
-for showing
+Student:
+username: harshith
+password: 123
+
+
+HOD account:
+username: sbn
+password: 123
+
+
+TA account:
+username: rahul
+password: 123
+
+
+Admin account:
+username: admin
+password: admin
+
+Course:
+Algorithms
+
+Exam:
+Midsem
