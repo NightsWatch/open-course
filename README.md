@@ -1,7 +1,6 @@
-Open Course
-A course management system, would be useful for universities.
-
-PHP, Mysql
+# Open Course
+## A course management system, would be useful for universities.
+### PHP, Mysql
 
 
 1. **Course Registration**
